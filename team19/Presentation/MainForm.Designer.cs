@@ -1,4 +1,4 @@
-﻿namespace Team19.Presentation
+ namespace Team19.Presentation
 {
     partial class MainForm
     {
@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Text = "MainForm";
+            this.Text = "MainForm -- test da google code";
         }
 
         #endregion
