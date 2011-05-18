@@ -46,6 +46,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\CodiceProdotto.cs" />
+    <Compile Include="Model\Currency.cs" />
+    <Compile Include="Model\Dipendente.cs" />
+    <Compile Include="Model\MovimentoDiDenaro.cs" />
+    <Compile Include="Model\Prodotto.cs" />
+    <Compile Include="Model\Riepilogo.cs" />
+    <Compile Include="Model\Sorgente.cs" />
     <Compile Include="Presentation\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -74,7 +81,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Model\" />
     <Folder Include="Persistence\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
