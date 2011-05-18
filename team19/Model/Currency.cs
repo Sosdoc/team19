@@ -9,13 +9,20 @@ namespace Team19.Model
     {
         private double _value;
 
+        public double Value
+        {
+            get { return _value; }
+            set { this._value = value; }
+        }
+
         public Currency(double value)
         {
             this._value = value;
         }
+
         public override String ToString()
         {
-            return "€ " + _value.ToString();
+            return "€ " + this.Value.ToString();
         }
     }
 }
