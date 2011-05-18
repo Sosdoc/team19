@@ -46,12 +46,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\AltroDepositoDiDenaro.cs" />
+    <Compile Include="Model\Article.cs" />
+    <Compile Include="Model\Cassa.cs" />
     <Compile Include="Model\CodiceProdotto.cs" />
+    <Compile Include="Model\ContenitoreDiDenaro.cs" />
+    <Compile Include="Model\ContoCorrenteBancario.cs" />
     <Compile Include="Model\Currency.cs" />
+    <Compile Include="Model\DepositoDiDenaro.cs" />
+    <Compile Include="Model\Destinazione.cs" />
     <Compile Include="Model\Dipendente.cs" />
+    <Compile Include="Model\ElencoProdotti.cs" />
+    <Compile Include="Model\Fattura.cs" />
+    <Compile Include="Model\FatturaAcquisto.cs" />
+    <Compile Include="Model\FatturaVendita.cs" />
     <Compile Include="Model\MovimentoDiDenaro.cs" />
     <Compile Include="Model\Prodotto.cs" />
     <Compile Include="Model\Riepilogo.cs" />
+    <Compile Include="Model\RigaFattura.cs" />
     <Compile Include="Model\Sorgente.cs" />
     <Compile Include="Presentation\MainForm.cs">
       <SubType>Form</SubType>
