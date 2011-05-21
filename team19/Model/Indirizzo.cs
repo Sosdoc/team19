@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Team19.Model.Soggetti
+namespace Team19.Model
 {
     public class Indirizzo
     {

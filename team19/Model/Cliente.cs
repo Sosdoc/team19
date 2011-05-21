@@ -3,24 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Team19.Model.Soggetti
+namespace Team19.Model
 {
     public class Cliente : Soggetto
     {
-        private string? _codiceFiscale;
+        private string _codiceFiscale;
 
         
 
-        public Cliente(string denominazione, string telefono, string email, string? partitaIva, string? codiceFiscale) :base(denominazione,telefono,email,partitaIva)
+        public Cliente(string denominazione, string telefono, string email, string partitaIva, string codiceFiscale) :base(denominazione,telefono,email,partitaIva)
         {
-            if (!partitaIva.HasValue && !codiceFiscale.HasValue)
+            if (partitaIva==null && codiceFiscale==null)
                 throw new ArgumentNullException("Partita Iva e Codice Fiscale entrambi nulli");
             _codiceFiscale = codiceFiscale;
         }
 
         public string CodiceFiscale  // Chiedere per il null
         {
-            get { return _codiceFiscale.Value; }
+            get { return _codiceFiscale; }
         }
     }
 }

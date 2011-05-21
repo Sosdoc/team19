@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Team19.Model.Fatture;
 
-namespace Team19.Model.Movimenti
+
+namespace Team19.Model
 {
     public static class MovimentoFactory
     {

@@ -2,9 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Team19.Model.Soggetti;
-using Team19.Model.Fatture;
-using Team19.Model.Movimenti;
 
 namespace Team19.Model
 {

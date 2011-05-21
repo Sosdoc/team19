@@ -35,12 +35,12 @@ namespace Team19.Model
 
         public ISorgente Sorgente
         {
-            get;
+            get { return _sorgente; }
         }
 
         public IDestinazione Destinazione
         {
-            get;
+            get { return _destinazione; }
         }
 
         public Dipendente Dipendente
