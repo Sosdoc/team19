@@ -9,8 +9,8 @@ namespace Team19.Model
     {
         private DateTime _data;
 
-        private Sorgente _sorgente;
-        private Destinazione _destinazione;
+        private ISorgente _sorgente;
+        private IDestinazione _destinazione;
         private Dipendente _dipendente;
         private DateTime _dataRegistrazione;
 
@@ -25,12 +25,12 @@ namespace Team19.Model
             get;
         }
 
-        public abstract Sorgente Sorgente
+        public abstract ISorgente Sorgente
         {
             get;
         }
 
-        public abstract Destinazione Destinazione
+        public abstract IDestinazione Destinazione
         {
             get;
         }
@@ -45,14 +45,14 @@ namespace Team19.Model
             get { return _dataRegistrazione; }
         }
 
-        public static MovimentoDiDenaro creaMovimento(DateTime data, Currency importo, Sorgente sorgente, Destinazione destinazione, Dipendente dipendente)
+        public static MovimentoDiDenaro creaMovimento(DateTime data, Currency importo, ISorgente sorgente, IDestinazione destinazione, Dipendente dipendente)
         {
             return new PagamentoAcquisto(data, importo, sorgente, destinazione, dipendente);
         }
 
         private class PagamentoAcquisto : MovimentoDiDenaro
         {
-            public PagamentoAcquisto(DateTime data, Currency importo, Sorgente sorgente, Destinazione destinazione, Dipendente dipendente)
+            public PagamentoAcquisto(DateTime data, Currency importo, ISorgente sorgente, IDestinazione destinazione, Dipendente dipendente)
             {
                 base._data = data;
                 base._importo = importo;
@@ -67,12 +67,12 @@ namespace Team19.Model
                 get { throw new NotImplementedException(); }
             }
 
-            public override Sorgente Sorgente
+            public override ISorgente Sorgente
             {
                 get { return base._sorgente; }
             }
 
-            public override Destinazione Destinazione
+            public override IDestinazione Destinazione
             {
                 get { return base._destinazione; }
             }
@@ -91,12 +91,12 @@ namespace Team19.Model
                 get { throw new NotImplementedException(); }
             }
 
-            public override Sorgente Sorgente
+            public override ISorgente Sorgente
             {
                 get { return base._sorgente; }
             }
 
-            public override Destinazione Destinazione
+            public override IDestinazione Destinazione
             {
                 get { return base._destinazione; }
             }
@@ -111,17 +111,17 @@ namespace Team19.Model
                 get { return _importo; }
             }
 
-            public abstract Sorgente Sorgente
+            public abstract ISorgente Sorgente
             {
                 get;
             }
 
-            public abstract Destinazione Destinazione
+            public abstract IDestinazione Destinazione
             {
                 get;
             }
 
-            public MovimentoInterno creaMovimentoInterno(Sorgente sorgente, Destinazione destinazione)
+            public MovimentoInterno creaMovimentoInterno(ISorgente sorgente, IDestinazione destinazione)
             {
                 throw new NotImplementedException();
             }
@@ -129,12 +129,12 @@ namespace Team19.Model
 
             private class Prelievo : MovimentoInterno
             {
-                public override Sorgente Sorgente
+                public override ISorgente Sorgente
                 {
                     get { throw new NotImplementedException(); }
                 }
 
-                public override Destinazione Destinazione
+                public override IDestinazione Destinazione
                 {
                     get { throw new NotImplementedException(); }
                 }
@@ -142,12 +142,12 @@ namespace Team19.Model
 
             private class Spostamento : MovimentoInterno
             {
-                public override Sorgente Sorgente
+                public override ISorgente Sorgente
                 {
                     get { throw new NotImplementedException(); }
                 }
 
-                public override Destinazione Destinazione
+                public override IDestinazione Destinazione
                 {
                     get { throw new NotImplementedException(); }
                 }
@@ -155,12 +155,12 @@ namespace Team19.Model
 
             private class Versamento : MovimentoInterno
             {
-                public override Sorgente Sorgente
+                public override ISorgente Sorgente
                 {
                     get { throw new NotImplementedException(); }
                 }
 
-                public override Destinazione Destinazione
+                public override IDestinazione Destinazione
                 {
                     get { throw new NotImplementedException(); }
                 }

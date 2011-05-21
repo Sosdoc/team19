@@ -15,7 +15,7 @@ namespace Team19.Model
             get;
         }
 
-        public Fattura(DateTime data, int numero)
+        protected Fattura(DateTime data, int numero)
         {
             this._data = data;
             this._numero = numero;
