@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+using Team19.Model.Soggetti;
 using Team19.Model.Fatture;
 using Team19.Model.Movimenti;
 
@@ -12,11 +12,14 @@ namespace Team19.Model
     {
         private List<MovimentoDiDenaro> _movimenti;
         private List<ContenitoreDiDenaro> _contenitoriDiDenaro;
-        private Cassa _cassa;
         private List<Fattura> _fatture;
         private List<Prodotto> _prodotti;
-        //private List<Soggetto> _soggetti;
-        private Document _instance;
+        private List<Soggetto> _soggetti;
+        private Cassa _cassa;
+
+        private static Document _instance;
+
+        public static event EventHandler Changed;
 
         public IEnumerable<MovimentoDiDenaro> Movimenti
         {
@@ -43,11 +46,10 @@ namespace Team19.Model
             get { return _prodotti; }
         }
 
-        //public IEnumerable<Soggetto> Soggetti
-        //{
-        //    get { return _soggetti; }
-        //}
-
+        public IEnumerable<Soggetto> Soggetti
+        {
+            get { return _soggetti; }
+        }
 
         private Document()
         {
@@ -55,15 +57,33 @@ namespace Team19.Model
 
         public static void CreateInstance()
         {
-            throw new NotImplementedException();
+            _instance = new Document();
+            _instance.Load();
         }
 
         public static Document GetInstance()
         {
-            throw new NotImplementedException();
+            if (_instance == null)
+                CreateInstance();
+            return _instance;
         }
 
+        private void Load()
+        {
+            //qui inizializzo le liste
+            OnChanged();
+        }
 
+        public void Save()
+        {
+            //questo metodo non fa nulla
+        }
+
+        protected virtual void OnChanged()
+        {
+            if (Changed != null)
+                Changed(this, EventArgs.Empty);
+        }
 
 
     }
