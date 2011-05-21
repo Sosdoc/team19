@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Team19.Model.Soggetti;
 
 namespace Team19.Model.Fatture
 {
@@ -18,15 +19,15 @@ namespace Team19.Model.Fatture
             }
         }
 
-        public FatturaAcquisto creaFatturaAcquisto(DateTime data, int numero, Currency importo)
+        public FatturaAcquisto creaFatturaAcquisto(Fornitore fornitore, DateTime data, int numero, Currency importo)
         {
-            return new FatturaAcquisto(data, numero, importo);
+            return new FatturaAcquisto(fornitore, data, numero, importo);
         }
 
-        public FatturaVendita creaFatturaVendita(DateTime data, ElencoProdotti elenco)
+        public FatturaVendita creaFatturaVendita(Cliente cliente, DateTime data, List<RigaFattura> elenco)
         {
             //int numeroNuovaFattura = _ultimaFatturaEmessa.NumeroFattura + 1;
-            FatturaVendita retval = new FatturaVendita(data, 1, elenco);
+            FatturaVendita retval = new FatturaVendita(cliente, data, 1, elenco);
             //Instance._ultimaFatturaEmessa = retval;
             return retval;
         }
@@ -35,8 +36,8 @@ namespace Team19.Model.Fatture
     #region Fattura di vendita
     private class FatturaVendita : Fattura, ISorgente
     {
-        private ElencoProdotti _elencoProdotti;
-
+        private List<RigaFattura> _elencoProdotti;
+        private Cliente _cliente;
         public override Currency Importo
         {
             get
@@ -50,11 +51,12 @@ namespace Team19.Model.Fatture
             }
         }
 
-        public FatturaVendita(DateTime data, int numero, ElencoProdotti elencoProdotti)
+        public FatturaVendita(Cliente cliente, DateTime data, int numero, List<RigaFattura> elencoProdotti)
             : base(data, numero)
         {
             //nota -- le fatture di vendita devono prendere il numero progressivo da qualche parte: da dove?
             this._elencoProdotti = elencoProdotti;
+            this._cliente = cliente;
         }
     }
     #endregion
@@ -63,16 +65,18 @@ namespace Team19.Model.Fatture
     private class FatturaAcquisto : Fattura, IDestinazione
     {
         private Currency _importo;
+        private Fornitore _fornitore;
 
         public override Currency Importo
         {
             get { return _importo; }
         }
 
-        public FatturaAcquisto(DateTime data, int numero, Currency importo)
+        public FatturaAcquisto(Fornitore fornitore, DateTime data, int numero, Currency importo)
             : base(data, numero)
         {
             this._importo = importo;
+            this._fornitore = fornitore;
         }
     }
     #endregion
