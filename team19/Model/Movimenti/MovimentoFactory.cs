@@ -2,35 +2,36 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Team19.Model.Fatture;
 
 namespace Team19.Model.Movimenti
 {
     public static class MovimentoFactory
     {
 
-        public static MovimentoDiDenaro CreatePagamentoAcquisto(ISorgente sorgente, IDestinazione destinazione, DateTime data, Dipendente dipendente)
+        public static MovimentoDiDenaro CreatePagamentoAcquisto(ISorgente sorgente, FatturaAcquisto destinazione, DateTime data, Dipendente dipendente)
         {
-            if(!(destinazione is FatturaAcquisto))
-            {
-                throw new ArgumentException("La destinazione non è una fattura di acquisto");
-            }
             return new PagamentoAcquisto(sorgente,destinazione,data,dipendente);
         }
 
-        public static MovimentoDiDenaro CreateIncassoVendita(ISorgente sorgente, IDestinazione destinazione, DateTime data, Dipendente dipendente)
+        public static MovimentoDiDenaro CreateIncassoVendita(FatturaVendita sorgente, IDestinazione destinazione, DateTime data, Dipendente dipendente)
         {
-            if(!(destinazione is FatturaVendita))
-            {
-                throw new ArgumentException("La sorgente non è una fattura di vendita");
-            }
             return new IncassoVendita(sorgente,destinazione,data,dipendente);
         }
 
-        public static MovimentoDiDenaro CreateMovimentoInterno(ISorgente sorgente, IDestinazione destinazione, Currency importo, DateTime data, Dipendente dipendente)
+        public static MovimentoDiDenaro CreateMovimentoInterno(Cassa sorgente, DepositoDiDenaro destinazione, Currency importo, DateTime data, Dipendente dipendente)
         {
-            if (destinazione.Equals(sorgente))
-                throw new ArgumentException("Sorgente e destinazione non possono coincidere");
+            return new Prelievo(sorgente, destinazione, importo, data, dipendente);
+        }
 
+        public static MovimentoDiDenaro CreateMovimentoInterno(DepositoDiDenaro sorgente, Cassa destinazione, Currency importo, DateTime data, Dipendente dipendente)
+        {
+            return new Versamento(sorgente, destinazione, importo, data, dipendente);
+        }
+
+        public static MovimentoDiDenaro CreateMovimentoInterno(DepositoDiDenaro sorgente, DepositoDiDenaro destinazione, Currency importo, DateTime data, Dipendente dipendente)
+        {
+            return new Spostamento(sorgente, destinazione, importo, data, dipendente);
         }
 
         private class PagamentoAcquisto : MovimentoDiDenaro
@@ -66,7 +67,7 @@ namespace Team19.Model.Movimenti
 
         }
 
-        private class MovimentoInterno : MovimentoDiDenaro
+        private abstract class MovimentoInterno : MovimentoDiDenaro
         {
             private Currency _importo;
 
@@ -84,17 +85,23 @@ namespace Team19.Model.Movimenti
 
         private class Prelievo : MovimentoInterno
         {
-            
+            public Prelievo(ISorgente sorgente, IDestinazione destinazione, Currency importo, DateTime data, Dipendente dipendente)
+                : base(sorgente, destinazione, importo, data, dipendente)
+            { }
         }
 
         private class Spostamento : MovimentoInterno
         {
-               
+             public Spostamento(ISorgente sorgente, IDestinazione destinazione, Currency importo, DateTime data, Dipendente dipendente)
+                : base(sorgente, destinazione, importo, data, dipendente)
+            { }  
         }
 
         private class Versamento : MovimentoInterno
         {
-               
+            public Versamento(ISorgente sorgente, IDestinazione destinazione, Currency importo, DateTime data, Dipendente dipendente)
+                : base(sorgente, destinazione, importo, data, dipendente)
+            { }
         }
     }
 }
