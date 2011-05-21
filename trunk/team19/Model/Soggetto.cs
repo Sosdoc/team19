@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Team19.Model.Soggetti
+namespace Team19.Model
 {
     public abstract class Soggetto
     {
         private string _denominazione;
         private string _telefono;
         private string _eMail;
-        private string? _partitaIva;
+        private string _partitaIva;
         private Indirizzo _indirizzo;
-        protected Soggetto(string denominazione, string telefono, string email, string? partitaIva)
+        protected Soggetto(string denominazione, string telefono, string email, string partitaIva)
         {
             _denominazione = denominazione;
             _telefono = telefono;
@@ -44,9 +44,9 @@ namespace Team19.Model.Soggetti
             //set { _denominazione = value; }
         }
 
-        public string PartitaIva // Chiedere per il null
+        public string PartitaIva
         {
-            get { return _partitaIva.Value; }
+            get { return _partitaIva; }
             //set { _partitaIva = value; }
         }
     }

@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Team19.Model.Soggetti;
-namespace Team19.Model.Fatture
+
+namespace Team19.Model
 {
     public class FatturaVendita : Fattura, ISorgente
     {

@@ -5,11 +5,11 @@ using System.Text;
 
 namespace Team19.Model
 {
-    public interface IRiepilogo
+    interface IRiepilogo
     {
-        public List<Currency> GetImportiPagati();
-        public List<Currency> GetImportiDaPagare();
-        public int prova();
+        List<Currency> GetImportiPagati();
+        List<Currency> GetImportiDaPagare();
+        
     }
 
     public class RiepilogoCliente : IRiepilogo
