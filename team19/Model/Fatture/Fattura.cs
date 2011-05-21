@@ -33,6 +33,9 @@ namespace Team19.Model
 
         protected Fattura(DateTime data, int numero)
         {
+            if (numero <= 0)
+                throw new ArgumentException("numero <= 0");
+
             this._data = data;
             this._numero = numero;
         }
