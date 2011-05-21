@@ -5,10 +5,28 @@ using System.Text;
 
 namespace Team19.Model
 {
-    class Prodotto
+    public class Prodotto
     {
         private string descrizione;
         private Currency prezzo;
-        CodiceProdotto codProdotto; 
+        CodiceProdotto codProdotto;
+
+        public string Descrizione
+        {
+            get { return descrizione; }
+        //    set { descrizione = value; }
+        }
+
+        public Currency Prezzo
+        {
+            get { return prezzo; }
+        //    set { prezzo = value; }
+        }
+
+        public CodiceProdotto CodProdotto
+        {
+            get { return codProdotto; }
+        //    set { codProdotto = value; }
+        } 
     }
 }
