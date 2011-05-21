@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Team19.Model
 {
-    abstract class DepositoDiDenaro: ContenitoreDiDenaro
+    public abstract class DepositoDiDenaro : ContenitoreDiDenaro
     {
     }
 }

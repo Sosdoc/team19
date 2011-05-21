@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Team19.Model
 {
-    class ContoCorrenteBancario: DepositoDiDenaro
+    public class ContoCorrenteBancario : DepositoDiDenaro
     {
         private String _codConto;
 

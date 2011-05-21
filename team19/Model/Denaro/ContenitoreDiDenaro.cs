@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Team19.Model
 {
-    abstract class ContenitoreDiDenaro: ISorgente, IDestinazione
+    public abstract class ContenitoreDiDenaro: ISorgente, IDestinazione
     {
         private readonly Currency _saldoIniziale;
 

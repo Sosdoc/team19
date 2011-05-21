@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Team19.Model
 {
-    abstract class Fattura
+    public abstract class Fattura
     {
         private DateTime _data;
         private int _numero;

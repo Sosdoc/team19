@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Team19.Model
 {
-    class RigaFattura
+    public class RigaFattura
     {
         private int _quantità;
         private Currency _prezzoUnitario;

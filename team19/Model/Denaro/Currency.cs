@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Team19.Model
 {
-    class Currency
+    public class Currency
     {
         private double _value;
 

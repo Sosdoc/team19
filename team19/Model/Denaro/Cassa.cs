@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Team19.Model
 {
-    class Cassa: ContenitoreDiDenaro
+    public class Cassa: ContenitoreDiDenaro
     {
         public override Currency Saldo
         {
