@@ -46,25 +46,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Model\AltroDepositoDiDenaro.cs" />
-    <Compile Include="Model\Article.cs" />
-    <Compile Include="Model\Cassa.cs" />
-    <Compile Include="Model\CodiceProdotto.cs" />
-    <Compile Include="Model\ContenitoreDiDenaro.cs" />
-    <Compile Include="Model\ContoCorrenteBancario.cs" />
-    <Compile Include="Model\Currency.cs" />
-    <Compile Include="Model\DepositoDiDenaro.cs" />
-    <Compile Include="Model\Destinazione.cs" />
+    <Compile Include="Model\Denaro\AltroDepositoDiDenaro.cs" />
+    <Compile Include="Model\Denaro\Cassa.cs" />
+    <Compile Include="Model\Prodotti\CodiceProdotto.cs" />
+    <Compile Include="Model\Denaro\ContenitoreDiDenaro.cs" />
+    <Compile Include="Model\Denaro\ContoCorrenteBancario.cs" />
+    <Compile Include="Model\Denaro\Currency.cs" />
+    <Compile Include="Model\Denaro\DepositoDiDenaro.cs" />
+    <Compile Include="Model\Movimenti\Destinazione.cs" />
     <Compile Include="Model\Dipendente.cs" />
-    <Compile Include="Model\ElencoProdotti.cs" />
-    <Compile Include="Model\Fattura.cs" />
-    <Compile Include="Model\FatturaAcquisto.cs" />
-    <Compile Include="Model\FatturaVendita.cs" />
-    <Compile Include="Model\MovimentoDiDenaro.cs" />
-    <Compile Include="Model\Prodotto.cs" />
+    <Compile Include="Model\Fatture\ElencoProdotti.cs" />
+    <Compile Include="Model\Fatture\Fattura.cs" />
+    <Compile Include="Model\Fatture\FatturaAcquisto.cs" />
+    <Compile Include="Model\Fatture\FatturaVendita.cs" />
+    <Compile Include="Model\Movimenti\MovimentoDiDenaro.cs" />
+    <Compile Include="Model\Prodotti\Prodotto.cs" />
     <Compile Include="Model\Riepilogo.cs" />
-    <Compile Include="Model\RigaFattura.cs" />
-    <Compile Include="Model\Sorgente.cs" />
+    <Compile Include="Model\Fatture\RigaFattura.cs" />
+    <Compile Include="Model\Movimenti\Sorgente.cs" />
     <Compile Include="Presentation\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -93,6 +92,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Model\Soggetti\" />
     <Folder Include="Persistence\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
