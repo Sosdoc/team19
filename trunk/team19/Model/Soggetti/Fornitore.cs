@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Team19.Model.Soggetti
 {
-    class Fornitore:Soggetto
+    public class Fornitore : Soggetto
     {
             public Fornitore(string denominazione, string telefono, string email, string? partitaIva)
                 : base(denominazione, telefono, email, partitaIva)

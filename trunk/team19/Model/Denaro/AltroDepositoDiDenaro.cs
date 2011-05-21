@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Team19.Model
 {
-    class AltroDepositoDiDenaro: DepositoDiDenaro
+    public class AltroDepositoDiDenaro: DepositoDiDenaro
     {
         public override Currency Saldo
         {

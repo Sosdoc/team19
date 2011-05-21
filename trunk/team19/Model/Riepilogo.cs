@@ -9,6 +9,7 @@ namespace Team19.Model
     {
         public List<Currency> GetImportiPagati();
         public List<Currency> GetImportiDaPagare();
+        public int prova();
     }
 
     public class RiepilogoCliente : IRiepilogo

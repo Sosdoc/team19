@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Team19.Model
 {
-    abstract class MovimentoDiDenaro
+    public abstract class MovimentoDiDenaro
     {
         private DateTime _data;
 

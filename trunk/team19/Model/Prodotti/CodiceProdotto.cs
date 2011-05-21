@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Team19.Model
 {
-    class CodiceProdotto
+    public class CodiceProdotto
     {
      private readonly string _letters;
         private readonly string _numbers;

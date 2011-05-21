@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Team19.Model
 {
-    interface IDestinazione
+    public interface IDestinazione
     {
     }
 }

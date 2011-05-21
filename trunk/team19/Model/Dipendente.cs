@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Team19.Model
 {
-    class Dipendente
+    public class Dipendente
     {
         private string username;
         private string password;
