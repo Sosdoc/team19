@@ -14,6 +14,11 @@ namespace Team19.Model
             get { return _codConto; }
         }
 
+        public ContoCorrenteBancario(String codiceConto)
+        {
+            _codConto = codiceConto;
+        }
+
         public override Currency Saldo
         {
             //dovrà calcolare il saldo in base ai movimenti

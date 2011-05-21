@@ -49,6 +49,7 @@
     <Compile Include="Model\Denaro\AltroDepositoDiDenaro.cs" />
     <Compile Include="Model\Denaro\Cassa.cs" />
     <Compile Include="Model\Fatture\FatturaFactory.cs" />
+    <Compile Include="Model\Movimenti\MovimentoFactory.cs" />
     <Compile Include="Model\Prodotti\CodiceProdotto.cs" />
     <Compile Include="Model\Denaro\ContenitoreDiDenaro.cs" />
     <Compile Include="Model\Denaro\ContoCorrenteBancario.cs" />
@@ -56,7 +57,6 @@
     <Compile Include="Model\Denaro\DepositoDiDenaro.cs" />
     <Compile Include="Model\Movimenti\Destinazione.cs" />
     <Compile Include="Model\Dipendente.cs" />
-    <Compile Include="Model\Fatture\ElencoProdotti.cs" />
     <Compile Include="Model\Fatture\Fattura.cs" />
     <Compile Include="Model\Movimenti\MovimentoDiDenaro.cs" />
     <Compile Include="Model\Prodotti\Prodotto.cs" />
