@@ -7,6 +7,29 @@ namespace Team19.Model.Fatture
 {
     class FatturaFactory
     {
+        private int  _numeroUltimaFatturaEmessa;
+        private FatturaFactory _instance;
+
+        public FatturaFactory Instance
+        {
+            static get
+            {
+                return _instance;
+            }
+        }
+
+        public FatturaAcquisto creaFatturaAcquisto(DateTime data, int numero, Currency importo)
+        {
+            return new FatturaAcquisto(data, numero, importo);
+        }
+
+        public FatturaVendita creaFatturaVendita(DateTime data, ElencoProdotti elenco)
+        {
+            //int numeroNuovaFattura = _ultimaFatturaEmessa.NumeroFattura + 1;
+            FatturaVendita retval = new FatturaVendita(data, 1, elenco);
+            //Instance._ultimaFatturaEmessa = retval;
+            return retval;
+        }
     }
 
     #region Fattura di vendita

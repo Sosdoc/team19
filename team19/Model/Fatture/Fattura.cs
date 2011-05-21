@@ -15,6 +15,22 @@ namespace Team19.Model
             get;
         }
 
+        public int NumeroFattura
+        {
+            get
+            {
+                return _numero;
+            }
+        }
+
+        public DateTime Data
+        {
+            get
+            {
+                return _data;
+            }
+        }
+
         protected Fattura(DateTime data, int numero)
         {
             this._data = data;
