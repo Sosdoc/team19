@@ -61,28 +61,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Model\Denaro\AltroDepositoDiDenaro.cs" />
-    <Compile Include="Model\Denaro\Cassa.cs" />
+    <Compile Include="Model\AltroDepositoDiDenaro.cs" />
+    <Compile Include="Model\Cassa.cs" />
+    <Compile Include="Model\Cliente.cs" />
+    <Compile Include="Model\CodiceProdotto.cs" />
+    <Compile Include="Model\ContenitoreDiDenaro.cs" />
+    <Compile Include="Model\ContoCorrenteBancario.cs" />
+    <Compile Include="Model\Currency.cs" />
+    <Compile Include="Model\DepositoDiDenaro.cs" />
+    <Compile Include="Model\Destinazione.cs" />
     <Compile Include="Model\Document.cs" />
-    <Compile Include="Model\Fatture\FatturaFactory.cs" />
-    <Compile Include="Model\Movimenti\MovimentoFactory.cs" />
-    <Compile Include="Model\Prodotti\CodiceProdotto.cs" />
-    <Compile Include="Model\Denaro\ContenitoreDiDenaro.cs" />
-    <Compile Include="Model\Denaro\ContoCorrenteBancario.cs" />
-    <Compile Include="Model\Denaro\Currency.cs" />
-    <Compile Include="Model\Denaro\DepositoDiDenaro.cs" />
-    <Compile Include="Model\Movimenti\Destinazione.cs" />
     <Compile Include="Model\Dipendente.cs" />
-    <Compile Include="Model\Fatture\Fattura.cs" />
-    <Compile Include="Model\Movimenti\MovimentoDiDenaro.cs" />
-    <Compile Include="Model\Prodotti\Prodotto.cs" />
+    <Compile Include="Model\Fattura.cs" />
+    <Compile Include="Model\FatturaAcquisto.cs" />
+    <Compile Include="Model\FatturaVendita.cs" />
+    <Compile Include="Model\Fornitore.cs" />
+    <Compile Include="Model\Indirizzo.cs" />
+    <Compile Include="Model\MovimentoDiDenaro.cs" />
+    <Compile Include="Model\MovimentoFactory.cs" />
+    <Compile Include="Model\Prodotto.cs" />
     <Compile Include="Model\Riepilogo.cs" />
-    <Compile Include="Model\Fatture\RigaFattura.cs" />
-    <Compile Include="Model\Movimenti\Sorgente.cs" />
-    <Compile Include="Model\Soggetti\Cliente.cs" />
-    <Compile Include="Model\Soggetti\Fornitore.cs" />
-    <Compile Include="Model\Soggetti\Indirizzo.cs" />
-    <Compile Include="Model\Soggetti\Soggetto.cs" />
+    <Compile Include="Model\RigaFattura.cs" />
+    <Compile Include="Model\Soggetto.cs" />
+    <Compile Include="Model\Sorgente.cs" />
     <Compile Include="Presentation\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
