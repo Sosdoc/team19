@@ -5,12 +5,25 @@ using System.Text;
 
 namespace Team19.Model
 {
-    public class Cassa: ContenitoreDiDenaro
+    public class Cassa : ContenitoreDiDenaro
     {
         public override Currency Saldo
         {
             //dovrà calcolare il saldo in base ai movimenti
-            get { throw new NotImplementedException(); }
+            get
+            {
+                IEnumerable<Currency> queryImportiMovimentiConCassa =
+                     from movimento in Document.GetInstance().Movimenti
+                     where (movimento.Sorgente.GetType().Equals(this.GetType()) || movimento.Destinazione.GetType().Equals(this.GetType()))
+                     select movimento.Importo;
+
+                double sum = 0;
+
+                foreach (Currency c in queryImportiMovimentiConCassa)
+                    sum += c.Value;
+
+                return new Currency(sum);
+            }
         }
     }
 }
