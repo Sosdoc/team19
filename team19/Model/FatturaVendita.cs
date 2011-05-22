@@ -9,6 +9,7 @@ namespace Team19.Model
     {
         private List<RigaFattura> _elencoProdotti;
         private Cliente _cliente;
+
         public override Currency Importo
         {
             get
@@ -22,7 +23,12 @@ namespace Team19.Model
             }
         }
 
-        public FatturaVendita(Cliente cliente, DateTime data, int numero, List<RigaFattura> elencoProdotti)
+        public static FatturaVendita CreateFatturaVendita(Cliente cliente, DateTime data, List<RigaFattura> elencoProdotti)
+        {
+            return new FatturaVendita(cliente, data, Document.GetInstance().NumeroProssimaFatturaDiVendita(data) , elencoProdotti);
+        }
+
+        private FatturaVendita(Cliente cliente, DateTime data, int numero, List<RigaFattura> elencoProdotti)
             : base(data, numero)
         {
             //nota -- le fatture di vendita devono prendere il numero progressivo da qualche parte: da dove?
