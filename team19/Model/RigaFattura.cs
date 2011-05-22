@@ -7,11 +7,11 @@ namespace Team19.Model
 {
     public class RigaFattura
     {
-        private int _quantità;
+        private double _quantità;
         private Currency _prezzoUnitario;
         private Prodotto _prodotto;
         
-        public RigaFattura(int quantità, Currency prezzoUnitario, Prodotto prodotto)
+        public RigaFattura(double quantità, Currency prezzoUnitario, Prodotto prodotto)
         {
             if(quantità <= 0 || prezzoUnitario.Value <= 0)
                 throw new ArgumentException("quantità <= 0 || prezzoUnitario.Value <= 0");
@@ -23,7 +23,7 @@ namespace Team19.Model
             this._prodotto = prodotto;
         }
 
-        public int Quantità
+        public double Quantità
         {
             get { return _quantità; }
         }
