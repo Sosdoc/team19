@@ -10,7 +10,7 @@ namespace Team19.Model
         private List<MovimentoDiDenaro> _movimenti;
         private List<ContenitoreDiDenaro> _contenitoriDiDenaro;
         private List<Fattura> _fatture;
-        private List<Prodotto> _prodotti;
+        private List<Prodotto> _prodotti; //meglio un dictionary?
         private List<Soggetto> _soggetti;
         private Cassa _cassa;
 
@@ -74,6 +74,19 @@ namespace Team19.Model
         public void Save()
         {
             //questo metodo non fa nulla
+        }
+
+        public int NumeroProssimaFatturaDiVendita(DateTime dataNuovaFattura)
+        {
+            int retval = 1;
+
+            //recupero l'ultima fattura emessa disponibile
+            FatturaVendita ultimaFatturaDiVendita = Fatture.OfType<FatturaVendita>().Last();
+            //se non è cambiato anno dall'ultima fattura
+            if (ultimaFatturaDiVendita.Data.Year == dataNuovaFattura.Year)
+                retval = ultimaFatturaDiVendita.NumeroFattura + 1;
+
+            return retval;
         }
 
         protected virtual void OnChanged()

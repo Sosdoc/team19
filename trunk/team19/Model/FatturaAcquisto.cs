@@ -9,21 +9,25 @@ namespace Team19.Model
     {
         private Currency _importo;
         private Fornitore _fornitore;
-        private Fornitore fornitore;
-        private Currency importo;
+
+        public Fornitore Fornitore
+        {
+            get { return _fornitore; }
+        }
 
         public override Currency Importo
         {
             get { return _importo; }
         }
 
-        public static FatturaAcquisto CreateFatturaAcquisto(Fornitore fornitore, DateTime data, Currency importo)
-        {
-            return new FatturaAcquisto(fornitore, data,1, importo);
-        }
-        private FatturaAcquisto(Fornitore fornitore, DateTime data, int numero, Currency importo)
+        public FatturaAcquisto(Fornitore fornitore, DateTime data, int numero, Currency importo)
             : base(data, numero)
         {
+            if (importo.Value <= 0)
+                throw new ArgumentException("importo.Value <= 0");
+            if (fornitore == null)
+                throw new ArgumentException("fornitore == null");
+
             this._importo = importo;
             this._fornitore = fornitore;
         }
