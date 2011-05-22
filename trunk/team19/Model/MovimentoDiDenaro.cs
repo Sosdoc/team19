@@ -14,6 +14,8 @@ namespace Team19.Model
         private Dipendente _dipendente;
         private DateTime _dataRegistrazione;
 
+        //MANCA LA CAUSALE!!
+
         protected MovimentoDiDenaro(ISorgente sorgente, IDestinazione destinazione, DateTime data, Dipendente dipendente)
         {
             _data = data;
