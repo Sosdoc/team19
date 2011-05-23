@@ -7,26 +7,30 @@ namespace Team19.Model
 {
     public class Prodotto
     {
-        private string descrizione;
-        private Currency prezzo;
-        CodiceProdotto codProdotto;
+        private string _descrizione;
+        private Currency _prezzo;
+        CodiceProdotto _codProdotto;
+
+        public Prodotto(Currency prezzo, string descrizione, CodiceProdotto codProdotto)
+        {
+            this._descrizione = descrizione;
+            this._prezzo = prezzo;
+            this._codProdotto = codProdotto;
+        }
 
         public string Descrizione
         {
-            get { return descrizione; }
-        //    set { descrizione = value; }
+            get { return _descrizione; }
         }
 
         public Currency Prezzo
         {
-            get { return prezzo; }
-        //    set { prezzo = value; }
+            get { return _prezzo; }
         }
 
         public CodiceProdotto CodProdotto
         {
-            get { return codProdotto; }
-        //    set { codProdotto = value; }
-        } 
+            get { return _codProdotto; }
+        }
     }
 }

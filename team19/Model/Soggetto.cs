@@ -12,20 +12,22 @@ namespace Team19.Model
         private string _eMail;
         private string _partitaIva;
         private Indirizzo _indirizzo;
-        protected Soggetto(string denominazione, string telefono, string email, string partitaIva)
+
+        protected Soggetto(string denominazione, string telefono, string email, string partitaIva, Indirizzo indirizzo)
         {
             _denominazione = denominazione;
             _telefono = telefono;
             _eMail = email;
             _partitaIva = partitaIva;
+            _indirizzo = indirizzo;
         }
-        
+
         public Indirizzo Indirizzo
         {
             get { return _indirizzo; }
             //set { _indirizzo = value; }
         }
-   
+
         public string Telefono
         {
             get { return _telefono; }

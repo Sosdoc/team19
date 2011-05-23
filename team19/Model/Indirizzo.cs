@@ -14,42 +14,50 @@ namespace Team19.Model
         private string _provincia;
         private string _nazione;
 
+        public Indirizzo(string via, string numeroCivico, string località, string cap, string provincia, string nazione)
+        {
+            _via = via;
+            _numeroCivico = numeroCivico;
+            _località = località;
+            _cap = cap;
+            _provincia = provincia;
+            _nazione = nazione;
+        }
+
         public string Via
         {
             get { return _via; }
             set { _via = value; }
         }
-        
+
         public string NumeroCivico
         {
             get { return _numeroCivico; }
-        //    set { _numeroCivico = value; }
+            set { _numeroCivico = value; }
         }
-        
+
         public string Località
         {
             get { return _località; }
-        //    set { _località = value; }
+            set { _località = value; }
         }
-        
+
         public string Cap
         {
             get { return _cap; }
-        //    set { _cap = value; }
+            set { _cap = value; }
         }
-        
+
         public string Provincia
         {
             get { return _provincia; }
-        //    set { _provincia = value; }
+            set { _provincia = value; }
         }
-        
+
         public string Nazione
         {
             get { return _nazione; }
-        //    set { _nazione = value; }
+            set { _nazione = value; }
         }
-
-
     }
 }

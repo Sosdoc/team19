@@ -9,11 +9,10 @@ namespace Team19.Model
     {
         private string _codiceFiscale;
 
-        
-
-        public Cliente(string denominazione, string telefono, string email, string partitaIva, string codiceFiscale) :base(denominazione,telefono,email,partitaIva)
+        public Cliente(string denominazione, string telefono, string email, string partitaIva, string codiceFiscale, Indirizzo indirizzo)
+            : base(denominazione, telefono, email, partitaIva, indirizzo)
         {
-            if (partitaIva==null && codiceFiscale==null)
+            if (partitaIva == null && codiceFiscale == null)
                 throw new ArgumentNullException("Partita Iva e Codice Fiscale entrambi nulli");
             _codiceFiscale = codiceFiscale;
         }

@@ -36,7 +36,7 @@ namespace Team19.Model
             return retval;
         }
     }
-     
+
     public class FatturaVendita : Fattura, ISorgente
     {
         private List<RigaFattura> _elencoProdotti;
