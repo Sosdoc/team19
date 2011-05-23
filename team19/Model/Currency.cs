@@ -7,70 +7,71 @@ namespace Team19.Model
 {
     public class Currency
     {
-        private double _value;
-        private String _valuta;
+        private decimal _value;
 
-        public String Valuta
-        {
-            get { return _valuta; }
-            set { _valuta = value; }
-        }
-
-        public double Value
+        public decimal Value
         {
             get { return _value; }
         }
 
-        public Currency(double value)
-            : this(value, "€")
+        public Currency(decimal value)
         {
-        }
-
-        public Currency(double value, String valuta)
-        {
-            if (value <= 0)
-                throw new ArgumentException("value <= 0");
-            if (valuta.Length != 1)
-                throw new ArgumentException("valuta.Length != 1");
 
             this._value = value;
-            this._valuta = valuta;
         }
 
         public override String ToString()
         {
-            return this.Valuta + " " + this.Value.ToString();
+            return String.Format("{0:C}" ,this.Value);
         }
 
         public static Currency operator +(Currency c1, Currency c2)
         {
-            if(!c1.Valuta.Equals(c2.Valuta))
-                throw new InvalidOperationException("Valuta diversa!");
-            return new Currency(c1.Value + c2.Value, c1.Valuta);
+            return new Currency(c1.Value + c2.Value);
         }
 
         public static Currency operator -(Currency c1, Currency c2)
         {
-            return ( c1 + new Currency(- c2.Value, c2.Valuta) );
+            return ( c1 + new Currency(- c2.Value) );
         }
 
-        private static Currency operator *(Currency c1, Currency c2)
+        public static Currency operator *(Currency c1, Currency c2)
         {
-            if (!c1.Valuta.Equals(c2.Valuta))
-                throw new InvalidOperationException("Valuta diversa!");
-            return (new Currency(c1.Value * c2.Value, c1.Valuta));
+            return (new Currency(c1.Value * c2.Value));
         }
 
-        private static Currency operator /(Currency c1, Currency c2)
+        public static Currency operator *(double d, Currency c)
+        {
+           return (new Currency((decimal)d * c.Value));
+        }
+
+        public static Currency operator *(Currency c, double d)
+        {
+            return d * c;
+        }
+
+        public static Currency operator /(Currency c1, Currency c2)
         {
             if (c2.Value == 0)
                 throw new DivideByZeroException("Divisione per zero");
-            return (c1 * (new Currency(1/c2.Value,c2.Valuta) ) );
+            return (c1 * (new Currency(1/c2.Value) ) );
         }
 
-        private static bool operator ==(Currency c1, Currency c2)
+        public static bool operator ==(Currency c1, Currency c2)
         {
-            return (c1.Value == c2.Value && c1.Valuta.Equals(c2.Valuta));
+            return (c1.Value == c2.Value);
+        }
+
+        public static bool operator !=(Currency c1, Currency c2)
+        {
+            return !(c1 == c2);
+        }
+
+        public bool Equals(Object c)
+        {
+            if (!(c is Currency))
+                throw new ArgumentException("Not a currency!");
+            return (this == (Currency)c);
         }
     }
 }
