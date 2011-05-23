@@ -5,9 +5,9 @@ using System.Text;
 
 namespace Team19.Model
 {
-    interface IRiepilogo
+    public enum TipoDipendente
     {
-        List<Currency> GetImportiPagati();
-        List<Currency> GetImportiDaPagare();
+        Utente = 0,
+        Amministratore = 1
     }
 }

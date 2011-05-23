@@ -9,6 +9,11 @@ namespace Team19.Model
     {
         private readonly Currency _saldoIniziale;
 
+        public ContenitoreDiDenaro(Currency saldoIniziale)
+        {
+            _saldoIniziale = saldoIniziale;
+        }
+
         public Currency SaldoIniziale
         {
             get { return _saldoIniziale; }

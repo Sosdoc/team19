@@ -62,7 +62,7 @@ namespace Team19.Model
         public static Document GetInstance()
         {
             if (_instance == null)
-                CreateInstance();
+                CreateInstance(); 
             return _instance;
         }
 
@@ -70,7 +70,7 @@ namespace Team19.Model
         {
             //qui inizializzo le liste
             _movimenti = new List<MovimentoDiDenaro>();
-            _cassa = new Cassa();
+            _cassa = new Cassa(new Currency(10000m));
             _contenitoriDiDenaro = new List<ContenitoreDiDenaro>();
             _fatture = new List<Fattura>();
             _prodotti = new List<Prodotto>();
@@ -80,28 +80,30 @@ namespace Team19.Model
             Cliente c1 = new Cliente("Pinco Pallino", "0", "no", "8301", "PNCPLNlol", i);
             Fornitore fo1 = new Fornitore("Pallo Pinchino", "13109", "forse", "9329239", i);
             Prodotto p1 = new Prodotto(new Currency(10m), "palla", new CodiceProdotto("PAL", "11400"));
-            FatturaAcquisto f1 = FatturaFactory.CreateFatturaAcquisto(fo1, DateTime.Now, 1003, new Currency(10004.23m) );
-            RigaFattura riga1 = new RigaFattura(10, new Currency(3m), p1);
-            RigaFattura riga2 = new RigaFattura(320, new Currency(3m), p1);
+            FatturaAcquisto f1 = FatturaFactory.Instance.CreateFatturaAcquisto(fo1, DateTime.Now, 1003, new Currency(10004.23m) );
+            RigaFattura riga1 = new RigaFattura(10, p1);
+            RigaFattura riga2 = new RigaFattura(320, p1);
             List<RigaFattura> righe = new List<RigaFattura>();
             righe.Add(riga1);
             righe.Add(riga2);
-            FatturaVendita f2 = FatturaFactory.CreateFatturaVendita(c1, DateTime.Now, righe);
-            FatturaVendita f3 = FatturaFactory.CreateFatturaVendita(c1, DateTime.Now, righe);
+            FatturaVendita f2 = FatturaFactory.Instance.CreateFatturaVendita(c1, DateTime.Now, righe);
+           
+            FatturaVendita f3 = FatturaFactory.Instance.CreateFatturaVendita(c1, DateTime.Now, righe);
             Dipendente d = new Dipendente("io", "no", "lol", "asd");
             MovimentoDiDenaro m1 = MovimentoFactory.CreatePagamentoAcquisto(Cassa, f1, DateTime.Now, d, "asd");
             MovimentoDiDenaro m2 = MovimentoFactory.CreateIncassoVendita(f2, Cassa, DateTime.Now, d, "asd");
-            ContoCorrenteBancario cc = new ContoCorrenteBancario("AOSIDJHOGIHAPI");
+            ContoCorrenteBancario cc = new ContoCorrenteBancario("AOSIDJHOGIHAPI",new Currency(10000m));
             MovimentoDiDenaro m3 = MovimentoFactory.CreateMovimentoInterno(Cassa, cc, new Currency(1000m), DateTime.Now, d, "loisd");
             _movimenti.Add(m1);
             _movimenti.Add(m2);
             _movimenti.Add(m3);
+            _fatture.Add(f1);
+            _fatture.Add(f2);
 
             _soggetti.Add(fo1);
             _soggetti.Add(c1);
 
-            _fatture.Add(f1);
-            _fatture.Add(f2);
+            
 
             _prodotti.Add(p1);
 

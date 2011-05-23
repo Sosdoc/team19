@@ -7,31 +7,66 @@ namespace Team19.Model
 {
     class FatturaFactory
     {
-        public static FatturaVendita CreateFatturaVendita(Cliente cliente, DateTime data, List<RigaFattura> elencoProdotti)
+        private static FatturaFactory _instance;
+
+
+        private Fattura _ultimaFattura;
+
+
+
+        private FatturaFactory()
         {
-            return new FatturaVendita(cliente, data, NumeroProssimaFatturaDiVendita(data), elencoProdotti);
+            _ultimaFattura = new FatturaVendita(new Cliente("","","","","",new Indirizzo("","","","","","")), DateTime.MinValue, 1, new List<RigaFattura>());
         }
 
-        public static FatturaAcquisto CreateFatturaAcquisto(Fornitore fornitore, DateTime data, int numero, Currency importo)
+        internal static FatturaFactory Instance
+        {
+            get
+            {
+                if (_instance == null)
+                    _instance = new FatturaFactory();
+                return FatturaFactory._instance;
+            }
+        }
+
+        private Fattura UltimaFattura
+        {
+            get { return _ultimaFattura; }
+            set { _ultimaFattura = value; }
+        }
+
+        public FatturaVendita CreateFatturaVendita(Cliente cliente, DateTime data, List<RigaFattura> elencoProdotti)
+        {
+            FatturaVendita nuovaFattura = new FatturaVendita(cliente, data, NumeroProssimaFatturaDiVendita(data), elencoProdotti);
+            UltimaFattura = nuovaFattura;
+            return nuovaFattura;
+
+        }
+
+        public FatturaAcquisto CreateFatturaAcquisto(Fornitore fornitore, DateTime data, int numero, Currency importo)
         {
             return new FatturaAcquisto(fornitore, data, numero, importo);
         }
 
-        private static int NumeroProssimaFatturaDiVendita(DateTime dataNuovaFattura)
+        private int NumeroProssimaFatturaDiVendita(DateTime dataNuovaFattura)
         {
             int retval = 1;
 
             //recupero l'ultima fattura emessa disponibile
             //FatturaVendita ultimaFatturaDiVendita = Document.GetInstance().Fatture.OfType<FatturaVendita>().Last();
+            //if (Document.GetInstance().GetFattureVendita().ToArray().Length != 0)
+            //{
+            //    FatturaVendita ultimaFatturaDiVendita =
+            //        (from fattura in Document.GetInstance().GetFattureVendita()
+            //         orderby fattura.Data descending
+            //         select fattura).First();
+            //    //se non è cambiato anno dall'ultima fattura
+            //    if (ultimaFatturaDiVendita.Data.Year == dataNuovaFattura.Year)
+            //        retval = ultimaFatturaDiVendita.NumeroFattura + 1;
+            //}
+            if (UltimaFattura.Data.Year == dataNuovaFattura.Year)
+                retval = UltimaFattura.NumeroFattura + 1;
 
-            FatturaVendita ultimaFatturaDiVendita =
-                (from fattura in Document.GetInstance().GetFattureVendita()
-                 orderby fattura.Data descending
-                 select fattura).First();
-
-            //se non è cambiato anno dall'ultima fattura
-            if (ultimaFatturaDiVendita.Data.Year == dataNuovaFattura.Year)
-                retval = ultimaFatturaDiVendita.NumeroFattura + 1;
 
             return retval;
         }

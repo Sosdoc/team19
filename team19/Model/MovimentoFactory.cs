@@ -63,7 +63,7 @@ namespace Team19.Model
             }
             public override Currency Importo
             {
-                get { return ((FatturaAcquisto) Sorgente).Importo; }
+                get { return ((FatturaVendita) Sorgente).Importo; }
             }
 
 
