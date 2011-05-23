@@ -8,13 +8,15 @@ namespace Team19.Model
     public class ContoCorrenteBancario : DepositoDiDenaro
     {
         private String _codConto;
+        
+
 
         public String CodConto
         {
             get { return _codConto; }
         }
 
-        public ContoCorrenteBancario(String codiceConto)
+        public ContoCorrenteBancario(String codiceConto, Currency saldoIniziale):base(saldoIniziale)
         {
             _codConto = codiceConto;
         }

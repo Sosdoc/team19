@@ -11,6 +11,15 @@ namespace Team19.Model
         private string _password;
         private string _cognome;
         private string _nome;
+        //_ruolo--> indica il ruolo del dipendente
+        //se non può cambiare runtime--> readonly
+        //private TipoDipendente _ruolo;
+
+        //public TipoDipendente Ruolo
+        //{
+        //    get { return _ruolo; }
+        //    set { _ruolo = value; }
+        //}
 
         public Dipendente(string username, string password, string cognome, string nome)
         {
@@ -18,6 +27,7 @@ namespace Team19.Model
             this._password = password;
             this._cognome = cognome;
             this._nome = nome;
+            //this._ruolo = ruolo;
         }
 
         public string Username

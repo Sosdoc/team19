@@ -7,6 +7,9 @@ namespace Team19.Model
 {
     public class AltroDepositoDiDenaro : DepositoDiDenaro
     {
+        public AltroDepositoDiDenaro(Currency saldoIniziale)
+            : base(saldoIniziale)
+        { }
         public override Currency Saldo
         {
             //dovrà calcolare il saldo in base ai movimenti

@@ -10,19 +10,23 @@ namespace Team19.Model
         private double _quantità;
         private Currency _prezzoUnitario;
         private Prodotto _prodotto;
-        
+
         public RigaFattura(double quantità, Currency prezzoUnitario, Prodotto prodotto)
         {
-            if(quantità <= 0 || prezzoUnitario.Value <= 0)
+            if (quantità <= 0 || prezzoUnitario.Value <= 0)
                 throw new ArgumentException("quantità <= 0 || prezzoUnitario.Value <= 0");
-            if(prodotto == null)
+            if (prodotto == null)
                 throw new ArgumentException("prodotto == null");
 
             this._prezzoUnitario = prezzoUnitario;
             this._quantità = quantità;
             this._prodotto = prodotto;
         }
+        public RigaFattura(double quantità, Prodotto prodotto)
+            : this(quantità, prodotto.Prezzo, prodotto)
+        {
 
+        }
         public double Quantità
         {
             get { return _quantità; }
