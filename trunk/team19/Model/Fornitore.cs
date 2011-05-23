@@ -7,12 +7,12 @@ namespace Team19.Model
 {
     public class Fornitore : Soggetto
     {
-            public Fornitore(string denominazione, string telefono, string email, string partitaIva)
-                : base(denominazione, telefono, email, partitaIva)
-            {
-                if (partitaIva==null)
-                    throw new ArgumentNullException("Partita Iva nulla");
-            }
-        
+        public Fornitore(string denominazione, string telefono, string email, string partitaIva, Indirizzo indirizzo)
+            : base(denominazione, telefono, email, partitaIva, indirizzo)
+        {
+            if (partitaIva == null)
+                throw new ArgumentNullException("Partita Iva nulla");
+        }
+
     }
 }

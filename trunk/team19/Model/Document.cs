@@ -10,7 +10,7 @@ namespace Team19.Model
         private List<MovimentoDiDenaro> _movimenti;
         private List<ContenitoreDiDenaro> _contenitoriDiDenaro;
         private List<Fattura> _fatture;
-        private List<Prodotto> _prodotti; //meglio un dictionary?
+        private Dictionary<CodiceProdotto, Prodotto> _prodotti; //meglio un dictionary?
         private List<Soggetto> _soggetti;
         //riepiloghi?
         private Cassa _cassa;
@@ -69,6 +69,19 @@ namespace Team19.Model
         private void Load()
         {
             //qui inizializzo le liste
+            _movimenti = new List<MovimentoDiDenaro>();
+            _cassa = new Cassa();
+            _contenitoriDiDenaro = new List<ContenitoreDiDenaro>();
+            _fatture = new List<Fattura>();
+            _prodotti = new Dictionary<CodiceProdotto, Prodotto>();
+            _soggetti = new List<Soggetto>();
+
+            Indirizzo i = new Indirizzo("nessuna", "9001", "Quaggiù", "02983", "BOH", "Ailati");
+            Cliente c1 = new Cliente("Pinco Pallino", "0", "no", "8301", "PNCPLNlol", i);
+            Prodotto p1 = new Prodotto(new Currency(10m), "palla", new CodiceProdotto("PAL", "11400"));
+
+
+
             OnChanged();
         }
 
