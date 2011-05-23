@@ -16,13 +16,12 @@ namespace Team19.Model
 
         public Currency(decimal value)
         {
-
             this._value = value;
         }
 
         public override String ToString()
         {
-            return String.Format("{0:C}" ,this.Value);
+            return String.Format("{0:C}", this.Value);
         }
 
         public static Currency operator +(Currency c1, Currency c2)
@@ -32,7 +31,7 @@ namespace Team19.Model
 
         public static Currency operator -(Currency c1, Currency c2)
         {
-            return ( c1 + new Currency(- c2.Value) );
+            return (c1 + new Currency(-c2.Value));
         }
 
         public static Currency operator *(Currency c1, Currency c2)
@@ -42,7 +41,7 @@ namespace Team19.Model
 
         public static Currency operator *(double d, Currency c)
         {
-           return (new Currency((decimal)d * c.Value));
+            return (new Currency((decimal)d * c.Value));
         }
 
         public static Currency operator *(Currency c, double d)
@@ -54,7 +53,7 @@ namespace Team19.Model
         {
             if (c2.Value == 0)
                 throw new DivideByZeroException("Divisione per zero");
-            return (c1 * (new Currency(1/c2.Value) ) );
+            return (c1 * (new Currency(1 / c2.Value)));
         }
 
         public static bool operator ==(Currency c1, Currency c2)
@@ -67,11 +66,16 @@ namespace Team19.Model
             return !(c1 == c2);
         }
 
-        public bool Equals(Object c)
+        public override bool Equals(Object c)
         {
             if (!(c is Currency))
                 throw new ArgumentException("Not a currency!");
-            return (this == (Currency)c);
+            return (this.Value == ((Currency)c).Value);
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
         }
     }
 }
