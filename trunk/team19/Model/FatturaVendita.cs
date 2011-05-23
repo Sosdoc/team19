@@ -22,12 +22,12 @@ namespace Team19.Model
         {
             get
             {
-                double sum = 0;
+                Currency sum = new Currency(0m);
                 foreach (RigaFattura riga in _elencoProdotti)
                 {
-                    sum += riga.Quantità * riga.PrezzoUnitario.Value;
+                    sum += riga.PrezzoUnitario * riga.Quantità;
                 }
-                return new Currency(sum);
+                return sum;
             }
         }
 
