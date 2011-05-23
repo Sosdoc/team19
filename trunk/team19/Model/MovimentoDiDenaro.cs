@@ -13,18 +13,18 @@ namespace Team19.Model
         private IDestinazione _destinazione;
         private Dipendente _dipendente;
         private DateTime _dataRegistrazione;
+        private string _causale;
 
-        //MANCA LA CAUSALE!!
-
-        protected MovimentoDiDenaro(ISorgente sorgente, IDestinazione destinazione, DateTime data, Dipendente dipendente)
+      
+        protected MovimentoDiDenaro(ISorgente sorgente, IDestinazione destinazione, DateTime data, Dipendente dipendente, string causale="")
         {
             _data = data;
             _sorgente = sorgente;
             _destinazione = destinazione;
             _dataRegistrazione = DateTime.Now;
+            _causale = causale;
         }
-
-
+       
         public DateTime Data
         {
             get { return _data; }
