@@ -7,8 +7,8 @@ namespace Team19.Model
 {
     interface IRiepilogo
     {
-        IEnumerable<Currency> GetImportiPagati();
-        IEnumerable<Currency> GetImportiDaPagare();
+        List<Currency> GetImportiPagati();
+        List<Currency> GetImportiDaPagare();
     }
 
     public class RiepilogoCliente : IRiepilogo
