@@ -111,7 +111,5 @@ namespace Team19.Model
             if (Changed != null)
                 Changed(this, EventArgs.Empty);
         }
-
-
     }
 }
