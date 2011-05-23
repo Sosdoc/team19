@@ -80,6 +80,8 @@
     <Compile Include="Model\MovimentoFactory.cs" />
     <Compile Include="Model\Prodotto.cs" />
     <Compile Include="Model\Riepilogo.cs" />
+    <Compile Include="Model\RiepilogoCliente.cs" />
+    <Compile Include="Model\RiepilogoFornitore.cs" />
     <Compile Include="Model\RigaFattura.cs" />
     <Compile Include="Model\Soggetto.cs" />
     <Compile Include="Model\Sorgente.cs" />
