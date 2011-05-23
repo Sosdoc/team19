@@ -7,14 +7,20 @@ namespace Team19.Model
 {
     interface IRiepilogo
     {
-        List<Currency> GetImportiPagati();
-        List<Currency> GetImportiDaPagare();
-        
+        IEnumerable<Currency> GetImportiPagati();
+        IEnumerable<Currency> GetImportiDaPagare();
     }
 
     public class RiepilogoCliente : IRiepilogo
     {
         #region IRiepilogo Members
+
+        private Cliente _cliente;
+
+        public Cliente Cliente
+        {
+            get { return _cliente; }
+        }
 
         public List<Currency> GetImportiPagati()
         {
