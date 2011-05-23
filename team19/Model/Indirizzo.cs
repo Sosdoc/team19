@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Team19.Model
 {
-    public class Indirizzo
+    public struct Indirizzo
     {
         private string _via;
         private string _numeroCivico;
