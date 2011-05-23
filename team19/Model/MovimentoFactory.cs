@@ -9,35 +9,36 @@ namespace Team19.Model
     public static class MovimentoFactory
     {
 
-        public static MovimentoDiDenaro CreatePagamentoAcquisto(ISorgente sorgente, FatturaAcquisto destinazione, DateTime data, Dipendente dipendente)
+        public static MovimentoDiDenaro CreatePagamentoAcquisto(ISorgente sorgente, FatturaAcquisto destinazione, DateTime data, Dipendente dipendente, string causale)
         {
-            return new PagamentoAcquisto(sorgente,destinazione,data,dipendente);
+            return new PagamentoAcquisto(sorgente,destinazione,data,dipendente, causale);
         }
 
-        public static MovimentoDiDenaro CreateIncassoVendita(FatturaVendita sorgente, IDestinazione destinazione, DateTime data, Dipendente dipendente)
+        public static MovimentoDiDenaro CreateIncassoVendita(FatturaVendita sorgente, IDestinazione destinazione, DateTime data, Dipendente dipendente, string causale)
         {
-            return new IncassoVendita(sorgente,destinazione,data,dipendente);
+            return new IncassoVendita(sorgente,destinazione,data,dipendente, causale);
         }
 
-        public static MovimentoDiDenaro CreateMovimentoInterno(Cassa sorgente, DepositoDiDenaro destinazione, Currency importo, DateTime data, Dipendente dipendente)
+        public static MovimentoDiDenaro CreateMovimentoInterno(Cassa sorgente, DepositoDiDenaro destinazione, Currency importo, DateTime data, Dipendente dipendente, string causale)
         {
-            return new Prelievo(sorgente, destinazione, importo, data, dipendente);
+            return new Prelievo(sorgente, destinazione, importo, data, dipendente, causale);
         }
 
-        public static MovimentoDiDenaro CreateMovimentoInterno(DepositoDiDenaro sorgente, Cassa destinazione, Currency importo, DateTime data, Dipendente dipendente)
+        public static MovimentoDiDenaro CreateMovimentoInterno(DepositoDiDenaro sorgente, Cassa destinazione, Currency importo, DateTime data, Dipendente dipendente, string causale)
         {
-            return new Versamento(sorgente, destinazione, importo, data, dipendente);
+            return new Versamento(sorgente, destinazione, importo, data, dipendente, causale);
         }
 
-        public static MovimentoDiDenaro CreateMovimentoInterno(DepositoDiDenaro sorgente, DepositoDiDenaro destinazione, Currency importo, DateTime data, Dipendente dipendente)
+        public static MovimentoDiDenaro CreateMovimentoInterno(DepositoDiDenaro sorgente, DepositoDiDenaro destinazione, Currency importo, DateTime data, Dipendente dipendente, string causale)
         {
-            return new Spostamento(sorgente, destinazione, importo, data, dipendente);
+            return new Spostamento(sorgente, destinazione, importo, data, dipendente, causale);
         }
 
         private class PagamentoAcquisto : MovimentoDiDenaro
         {
-            
-            public PagamentoAcquisto(ISorgente sorgente, IDestinazione destinazione, DateTime data, Dipendente dipendente):base(sorgente,destinazione,data,dipendente)
+
+            public PagamentoAcquisto(ISorgente sorgente, IDestinazione destinazione, DateTime data, Dipendente dipendente, string causale)
+                : base(sorgente, destinazione, data, dipendente, causale)
             {
             }
 
@@ -55,7 +56,8 @@ namespace Team19.Model
         private class IncassoVendita : MovimentoDiDenaro
         {
 
-            public IncassoVendita(ISorgente sorgente, IDestinazione destinazione, DateTime data, Dipendente dipendente):base(sorgente,destinazione,data,dipendente)
+            public IncassoVendita(ISorgente sorgente, IDestinazione destinazione, DateTime data, Dipendente dipendente, string causale)
+                : base(sorgente, destinazione, data, dipendente, causale)
             {
                 
             }
@@ -71,7 +73,7 @@ namespace Team19.Model
         {
             private Currency _importo;
 
-            public MovimentoInterno(ISorgente sorgente, IDestinazione destinazione, Currency importo, DateTime data, Dipendente dipendente)
+            public MovimentoInterno(ISorgente sorgente, IDestinazione destinazione, Currency importo, DateTime data, Dipendente dipendente, string causale)
                 : base(sorgente, destinazione, data, dipendente)
             {
                 _importo = importo;
@@ -85,22 +87,22 @@ namespace Team19.Model
 
         private class Prelievo : MovimentoInterno
         {
-            public Prelievo(ISorgente sorgente, IDestinazione destinazione, Currency importo, DateTime data, Dipendente dipendente)
-                : base(sorgente, destinazione, importo, data, dipendente)
+            public Prelievo(ISorgente sorgente, IDestinazione destinazione, Currency importo, DateTime data, Dipendente dipendente, string causale)
+                : base(sorgente, destinazione, importo, data, dipendente, causale)
             { }
         }
 
         private class Spostamento : MovimentoInterno
         {
-             public Spostamento(ISorgente sorgente, IDestinazione destinazione, Currency importo, DateTime data, Dipendente dipendente)
-                : base(sorgente, destinazione, importo, data, dipendente)
+            public Spostamento(ISorgente sorgente, IDestinazione destinazione, Currency importo, DateTime data, Dipendente dipendente, string causale)
+                : base(sorgente, destinazione, importo, data, dipendente, causale)
             { }  
         }
 
         private class Versamento : MovimentoInterno
         {
-            public Versamento(ISorgente sorgente, IDestinazione destinazione, Currency importo, DateTime data, Dipendente dipendente)
-                : base(sorgente, destinazione, importo, data, dipendente)
+            public Versamento(ISorgente sorgente, IDestinazione destinazione, Currency importo, DateTime data, Dipendente dipendente, string causale)
+                : base(sorgente, destinazione, importo, data, dipendente, causale)
             { }
         }
     }
