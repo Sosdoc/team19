@@ -83,7 +83,7 @@ namespace Team19.Model
 
             //recupero l'ultima fattura emessa disponibile
             FatturaVendita ultimaFatturaDiVendita = Fatture.OfType<FatturaVendita>().Last();
-
+            
             //FatturaVendita ultimaFatturaDiVendita =
             //    (from fattura in GetFattureVendita()
             //     orderby fattura.Data descending

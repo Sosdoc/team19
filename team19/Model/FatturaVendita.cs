@@ -10,6 +10,14 @@ namespace Team19.Model
         private List<RigaFattura> _elencoProdotti;
         private Cliente _cliente;
 
+        public IEnumerable<RigaFattura> ElencoProdotti
+        {
+            get
+            {
+                return _elencoProdotti;
+            }
+        }
+
         public override Currency Importo
         {
             get
