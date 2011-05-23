@@ -54,6 +54,23 @@ namespace Team19.Model
             return ( c1 + new Currency(- c2.Value, c2.Valuta) );
         }
 
-        //TODO: override degli operatori * / ==
+        private static Currency operator *(Currency c1, Currency c2)
+        {
+            if (!c1.Valuta.Equals(c2.Valuta))
+                throw new InvalidOperationException("Valuta diversa!");
+            return (new Currency(c1.Value * c2.Value, c1.Valuta));
+        }
+
+        private static Currency operator /(Currency c1, Currency c2)
+        {
+            if (c2.Value == 0)
+                throw new DivideByZeroException("Divisione per zero");
+            return (c1 * (new Currency(1/c2.Value,c2.Valuta) ) );
+        }
+
+        private static bool operator ==(Currency c1, Currency c2)
+        {
+            return (c1.Value == c2.Value && c1.Valuta.Equals(c2.Valuta));
+        }
     }
 }
