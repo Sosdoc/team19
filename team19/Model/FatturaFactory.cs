@@ -67,7 +67,7 @@ namespace Team19.Model
             get { return _importo; }
         }
 
-        public FatturaAcquisto(Fornitore fornitore, DateTime data, int numero, Currency importo)
+        internal FatturaAcquisto(Fornitore fornitore, DateTime data, int numero, Currency importo)
             : base(data, numero)
         {
             if (importo.Value <= 0)
