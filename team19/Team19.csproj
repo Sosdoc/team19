@@ -73,8 +73,7 @@
     <Compile Include="Model\Document.cs" />
     <Compile Include="Model\Dipendente.cs" />
     <Compile Include="Model\Fattura.cs" />
-    <Compile Include="Model\FatturaAcquisto.cs" />
-    <Compile Include="Model\FatturaVendita.cs" />
+    <Compile Include="Model\FatturaFactory.cs" />
     <Compile Include="Model\Fornitore.cs" />
     <Compile Include="Model\Indirizzo.cs" />
     <Compile Include="Model\MovimentoDiDenaro.cs" />
