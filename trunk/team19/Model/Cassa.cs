@@ -16,13 +16,13 @@ namespace Team19.Model
                      from movimento in Document.GetInstance().Movimenti
                      where (movimento.Sorgente.GetType().Equals(this.GetType()) || movimento.Destinazione.GetType().Equals(this.GetType()))
                      select movimento.Importo;
-
-                double sum = 0;
+             
+                Currency sum = new Currency(0);
 
                 foreach (Currency c in queryImportiMovimentiConCassa)
-                    sum += c.Value;
+                    sum += c;
 
-                return new Currency(sum);
+                return sum;
             }
         }
     }

@@ -42,6 +42,18 @@ namespace Team19.Model
             return this.Valuta + " " + this.Value.ToString();
         }
 
-        //TODO: override degli operatori + - * / ==
+        public static Currency operator +(Currency c1, Currency c2)
+        {
+            if(!c1.Valuta.Equals(c2.Valuta))
+                throw new InvalidOperationException("Valuta diversa!");
+            return new Currency(c1.Value + c2.Value, c1.Valuta);
+        }
+
+        public static Currency operator -(Currency c1, Currency c2)
+        {
+            return ( c1 + new Currency(- c2.Value, c2.Valuta) );
+        }
+
+        //TODO: override degli operatori * / ==
     }
 }

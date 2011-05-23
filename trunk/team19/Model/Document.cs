@@ -12,6 +12,7 @@ namespace Team19.Model
         private List<Fattura> _fatture;
         private List<Prodotto> _prodotti; //meglio un dictionary?
         private List<Soggetto> _soggetti;
+        //riepiloghi?
         private Cassa _cassa;
 
         private static Document _instance;
@@ -82,12 +83,28 @@ namespace Team19.Model
 
             //recupero l'ultima fattura emessa disponibile
             FatturaVendita ultimaFatturaDiVendita = Fatture.OfType<FatturaVendita>().Last();
+
+            //FatturaVendita ultimaFatturaDiVendita =
+            //    (from fattura in GetFattureVendita()
+            //     orderby fattura.Data descending
+            //     select fattura).First();
+
             //se non è cambiato anno dall'ultima fattura
             if (ultimaFatturaDiVendita.Data.Year == dataNuovaFattura.Year)
                 retval = ultimaFatturaDiVendita.NumeroFattura + 1;
 
             return retval;
         }
+
+        public IEnumerable<FatturaVendita> GetFattureVendita()
+        {
+            return this.Fatture.OfType<FatturaVendita>();
+        }
+
+        public IEnumerable<FatturaAcquisto> GetFattureAcquisto()
+        {
+            return this.Fatture.OfType<FatturaAcquisto>();
+        }        
 
         protected virtual void OnChanged()
         {
