@@ -19,6 +19,10 @@ namespace Team19.Model
 
         public static event EventHandler Changed;
 
+        private Document()
+        {
+        }
+
         public IEnumerable<MovimentoDiDenaro> Movimenti
         {
             get { return _movimenti; }
@@ -49,10 +53,6 @@ namespace Team19.Model
             get { return _soggetti; }
         }
 
-        private Document()
-        {
-        }
-
         public static void CreateInstance()
         {
             _instance = new Document();
@@ -75,25 +75,6 @@ namespace Team19.Model
         public void Save()
         {
             //questo metodo non fa nulla
-        }
-
-        public int NumeroProssimaFatturaDiVendita(DateTime dataNuovaFattura)
-        {
-            int retval = 1;
-
-            //recupero l'ultima fattura emessa disponibile
-            FatturaVendita ultimaFatturaDiVendita = Fatture.OfType<FatturaVendita>().Last();
-            
-            //FatturaVendita ultimaFatturaDiVendita =
-            //    (from fattura in GetFattureVendita()
-            //     orderby fattura.Data descending
-            //     select fattura).First();
-
-            //se non è cambiato anno dall'ultima fattura
-            if (ultimaFatturaDiVendita.Data.Year == dataNuovaFattura.Year)
-                retval = ultimaFatturaDiVendita.NumeroFattura + 1;
-
-            return retval;
         }
 
         public IEnumerable<FatturaVendita> GetFattureVendita()

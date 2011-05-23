@@ -45,6 +45,11 @@ namespace Team19.Model
         internal FatturaVendita(Cliente cliente, DateTime data, int numero, List<RigaFattura> elencoProdotti)
             : base(data, numero)
         {
+            if (elencoProdotti == null)
+                throw new ArgumentNullException("elencoProdotti");
+            if (cliente == null)
+                throw new ArgumentNullException("cliente");
+
             this._elencoProdotti = elencoProdotti;
             this._cliente = cliente;
         }
@@ -92,7 +97,7 @@ namespace Team19.Model
             if (importo.Value <= 0)
                 throw new ArgumentException("importo.Value <= 0");
             if (fornitore == null)
-                throw new ArgumentException("fornitore == null");
+                throw new ArgumentNullException("fornitore");
 
             this._importo = importo;
             this._fornitore = fornitore;
