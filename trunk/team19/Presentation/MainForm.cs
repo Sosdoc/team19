@@ -23,13 +23,12 @@ namespace Team19.Presentation
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            MessageBox.Show((new Currency(10.30m)).ToString());
-            
-           
+            //MessageBox.Show((new Currency(10.30m)).ToString());
+
+            this.dgdipendenti.DataSource = Dipendente.ListAllDipend();
             
 
-        }
-
+        }       
         private void UpdateDocument()
         {
             DataTable d = new DataTable();
@@ -59,6 +58,21 @@ namespace Team19.Presentation
             }
 
             moneyGrid.DataSource = d;
+        }
+
+        private void dgdipendenti_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void dgdipendenti_SelectionChanged(object sender, EventArgs e)
+        {
+            DataGridViewRow dv = dgdipendenti.CurrentRow;
+            txtnome.Text = dv.Cells["nome"].Value.ToString();
+            txtcognome.Text = dv.Cells["cognome"].Value.ToString();
+            txtuser.Text = dv.Cells["username"].Value.ToString();
+            txtpassword.Text = dv.Cells["password"].Value.ToString();
+            cmbruolo.Text = dv.Cells["ruolo"].Value.ToString();
         }
     }
 }

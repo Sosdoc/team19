@@ -89,7 +89,7 @@ namespace Team19.Model
             FatturaVendita f2 = FatturaFactory.Instance.CreateFatturaVendita(c1, DateTime.Now, righe);
            
             FatturaVendita f3 = FatturaFactory.Instance.CreateFatturaVendita(c1, DateTime.Now, righe);
-            Dipendente d = new Dipendente("io", "no", "lol", "asd");
+            Dipendente d = new Dipendente("io", "no", "lol", "asd","Amministratore");
             MovimentoDiDenaro m1 = MovimentoFactory.CreatePagamentoAcquisto(Cassa, f1, DateTime.Now, d, "asd");
             MovimentoDiDenaro m2 = MovimentoFactory.CreateIncassoVendita(f2, Cassa, DateTime.Now, d, "asd");
             ContoCorrenteBancario cc = new ContoCorrenteBancario("AOSIDJHOGIHAPI",new Currency(10000m));
