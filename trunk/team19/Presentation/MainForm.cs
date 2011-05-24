@@ -18,17 +18,19 @@ namespace Team19.Presentation
         {
             InitializeComponent();
             _document = Document.GetInstance();
-            UpdateDocument();
+           moneyGrid.DataSource = _document.ContenitoriDiDenaro;
+           this.dgdipendenti.DataSource = _document.Dipendenti;
+  //         UpdateDocument();
         }
 
         private void MainForm_Load(object sender, EventArgs e)
         {
             //MessageBox.Show((new Currency(10.30m)).ToString());
 
-            this.dgdipendenti.DataSource = Dipendente.ListAllDipend();
+            
             
 
-        }       
+        }
         private void UpdateDocument()
         {
             DataTable d = new DataTable();
@@ -37,7 +39,7 @@ namespace Team19.Presentation
             d.Columns.Add("Codice");
             d.Columns.Add("Saldo iniziale");
             d.Columns.Add("Saldo corrente");
-            Cassa cassa= _document.Cassa;
+            Cassa cassa = _document.Cassa;
             List<string> rowValues = new List<string>();
             rowValues.Add(cassa.GetType().Name);
             rowValues.Add("");
@@ -51,8 +53,7 @@ namespace Team19.Presentation
                 if (c is ContoCorrenteBancario) rowValues.Add(((ContoCorrenteBancario)c).CodConto);
                 else rowValues.Add("");
                 rowValues.Add(c.SaldoIniziale.ToString());
-                if (c is Cassa) rowValues.Add(c.Saldo.ToString());
-                else rowValues.Add("");
+                 rowValues.Add(c.Saldo.ToString());
                 d.Rows.Add(rowValues.ToArray());
 
             }
