@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Team19.Model
 {
-    public abstract class ContenitoreDiDenaro: ISorgente, IDestinazione
+    public abstract class ContenitoreDiDenaro : ISorgente, IDestinazione
     {
         private readonly Currency _saldoIniziale;
 
@@ -19,9 +19,32 @@ namespace Team19.Model
             get { return _saldoIniziale; }
         }
 
-        public abstract Currency Saldo
+        public Currency Saldo
         {
-            get;
+            get //template method, ogni classe concreta deve implementare Equals
+            {
+                Currency sum = SaldoIniziale;
+                
+                IEnumerable<Currency> queryImportiMovimentiConQuestoContenitore =
+                    from movimento in Document.GetInstance().Movimenti
+                    where this.Equals(movimento.Destinazione)
+                    select movimento.Importo;
+
+                foreach (Currency c in queryImportiMovimentiConQuestoContenitore)
+                    sum += c;
+
+                queryImportiMovimentiConQuestoContenitore =
+                      from movimento in Document.GetInstance().Movimenti
+                      where this.Equals(movimento.Sorgente)
+                      select movimento.Importo;
+
+                foreach (Currency c in queryImportiMovimentiConQuestoContenitore)
+                    sum -= c;
+
+                return sum;
+            }
         }
+
+        public abstract override bool Equals(object obj);
     }
 }
