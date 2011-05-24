@@ -10,5 +10,11 @@ namespace Team19.Model
         public DepositoDiDenaro(Currency saldoIniziale)
             : base(saldoIniziale)
         { }
+
+        public override bool Equals(object obj)
+        {
+            return (this.GetType().Equals(obj.GetType()));
+                
+        }
     }
 }

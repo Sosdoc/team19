@@ -70,7 +70,7 @@ namespace Team19.Model
         {
             if (!(c is Currency))
                 throw new ArgumentException("Not a currency!");
-            return (this.Value == ((Currency)c).Value);
+            return (this == (Currency)c);
         }
 
         public override int GetHashCode()
