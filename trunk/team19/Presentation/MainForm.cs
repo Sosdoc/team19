@@ -18,17 +18,17 @@ namespace Team19.Presentation
         {
             InitializeComponent();
             _document = Document.GetInstance();
-           moneyGrid.DataSource = _document.ContenitoriDiDenaro;
-           this.dgdipendenti.DataSource = _document.Dipendenti;
-  //         UpdateDocument();
+            moneyGrid.DataSource = _document.ContenitoriDiDenaro;
+            this.dgdipendenti.DataSource = _document.Dipendenti;
+            //         UpdateDocument();
         }
 
         private void MainForm_Load(object sender, EventArgs e)
         {
             //MessageBox.Show((new Currency(10.30m)).ToString());
 
-            
-            
+
+
 
         }
         private void UpdateDocument()
@@ -53,7 +53,7 @@ namespace Team19.Presentation
                 if (c is ContoCorrenteBancario) rowValues.Add(((ContoCorrenteBancario)c).CodConto);
                 else rowValues.Add("");
                 rowValues.Add(c.SaldoIniziale.ToString());
-                 rowValues.Add(c.Saldo.ToString());
+                rowValues.Add(c.Saldo.ToString());
                 d.Rows.Add(rowValues.ToArray());
 
             }
