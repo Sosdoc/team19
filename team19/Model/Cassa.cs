@@ -11,32 +11,36 @@ namespace Team19.Model
         {
             
         }
-        public override Currency Saldo
+
+        //public override Currency Saldo
+        //{
+        //    //dovrà calcolare il saldo in base ai movimenti
+        //    get
+        //    {
+        //        Currency sum = SaldoIniziale;
+        //        IEnumerable<Currency> queryImportiMovimentiConCassa =
+        //             from movimento in Document.GetInstance().Movimenti
+        //             where (movimento.Sorgente.GetType().Equals(this.GetType()))
+        //             select movimento.Importo;
+
+        //        foreach (Currency c in queryImportiMovimentiConCassa)
+        //            sum -= c;
+
+        //        queryImportiMovimentiConCassa =
+        //             from movimento in Document.GetInstance().Movimenti
+        //             where (movimento.Destinazione.GetType().Equals(this.GetType()))
+        //             select movimento.Importo;
+
+        //        foreach (Currency c in queryImportiMovimentiConCassa)
+        //            sum += c;
+
+        //        return sum;
+        //    }
+        //}
+
+        public override bool Equals(object obj)
         {
-            //dovrà calcolare il saldo in base ai movimenti
-            get
-            {
-                Currency sum = SaldoIniziale;
-                IEnumerable<Currency> queryImportiMovimentiConCassa =
-                     from movimento in Document.GetInstance().Movimenti
-                     where (movimento.Sorgente.GetType().Equals(this.GetType()))
-                     select movimento.Importo;
-             
-                
-
-                foreach (Currency c in queryImportiMovimentiConCassa)
-                    sum -= c;
-
-                queryImportiMovimentiConCassa =
-                     from movimento in Document.GetInstance().Movimenti
-                     where (movimento.Destinazione.GetType().Equals(this.GetType()))
-                     select movimento.Importo;
-
-                foreach (Currency c in queryImportiMovimentiConCassa)
-                    sum += c;
-
-                return sum;
-            }
+            return this.GetType().Equals(obj.GetType()); //la cassa è unica, basta controllare che il tipo sia lo stesso
         }
     }
 }

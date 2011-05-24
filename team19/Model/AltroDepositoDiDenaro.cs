@@ -10,13 +10,12 @@ namespace Team19.Model
         public AltroDepositoDiDenaro(Currency saldoIniziale)
             : base(saldoIniziale)
         { }
-        public override Currency Saldo
+
+        public override bool Equals(object obj)
         {
-            //dovrà calcolare il saldo in base ai movimenti
-            get
-            {
-                throw new NotImplementedException();
-            }
+            if (this.GetType().Equals(obj.GetType())) //se il tipo è uguale
+                return Object.ReferenceEquals(this, obj); //se è lo stesso riferimento --- Magari è meglio cambiarlo
+            return false;
         }
     }
 }
