@@ -15,16 +15,17 @@ namespace Team19.Model
         private DateTime _dataRegistrazione;
         private string _causale;
 
-      
-        protected MovimentoDiDenaro(ISorgente sorgente, IDestinazione destinazione, DateTime data, Dipendente dipendente, string causale="")
+
+        protected MovimentoDiDenaro(ISorgente sorgente, IDestinazione destinazione, DateTime data, Dipendente dipendente, string causale = "")
         {
             _data = data;
             _sorgente = sorgente;
             _destinazione = destinazione;
             _dataRegistrazione = DateTime.Now;
+            _dipendente = dipendente;
             _causale = causale;
         }
-       
+
         public DateTime Data
         {
             get { return _data; }
@@ -56,6 +57,6 @@ namespace Team19.Model
         }
 
 
-       
+
     }
 }
