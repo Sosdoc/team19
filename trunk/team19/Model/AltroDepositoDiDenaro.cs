@@ -17,5 +17,9 @@ namespace Team19.Model
                 return Object.ReferenceEquals(this, obj); //se è lo stesso riferimento --- Magari è meglio cambiarlo
             return false;
         }
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
     }
 }

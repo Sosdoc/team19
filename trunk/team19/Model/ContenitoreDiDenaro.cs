@@ -13,7 +13,14 @@ namespace Team19.Model
         {
             _saldoIniziale = saldoIniziale;
         }
-
+        public string Tipo
+        {
+            get { return this.GetType().Name; }
+        }
+        public virtual string CodConto
+        {
+            get { return ""; }
+        }
         public Currency SaldoIniziale
         {
             get { return _saldoIniziale; }
@@ -44,7 +51,11 @@ namespace Team19.Model
                 return sum;
             }
         }
-
+        
         public abstract override bool Equals(object obj);
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
     }
 }
