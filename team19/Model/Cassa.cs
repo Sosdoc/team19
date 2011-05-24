@@ -42,5 +42,10 @@ namespace Team19.Model
         {
             return this.GetType().Equals(obj.GetType()); //la cassa è unica, basta controllare che il tipo sia lo stesso
         }
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
+       
     }
 }

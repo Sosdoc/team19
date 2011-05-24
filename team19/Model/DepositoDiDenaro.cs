@@ -11,10 +11,9 @@ namespace Team19.Model
             : base(saldoIniziale)
         { }
 
-        public override bool Equals(object obj)
+        public override string CodConto
         {
-            return (this.GetType().Equals(obj.GetType()));
-                
+            get { return "Cassa"; }
         }
     }
 }

@@ -120,7 +120,7 @@ namespace Team19.Model
             
 
             _prodotti.Add(p1);
-
+            _contenitoriDiDenaro.Add(_cassa);
             _contenitoriDiDenaro.Add(cc);
 
 

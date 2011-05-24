@@ -9,7 +9,7 @@ namespace Team19.Model
     {
         private String _codConto;
 
-        public String CodConto
+        public override String CodConto
         {
             get { return _codConto; }
         }
@@ -24,12 +24,16 @@ namespace Team19.Model
         //{
         //    get { throw new NotImplementedException(); }
         //}
-
+        
         public override bool Equals(object obj)
         {
             if (this.GetType().Equals(obj.GetType())) //se il tipo è uguale
                 return this.CodConto.Equals(((ContoCorrenteBancario)obj).CodConto); //se ha lo stesso codice conto
             return false;
+        }
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
         }
     }
 }

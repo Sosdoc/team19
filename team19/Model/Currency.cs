@@ -68,9 +68,9 @@ namespace Team19.Model
 
         public override bool Equals(Object c)
         {
-            if (!(c is Currency))
-                throw new ArgumentException("Not a currency!");
-            return (this == (Currency)c);
+            //if (!(c is Currency))
+            //    throw new ArgumentException("Not a currency!");
+            return (c is Currency && this == (Currency)c);
         }
 
         public override int GetHashCode()
