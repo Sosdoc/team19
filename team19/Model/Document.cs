@@ -12,6 +12,13 @@ namespace Team19.Model
         private List<Fattura> _fatture;
         private List<Prodotto> _prodotti; //meglio un dictionary?
         private List<Soggetto> _soggetti;
+        private List<Dipendente> _dipendenti;
+
+        public List<Dipendente> Dipendenti
+        {
+            get { return _dipendenti; }
+           
+        }
         //riepiloghi?
         private Cassa _cassa;
 
@@ -75,7 +82,14 @@ namespace Team19.Model
             _fatture = new List<Fattura>();
             _prodotti = new List<Prodotto>();
             _soggetti = new List<Soggetto>();
+            _dipendenti = new List<Dipendente>();
 
+            _dipendenti.Add(new Dipendente("aymen2011", "12345", "aymen", "chakroun", "Uente"));
+            _dipendenti.Add(new Dipendente("francesco2011", "12345", "francesco", "casimiro", "Amministratore"));
+            _dipendenti.Add(new Dipendente("valerio2011", "12345", "valerio", "pipolo", "Uente"));
+            _dipendenti.Add(new Dipendente("maria2011", "12345", "maria", "rosso", "Uente"));
+            _dipendenti.Add(new Dipendente("elena2011", "12345", "elena", "vasilescu", "Uente"));
+           
             Indirizzo i = new Indirizzo("nessuna", "9001", "Quaggiù", "02983", "BOH", "Ailati");
             Cliente c1 = new Cliente("Pinco Pallino", "0", "no", "8301", "PNCPLNlol", i);
             Fornitore fo1 = new Fornitore("Pallo Pinchino", "13109", "forse", "9329239", i);
@@ -117,7 +131,7 @@ namespace Team19.Model
         {
             //questo metodo non fa nulla
         }
-
+        
         public IEnumerable<FatturaVendita> GetFattureVendita()
         {
             return this.Fatture.OfType<FatturaVendita>();

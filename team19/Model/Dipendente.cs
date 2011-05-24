@@ -19,16 +19,7 @@ namespace Team19.Model
             get { return _ruolo; }
             set { _ruolo = value; }
         }
-        public static List<Dipendente> ListAllDipend()
-        {
-            List<Dipendente> listDipendente = new List<Dipendente>();
-            listDipendente.Add(new Dipendente("aymen2011","12345","aymen","chakroun","Uente"));
-            listDipendente.Add(new Dipendente("francesco2011", "12345", "francesco", "casimiro", "Amministratore"));
-            listDipendente.Add(new Dipendente("valerio2011", "12345", "valerio", "pipolo", "Uente"));
-            listDipendente.Add(new Dipendente("maria2011", "12345", "maria", "rosso", "Uente"));
-            listDipendente.Add(new Dipendente("elena2011", "12345", "elena", "vasilescu", "Uente"));
-            return listDipendente;
-        }
+        
         public Dipendente(string username, string password, string nome, string cognome,string ruolo)
         {
             this._username = username;
