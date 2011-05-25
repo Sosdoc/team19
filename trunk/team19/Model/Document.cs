@@ -13,18 +13,17 @@ namespace Team19.Model
         private List<Prodotto> _prodotti; //meglio un dictionary?
         private List<Soggetto> _soggetti;
         private List<Dipendente> _dipendenti;
+        private Cassa _cassa;
+        //riepiloghi?
+        private static Document _instance;
+        public static event EventHandler Changed;
 
         public List<Dipendente> Dipendenti
         {
             get { return _dipendenti; }
            
         }
-        //riepiloghi?
-        private Cassa _cassa;
-
-        private static Document _instance;
-
-        public static event EventHandler Changed;
+        
 
         private Document()
         {
@@ -84,11 +83,11 @@ namespace Team19.Model
             _soggetti = new List<Soggetto>();
             _dipendenti = new List<Dipendente>();
 
-            _dipendenti.Add(new Dipendente("aymen2011", "12345", "aymen", "chakroun", "Uente"));
-            _dipendenti.Add(new Dipendente("francesco2011", "12345", "francesco", "casimiro", "Amministratore"));
-            _dipendenti.Add(new Dipendente("valerio2011", "12345", "valerio", "pipolo", "Uente"));
-            _dipendenti.Add(new Dipendente("maria2011", "12345", "maria", "rosso", "Uente"));
-            _dipendenti.Add(new Dipendente("elena2011", "12345", "elena", "vasilescu", "Uente"));
+            _dipendenti.Add(new Dipendente("aymen2011", "12345", "aymen", "chakroun",TipoDipendente.Amministratore));
+            _dipendenti.Add(new Dipendente("francesco2011", "12345", "francesco", "casimiro", TipoDipendente.Amministratore));
+            _dipendenti.Add(new Dipendente("valerio2011", "12345", "valerio", "pipolo", TipoDipendente.Amministratore));
+            _dipendenti.Add(new Dipendente("maria2011", "12345", "maria", "rosso",TipoDipendente.Utente));
+            _dipendenti.Add(new Dipendente("elena2011", "12345", "elena", "vasilescu", TipoDipendente.Utente));
            
             Indirizzo i = new Indirizzo("nessuna", "9001", "Quaggiù", "02983", "BOH", "Ailati");
             Cliente c1 = new Cliente("Pinco Pallino", "0", "no", "8301", "PNCPLNlol", i);
@@ -103,7 +102,7 @@ namespace Team19.Model
             FatturaVendita f2 = FatturaFactory.Instance.CreateFatturaVendita(c1, DateTime.Now, righe);
            
             FatturaVendita f3 = FatturaFactory.Instance.CreateFatturaVendita(c1, DateTime.Now, righe);
-            Dipendente d = new Dipendente("io", "no", "lol", "asd","Amministratore");
+            Dipendente d = new Dipendente("io", "no", "lol", "asd",TipoDipendente.Amministratore);
             MovimentoDiDenaro m1 = MovimentoFactory.CreatePagamentoAcquisto(Cassa, f1, DateTime.Now, d, "asd");
             MovimentoDiDenaro m2 = MovimentoFactory.CreateIncassoVendita(f2, Cassa, DateTime.Now, d, "asd");
             ContoCorrenteBancario cc = new ContoCorrenteBancario("AOSIDJHOGIHAPI",new Currency(10000m));
