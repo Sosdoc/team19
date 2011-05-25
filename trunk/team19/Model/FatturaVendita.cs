@@ -10,7 +10,8 @@ namespace Team19.Model
         private List<RigaFattura> _elencoProdotti;
         private Cliente _cliente;
 
-        private static int _numeroUltimaFattura = 0;
+        private static FatturaVendita _ultimaFattura = new FatturaVendita(new Cliente("", "", "", "", "", new Indirizzo("", "", "", "", "", "")), DateTime.MinValue, 1, new List<RigaFattura>());
+
 
         private FatturaVendita(Cliente cliente, DateTime data, int numero, List<RigaFattura> elencoProdotti)
             : base(data, numero)
@@ -23,25 +24,23 @@ namespace Team19.Model
             this._elencoProdotti = elencoProdotti;
             this._cliente = cliente;
         }
+        private static int NumeroProssimaFatturaDiVendita(DateTime dataNuovaFattura)
+        {
+            int retval = 1;
 
+            if (_ultimaFattura.Data.Year == dataNuovaFattura.Year)
+                retval = _ultimaFattura.NumeroFattura + 1;
+
+
+            return retval;
+        }
         public static FatturaVendita CreateFatturaVendita(Cliente cliente, DateTime data, List<RigaFattura> elencoProdotti)
         {
-            if (Document.GetInstance().GetFattureVendita().Count() != 0)
-            {   //Se ci sono già delle fatture in document recupero l'ultima fattura e calcolo il prossimo numero
-                FatturaVendita ultimaFattura =
-                (from fattura in Document.GetInstance().GetFattureVendita()
-                 orderby fattura.Data descending
-                 select fattura).First();
 
-                _numeroUltimaFattura = ultimaFattura.NumeroFattura + 1;
+            FatturaVendita nuovaFattura = new FatturaVendita(cliente, data, NumeroProssimaFatturaDiVendita(data), elencoProdotti);
+            _ultimaFattura = nuovaFattura;
+            return nuovaFattura;
 
-                if (!data.Year.Equals(ultimaFattura.Data.Year)) //se è cambiato anno torno al numero 1
-                    _numeroUltimaFattura = 1;
-            }
-            else
-                _numeroUltimaFattura = 1;        
-
-            return new FatturaVendita(cliente, data, _numeroUltimaFattura, elencoProdotti);
         }
 
         public IEnumerable<RigaFattura> ElencoProdotti
