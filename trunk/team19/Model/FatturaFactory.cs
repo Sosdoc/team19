@@ -87,6 +87,11 @@ namespace Team19.Model
             }
         }
 
+        public Cliente Cliente
+        {
+            get { return _cliente; }
+        }
+
         public override Currency Importo
         {
             get
