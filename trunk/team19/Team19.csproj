@@ -84,6 +84,7 @@
     <Compile Include="Model\RigaFattura.cs" />
     <Compile Include="Model\Soggetto.cs" />
     <Compile Include="Model\Sorgente.cs" />
+    <Compile Include="Model\TipoDipendente.cs" />
     <Compile Include="Presentation\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>

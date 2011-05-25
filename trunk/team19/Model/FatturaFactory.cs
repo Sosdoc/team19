@@ -9,10 +9,7 @@ namespace Team19.Model
     {
         private static FatturaFactory _instance;
 
-
         private FatturaVendita _ultimaFattura;
-
-
 
         private FatturaFactory()
         {
@@ -57,24 +54,12 @@ namespace Team19.Model
         {
             int retval = 1;
 
-            //recupero l'ultima fattura emessa disponibile
-            //FatturaVendita ultimaFatturaDiVendita = Document.GetInstance().Fatture.OfType<FatturaVendita>().Last();
-            //if (Document.GetInstance().GetFattureVendita().ToArray().Length != 0)
-            //{
-            //    FatturaVendita ultimaFatturaDiVendita =
-            //        (from fattura in Document.GetInstance().GetFattureVendita()
-            //         orderby fattura.Data descending
-            //         select fattura).First();
-            //    //se non è cambiato anno dall'ultima fattura
-            //    if (ultimaFatturaDiVendita.Data.Year == dataNuovaFattura.Year)
-            //        retval = ultimaFatturaDiVendita.NumeroFattura + 1;
-            //}
             if (UltimaFattura.Data.Year == dataNuovaFattura.Year)
                 retval = UltimaFattura.NumeroFattura + 1;
 
-
             return retval;
         }
+
     }
 
     public class FatturaVendita : Fattura, ISorgente
@@ -82,7 +67,7 @@ namespace Team19.Model
         private List<RigaFattura> _elencoProdotti;
         private Cliente _cliente;
 
-        internal FatturaVendita(Cliente cliente, DateTime data, int numero, List<RigaFattura> elencoProdotti)
+        public FatturaVendita(Cliente cliente, DateTime data, int numero, List<RigaFattura> elencoProdotti)
             : base(data, numero)
         {
             if (elencoProdotti == null)
@@ -121,17 +106,7 @@ namespace Team19.Model
         private Currency _importo;
         private Fornitore _fornitore;
 
-        public Fornitore Fornitore
-        {
-            get { return _fornitore; }
-        }
-
-        public override Currency Importo
-        {
-            get { return _importo; }
-        }
-
-        internal FatturaAcquisto(Fornitore fornitore, DateTime data, int numero, Currency importo)
+        public FatturaAcquisto(Fornitore fornitore, DateTime data, int numero, Currency importo)
             : base(data, numero)
         {
             if (importo.Value <= 0)
@@ -142,6 +117,18 @@ namespace Team19.Model
             this._importo = importo;
             this._fornitore = fornitore;
         }
+
+        public Fornitore Fornitore
+        {
+            get { return _fornitore; }
+        }
+
+        public override Currency Importo
+        {
+            get { return _importo; }
+        }
+
+
     }
 
 

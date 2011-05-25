@@ -93,15 +93,15 @@ namespace Team19.Model
             Cliente c1 = new Cliente("Pinco Pallino", "0", "no", "8301", "PNCPLNlol", i);
             Fornitore fo1 = new Fornitore("Pallo Pinchino", "13109", "forse", "9329239", i);
             Prodotto p1 = new Prodotto(new Currency(10m), "palla", new CodiceProdotto("PAL", "11400"));
-            FatturaAcquisto f1 = FatturaFactory.Instance.CreateFatturaAcquisto(fo1, DateTime.Now, 1003, new Currency(10004.23m) );
+            FatturaAcquisto f1 = FatturaFactory.GetInstance().CreateFatturaAcquisto(fo1, DateTime.Now, 1003, new Currency(10004.23m) );
             RigaFattura riga1 = new RigaFattura(10, p1);
             RigaFattura riga2 = new RigaFattura(320, p1);
             List<RigaFattura> righe = new List<RigaFattura>();
             righe.Add(riga1);
             righe.Add(riga2);
-            FatturaVendita f2 = FatturaFactory.Instance.CreateFatturaVendita(c1, DateTime.Now, righe);
-           
-            FatturaVendita f3 = FatturaFactory.Instance.CreateFatturaVendita(c1, DateTime.Now, righe);
+            FatturaVendita f2 = FatturaFactory.GetInstance().CreateFatturaVendita(c1, DateTime.Now, righe);
+
+            FatturaVendita f3 = FatturaFactory.GetInstance().CreateFatturaVendita(c1, DateTime.Now, righe);
             Dipendente d = new Dipendente("io", "no", "lol", "asd",TipoDipendente.Amministratore);
             MovimentoDiDenaro m1 = MovimentoFactory.CreatePagamentoAcquisto(Cassa, f1, DateTime.Now, d, "asd");
             MovimentoDiDenaro m2 = MovimentoFactory.CreateIncassoVendita(f2, Cassa, DateTime.Now, d, "asd");
@@ -131,15 +131,17 @@ namespace Team19.Model
             //questo metodo non fa nulla
         }
         
-        public IEnumerable<FatturaVendita> GetFattureVendita()
-        {
-            return this.Fatture.OfType<FatturaVendita>();
-        }
+        //public IEnumerable<FatturaVendita> GetFattureVendita()
+        //{
+        //    return this.Fatture.OfType<FatturaVendita>();
+        //}
 
-        public IEnumerable<FatturaAcquisto> GetFattureAcquisto()
-        {
-            return this.Fatture.OfType<FatturaAcquisto>();
-        }        
+        //public IEnumerable<FatturaAcquisto> GetFattureAcquisto()
+        //{
+        //    return this.Fatture.OfType<FatturaAcquisto>();
+        //}        
+
+        //public IEnumerable
 
         protected virtual void OnChanged()
         {
