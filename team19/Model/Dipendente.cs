@@ -13,10 +13,10 @@ namespace Team19.Model
         private string _nome;
         //_ruolo--> indica il ruolo del dipendente
         //se non può cambiare runtime--> readonly
-        private string _ruolo;
+        private TipoDipendente _ruolo;
        
         
-        public Dipendente(string username, string password, string nome, string cognome,string ruolo)
+        public Dipendente(string username, string password, string nome, string cognome,TipoDipendente ruolo)
         {
             this._username = username;
             this._password = password;
@@ -41,7 +41,7 @@ namespace Team19.Model
             get { return _password; }
         }
        
-        public string Ruolo
+        public TipoDipendente Ruolo
         {
             get { return _ruolo; }
         }   
