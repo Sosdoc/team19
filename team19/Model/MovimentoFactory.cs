@@ -19,7 +19,7 @@ namespace Team19.Model
 
         public static MovimentoDiDenaro CreatePagamentoAcquisto(ISorgente sorgente, IDestinazione destinazione, DateTime data, Dipendente dipendente, string causale)
         {
-                return new PagamentoAcquisto(sorgente, destinazione, data, dipendente, causale);
+            return new PagamentoAcquisto(sorgente, destinazione, data, dipendente, causale);
         }
 
         public static MovimentoDiDenaro CreateIncassoVendita(FatturaVendita sorgente, IDestinazione destinazione, DateTime data, Dipendente dipendente, string causale)
@@ -52,13 +52,13 @@ namespace Team19.Model
 
             public override Currency Importo
             {
-                get { return ((FatturaAcquisto) Destinazione).Importo; }
+                get { return ((FatturaAcquisto)Destinazione).Importo; }
             }
 
-        //    public override string ToString()
-        //    {
-        ////        return _data + ") " + _importo + ",da " + _sorgente.getInfo() + " a " + _destinazione.getInfo() + ", registrato da " + _dipendente.ToString() + " " + _dataRegistrazione;
-        //    }
+            //    public override string ToString()
+            //    {
+            ////        return _data + ") " + _importo + ",da " + _sorgente.getInfo() + " a " + _destinazione.getInfo() + ", registrato da " + _dipendente.ToString() + " " + _dataRegistrazione;
+            //    }
         }
 
         private class IncassoVendita : MovimentoDiDenaro
@@ -67,11 +67,11 @@ namespace Team19.Model
             public IncassoVendita(ISorgente sorgente, IDestinazione destinazione, DateTime data, Dipendente dipendente, string causale)
                 : base(sorgente, destinazione, data, dipendente, causale)
             {
-                
+
             }
             public override Currency Importo
             {
-                get { return ((FatturaVendita) Sorgente).Importo; }
+                get { return ((FatturaVendita)Sorgente).Importo; }
             }
 
 
@@ -104,7 +104,7 @@ namespace Team19.Model
         {
             public Spostamento(ISorgente sorgente, IDestinazione destinazione, Currency importo, DateTime data, Dipendente dipendente, string causale)
                 : base(sorgente, destinazione, importo, data, dipendente, causale)
-            { }  
+            { }
         }
 
         private class Versamento : MovimentoInterno

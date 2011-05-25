@@ -7,77 +7,16 @@ namespace Team19.Model
 {
     class RiepilogoFactory
     {
-        static IRiepilogo CreateRiepilogo(Cliente cliente)
-        {
-            return new RiepilogoCliente(cliente);
-        }
-
-        static IRiepilogo CreateRiepilogo(Fornitore fornitore)
-        {
-            return new RiepilogoFornitore(fornitore);
-        }
-
-        //static IRiepilogo CreateRiepilogo(Soggetto soggetto)
+        //static IRiepilogo CreateRiepilogo(Cliente cliente)
         //{
-        
+        //    return new RiepilogoCliente(cliente);
         //}
 
-        private class RiepilogoCliente : IRiepilogo
-        {
-            private Cliente _cliente;
+        //static IRiepilogo CreateRiepilogo(Fornitore fornitore)
+        //{
+        //    return new RiepilogoFornitore(fornitore);
+        //}
 
-            public RiepilogoCliente(Cliente cliente)
-            {
-                _cliente = cliente;
-            }
-
-            public Cliente Cliente
-            {
-                get { return _cliente; }
-            }
-
-            #region IRiepilogo Members
-
-            public List<Currency> GetImportiPagati()
-            {
-                throw new NotImplementedException();
-            }
-
-            public List<Currency> GetImportiDaPagare()
-            {
-                throw new NotImplementedException();
-            }
-
-            #endregion
-        }
-
-        private class RiepilogoFornitore : IRiepilogo
-        {
-            private Fornitore _fornitore;
-
-            public RiepilogoFornitore(Fornitore fornitore)
-            {
-                _fornitore = fornitore;
-            }
-
-            public Fornitore Fornitore
-            {
-                get { return _fornitore; }
-            }
-
-            #region IRiepilogo Members
-
-            public List<Currency> GetImportiPagati()
-            {
-                throw new NotImplementedException();
-            }
-
-            public List<Currency> GetImportiDaPagare()
-            {
-                throw new NotImplementedException();
-            }
-
-            #endregion
-        }
+       
     }
 }
