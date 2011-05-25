@@ -11,7 +11,7 @@ namespace Team19.Model
         private List<ContenitoreDiDenaro> _contenitoriDiDenaro;
         private List<Fattura> _fatture;
         private List<Prodotto> _prodotti; //meglio un dictionary?
-        private List<Soggetto> _soggetti;
+        private List<ISoggetto> _soggetti;
         private List<Dipendente> _dipendenti;
         private Cassa _cassa;
         //riepiloghi?
@@ -60,7 +60,7 @@ namespace Team19.Model
             get { return _prodotti; }
         }
 
-        public IEnumerable<Soggetto> Soggetti
+        public IEnumerable<ISoggetto> Soggetti
         {
             get { return _soggetti; }
         }
@@ -99,7 +99,7 @@ namespace Team19.Model
             _contenitoriDiDenaro = new List<ContenitoreDiDenaro>();
             _fatture = new List<Fattura>();
             _prodotti = new List<Prodotto>();
-            _soggetti = new List<Soggetto>();
+            _soggetti = new List<ISoggetto>();
             _dipendenti = new List<Dipendente>();
 
             _dipendenti.Add(new Dipendente("aymen2011", "12345", "aymen", "chakroun", TipoDipendente.Amministratore));
@@ -109,8 +109,8 @@ namespace Team19.Model
             _dipendenti.Add(new Dipendente("elena2011", "12345", "elena", "vasilescu", TipoDipendente.Utente));
 
             Indirizzo i = new Indirizzo("nessuna", "9001", "Quaggiù", "02983", "BOH", "Ailati");
-            Cliente c1 = new Cliente("Pinco Pallino", "0", "no", "8301", "PNCPLNlol", i);
-            Fornitore fo1 = new Fornitore("Pallo Pinchino", "13109", "forse", "9329239", i);
+            ICliente c1 = SoggettoFactory.CreateCliente("Pinco Pallino", "0", "no", "8301", "PNCPLNlol", i);
+            IFornitore fo1 = SoggettoFactory.CreateFornitore("Pallo Pinchino", "13109", "forse", "9329239", i);
             Prodotto p1 = new Prodotto(new Currency(10m), "palla", new CodiceProdotto("PAL", "11400"));
             FatturaAcquisto f1 = FatturaAcquisto.CreateFatturaAcquisto(fo1, DateTime.Now, 1003, new Currency(10004.23m));
             
@@ -122,7 +122,7 @@ namespace Team19.Model
             FatturaVendita f2 = FatturaVendita.CreateFatturaVendita(c1, DateTime.Now, righe);
             
             FatturaVendita f3 = FatturaVendita.CreateFatturaVendita(c1, DateTime.Now, righe);
-            
+            ISoggetto cf = SoggettoFactory.CreateClienteFornitore("Soshito Nakakata", "6786796", "dfhskh", "jhjkhlJH", "hgkhgkjhG", i);
             Dipendente d = new Dipendente("io", "no", "lol", "asd", TipoDipendente.Amministratore);
             MovimentoDiDenaro m1 = MovimentoFactory.CreatePagamentoAcquisto(Cassa, f1, DateTime.Now, d, "asd");
             MovimentoDiDenaro m2 = MovimentoFactory.CreateIncassoVendita(f2, Cassa, DateTime.Now, d, "asd");
@@ -137,7 +137,7 @@ namespace Team19.Model
             _fatture.Add(f3);
             _soggetti.Add(fo1);
             _soggetti.Add(c1);
-
+            _soggetti.Add(cf);
 
 
             _prodotti.Add(p1);
