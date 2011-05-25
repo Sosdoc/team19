@@ -9,14 +9,22 @@ namespace Team19.Model
     public static class MovimentoFactory
     {
 
-        public static MovimentoDiDenaro CreatePagamentoAcquisto(ISorgente sorgente, FatturaAcquisto destinazione, DateTime data, Dipendente dipendente, string causale)
+        //public static MovimentoDiDenaro CreatePagamento(ISorgente sorgente, IDestinazione destinazione, DateTime data, Dipendente dipendente, string causale)
+        //{
+        //    if(destinazione is Fattura)
+        //        return new PagamentoAcquisto(sorgente,destinazione,data,dipendente, causale);
+        //    else 
+        //        return new IncassoVendita(sorgente,destinazione,data,dipendente, causale);
+        //}
+
+        public static MovimentoDiDenaro CreatePagamentoAcquisto(ISorgente sorgente, IDestinazione destinazione, DateTime data, Dipendente dipendente, string causale)
         {
-            return new PagamentoAcquisto(sorgente,destinazione,data,dipendente, causale);
+                return new PagamentoAcquisto(sorgente, destinazione, data, dipendente, causale);
         }
 
         public static MovimentoDiDenaro CreateIncassoVendita(FatturaVendita sorgente, IDestinazione destinazione, DateTime data, Dipendente dipendente, string causale)
         {
-            return new IncassoVendita(sorgente,destinazione,data,dipendente, causale);
+            return new IncassoVendita(sorgente, destinazione, data, dipendente, causale);
         }
 
         public static MovimentoDiDenaro CreateMovimentoInterno(Cassa sorgente, DepositoDiDenaro destinazione, Currency importo, DateTime data, Dipendente dipendente, string causale)
