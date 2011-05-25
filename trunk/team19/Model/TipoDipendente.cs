@@ -7,7 +7,7 @@ namespace Team19.Model
 {
     public enum TipoDipendente
     {
-        Utente = 0,
-        Amministratore = 1
+        Utente=0,
+        Amministratore=1
     }
 }
