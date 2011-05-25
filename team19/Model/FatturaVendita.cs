@@ -8,12 +8,12 @@ namespace Team19.Model
     public class FatturaVendita : Fattura, ISorgente
     {
         private List<RigaFattura> _elencoProdotti;
-        private Cliente _cliente;
+        private ICliente _cliente;
 
-        private static FatturaVendita _ultimaFattura = new FatturaVendita(new Cliente("", "", "", "", "", new Indirizzo("", "", "", "", "", "")), DateTime.MinValue, 1, new List<RigaFattura>());
+        private static FatturaVendita _ultimaFattura = new FatturaVendita(SoggettoFactory.CreateCliente("", "", "", "", "", new Indirizzo("", "", "", "", "", "")), DateTime.MinValue, 1, new List<RigaFattura>());
 
 
-        private FatturaVendita(Cliente cliente, DateTime data, int numero, List<RigaFattura> elencoProdotti)
+        private FatturaVendita(ICliente cliente, DateTime data, int numero, List<RigaFattura> elencoProdotti)
             : base(data, numero)
         {
             if (elencoProdotti == null)
@@ -34,7 +34,7 @@ namespace Team19.Model
 
             return retval;
         }
-        public static FatturaVendita CreateFatturaVendita(Cliente cliente, DateTime data, List<RigaFattura> elencoProdotti)
+        public static FatturaVendita CreateFatturaVendita(ICliente cliente, DateTime data, List<RigaFattura> elencoProdotti)
         {
 
             FatturaVendita nuovaFattura = new FatturaVendita(cliente, data, NumeroProssimaFatturaDiVendita(data), elencoProdotti);
@@ -51,7 +51,7 @@ namespace Team19.Model
             }
         }
 
-        public Cliente Cliente
+        public ICliente Cliente
         {
             get { return _cliente; }
         }

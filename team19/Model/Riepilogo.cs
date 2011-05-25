@@ -12,14 +12,14 @@ namespace Team19.Model
     }
     public class RiepilogoCliente : IRiepilogo
     {
-        private Cliente _cliente;
+        private ICliente _cliente;
 
-        public RiepilogoCliente(Cliente cliente)
+        public RiepilogoCliente(ICliente cliente)
         {
             _cliente = cliente;
         }
 
-        public Cliente Cliente
+        public ICliente Cliente
         {
             get { return _cliente; }
         }
@@ -71,9 +71,9 @@ namespace Team19.Model
 
     public class RiepilogoFornitore : IRiepilogo
     {
-        private Fornitore _fornitore;
+        private IFornitore _fornitore;
 
-        public RiepilogoFornitore(Fornitore fornitore)
+        public RiepilogoFornitore(IFornitore fornitore)
         {
             this._fornitore = fornitore;
 
@@ -81,7 +81,7 @@ namespace Team19.Model
 
         }
 
-        public Fornitore Fornitore
+        IFornitore Fornitore
         {
             get { return _fornitore; }
         }

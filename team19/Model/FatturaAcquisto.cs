@@ -8,9 +8,9 @@ namespace Team19.Model
     public class FatturaAcquisto : Fattura, IDestinazione
     {
         private Currency _importo;
-        private Fornitore _fornitore;
+        private IFornitore _fornitore;
 
-        public FatturaAcquisto(Fornitore fornitore, DateTime data, int numero, Currency importo)
+        public FatturaAcquisto(IFornitore fornitore, DateTime data, int numero, Currency importo)
             : base(data, numero)
         {
             if (importo.Value <= 0)
@@ -22,12 +22,12 @@ namespace Team19.Model
             this._fornitore = fornitore;
         }
 
-        public static FatturaAcquisto CreateFatturaAcquisto(Fornitore fornitore, DateTime data, int numero, Currency importo)
+        public static FatturaAcquisto CreateFatturaAcquisto(IFornitore fornitore, DateTime data, int numero, Currency importo)
         {
             return new FatturaAcquisto(fornitore, data, numero, importo);
         }
 
-        public Fornitore Fornitore
+        public IFornitore Fornitore
         {
             get { return _fornitore; }
         }

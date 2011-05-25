@@ -64,6 +64,7 @@
     <Compile Include="Model\AltroDepositoDiDenaro.cs" />
     <Compile Include="Model\Cassa.cs" />
     <Compile Include="Model\Cliente.cs" />
+    <Compile Include="Model\ClienteFornitore.cs" />
     <Compile Include="Model\CodiceProdotto.cs" />
     <Compile Include="Model\ContenitoreDiDenaro.cs" />
     <Compile Include="Model\ContoCorrenteBancario.cs" />
@@ -76,7 +77,10 @@
     <Compile Include="Model\FatturaAcquisto.cs" />
     <Compile Include="Model\FatturaVendita.cs" />
     <Compile Include="Model\Fornitore.cs" />
+    <Compile Include="Model\ICliente.cs" />
+    <Compile Include="Model\IFornitore.cs" />
     <Compile Include="Model\Indirizzo.cs" />
+    <Compile Include="Model\ISoggetto.cs" />
     <Compile Include="Model\MovimentoDiDenaro.cs" />
     <Compile Include="Model\MovimentoFactory.cs" />
     <Compile Include="Model\Prodotto.cs" />
@@ -84,8 +88,15 @@
     <Compile Include="Model\RiepilogoFactory.cs" />
     <Compile Include="Model\RigaFattura.cs" />
     <Compile Include="Model\Soggetto.cs" />
+    <Compile Include="Model\SoggettoFactory.cs" />
     <Compile Include="Model\Sorgente.cs" />
     <Compile Include="Model\TipoDipendente.cs" />
+    <Compile Include="Presentation\AuthenticationForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\AuthenticationForm.Designer.cs">
+      <DependentUpon>AuthenticationForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Presentation\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -94,6 +105,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Presentation\AuthenticationForm.resx">
+      <DependentUpon>AuthenticationForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Presentation\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
