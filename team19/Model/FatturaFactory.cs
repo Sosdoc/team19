@@ -10,26 +10,31 @@ namespace Team19.Model
         private static FatturaFactory _instance;
 
 
-        private Fattura _ultimaFattura;
+        private FatturaVendita _ultimaFattura;
 
 
 
         private FatturaFactory()
         {
-            _ultimaFattura = new FatturaVendita(new Cliente("","","","","",new Indirizzo("","","","","","")), DateTime.MinValue, 1, new List<RigaFattura>());
+            _ultimaFattura = new FatturaVendita(new Cliente("", "", "", "", "", new Indirizzo("", "", "", "", "", "")), DateTime.MinValue, 1, new List<RigaFattura>());
         }
 
-        internal static FatturaFactory Instance
+
+        public static FatturaFactory GetInstance()
         {
-            get
-            {
-                if (_instance == null)
-                    _instance = new FatturaFactory();
-                return FatturaFactory._instance;
-            }
+            if (_instance == null)
+                _instance = new FatturaFactory();
+            return FatturaFactory._instance;
         }
 
-        private Fattura UltimaFattura
+        public static FatturaFactory GetInstance(FatturaVendita ultimaFattura)
+        {
+            _instance = GetInstance();
+            _instance.UltimaFattura = ultimaFattura;
+            return FatturaFactory._instance;
+        }
+
+        private FatturaVendita UltimaFattura
         {
             get { return _ultimaFattura; }
             set { _ultimaFattura = value; }
