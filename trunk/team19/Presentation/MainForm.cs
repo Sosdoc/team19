@@ -40,6 +40,7 @@ namespace Team19.Presentation
                 Document.CreateInstance(new DefaultPersister());
 
                 Document.Autentica(auth.Username, auth.Password);
+
                 _document = Document.GetInstance();
 
                 //if (Document.GetInstance().UtenteConnesso == null)

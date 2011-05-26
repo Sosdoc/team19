@@ -24,6 +24,14 @@ namespace Team19.Model
         private Document(IDocumentPersister persister)
         {
             this._persister = persister;
+            _prodotti = new List<Prodotto>();
+            _dipendenti = new List<Dipendente>();
+            
+            _contenitoriDiDenaro = new List<ContenitoreDiDenaro>();
+            _soggetti = new List<ISoggetto>();
+            _fatture = new List<Fattura>();
+            _movimenti = new List<MovimentoDiDenaro>();
+
         }
 
 
@@ -167,7 +175,8 @@ namespace Team19.Model
         {
             if (_instance == null)
                 CreateInstance(new DefaultPersister());
-            if (_instance.UtenteConnesso == null) throw new ApplicationException("Nessun utente connesso");
+            //if (_instance.UtenteConnesso == null) 
+            //    throw new ApplicationException("Nessun utente connesso");
             return _instance;
         }
 
@@ -196,6 +205,7 @@ namespace Team19.Model
         private void Load()
         {
             IDocumentLoader loader = _persister.GetLoader();
+           
             _prodotti = loader.LoadProdotti();
             _dipendenti = loader.LoadDipendenti();
             _cassa = loader.LoadCassa();
@@ -203,6 +213,7 @@ namespace Team19.Model
             _soggetti = loader.LoadSoggetti();
             _fatture = loader.LoadFatture();
             _movimenti = loader.LoadMovimenti();
+
             OnChanged();
         }
 
