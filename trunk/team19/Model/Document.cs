@@ -125,7 +125,7 @@ namespace Team19.Model
         {
             if (_instance == null)
                 CreateInstance(new DefaultPersister());
-            //if (_instance.UtenteConnesso == null) throw new ApplicationException("Nessun utente connesso");
+            if (_instance.UtenteConnesso == null) throw new ApplicationException("Nessun utente connesso");
             return _instance;
         }
 
