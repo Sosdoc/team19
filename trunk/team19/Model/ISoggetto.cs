@@ -22,6 +22,11 @@ namespace Team19.Model
             get;
         }
 
+        string CodiceFiscale
+        {
+            get;
+        }
+
         Indirizzo Indirizzo
         {
             get;

@@ -61,7 +61,49 @@ namespace Team19.Model
 
         public void Add(Dipendente dipendente)
         {
+            IsAmministratore();
             _dipendenti.Add(dipendente);
+            OnChanged();
+        }
+
+        #endregion
+
+        #region Document Removers
+
+        public void Remove(MovimentoDiDenaro movimento)
+        {
+            _movimenti.Remove(movimento);
+            OnChanged();
+        }
+
+        public void Remove(Fattura fattura)
+        {
+            _fatture.Remove(fattura);
+            OnChanged();
+        }
+
+        public void Remove(ISoggetto soggetto)
+        {
+            _soggetti.Remove(soggetto);
+            OnChanged();
+        }
+
+        public void Remove(ContenitoreDiDenaro contenitore)
+        {
+            _contenitoriDiDenaro.Remove(contenitore);
+            OnChanged();
+        }
+
+        public void Remove(Prodotto prodotto)
+        {
+            _prodotti.Remove(prodotto);
+            OnChanged();
+        }
+
+        public void Remove(Dipendente dipendente)
+        {
+            IsAmministratore();
+            _dipendenti.Remove(dipendente);
             OnChanged();
         }
 
@@ -127,6 +169,12 @@ namespace Team19.Model
                 CreateInstance(new DefaultPersister());
             if (_instance.UtenteConnesso == null) throw new ApplicationException("Nessun utente connesso");
             return _instance;
+        }
+
+        private void IsAmministratore()
+        {
+            if (!UtenteConnesso.Ruolo.Equals(TipoDipendente.Amministratore))
+                throw new InvalidOperationException("Non hai privilegi di amministratore");
         }
 
         public static void Autentica(string username, string password)
