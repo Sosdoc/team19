@@ -19,11 +19,6 @@ namespace Team19.Model
         {
             _codConto = codiceConto;
         }
-
-        //public override Currency Saldo
-        //{
-        //    get { throw new NotImplementedException(); }
-        //}
         
         public override bool Equals(object obj)
         {

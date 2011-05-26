@@ -63,7 +63,6 @@
   <ItemGroup>
     <Compile Include="Model\AltroDepositoDiDenaro.cs" />
     <Compile Include="Model\Cassa.cs" />
-    <Compile Include="Model\Cliente.cs" />
     <Compile Include="Model\ClienteFornitore.cs" />
     <Compile Include="Model\CodiceProdotto.cs" />
     <Compile Include="Model\ContenitoreDiDenaro.cs" />
@@ -76,7 +75,6 @@
     <Compile Include="Model\Fattura.cs" />
     <Compile Include="Model\FatturaAcquisto.cs" />
     <Compile Include="Model\FatturaVendita.cs" />
-    <Compile Include="Model\Fornitore.cs" />
     <Compile Include="Model\ICliente.cs" />
     <Compile Include="Model\IFornitore.cs" />
     <Compile Include="Model\Indirizzo.cs" />
@@ -87,10 +85,11 @@
     <Compile Include="Model\Riepilogo.cs" />
     <Compile Include="Model\RiepilogoFactory.cs" />
     <Compile Include="Model\RigaFattura.cs" />
-    <Compile Include="Model\Soggetto.cs" />
     <Compile Include="Model\SoggettoFactory.cs" />
     <Compile Include="Model\Sorgente.cs" />
     <Compile Include="Model\TipoDipendente.cs" />
+    <Compile Include="Persistence\DefaultPersister.cs" />
+    <Compile Include="Model\IPersister.cs" />
     <Compile Include="Presentation\AuthenticationForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -130,9 +129,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Persistence\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0,Profile=Client">
       <Visible>False</Visible>
