@@ -18,24 +18,67 @@ namespace Team19.Model
 
         private static Document _instance;
         private IDocumentPersister _persister;
-        //private Dipendente _utenteConnesso;
+        private Dipendente _utenteConnesso;
         public static event EventHandler Changed;
 
-        //public Dipendente UtenteConnesso
-        //{
-        //    get { return _utenteConnesso; }
-        //    set { _utenteConnesso = value; }
-        //}
+        private Document(IDocumentPersister persister)
+        {
+            this._persister = persister;
+        }
+
+
+        #region Document Adders
+
+        public void Add(MovimentoDiDenaro movimento)
+        {
+            _movimenti.Add(movimento);
+            OnChanged();
+        }
+
+        public void Add(Fattura fattura)
+        {
+            _fatture.Add(fattura);
+            OnChanged();
+        }
+
+        public void Add(ISoggetto soggetto)
+        {
+            _soggetti.Add(soggetto);
+            OnChanged();
+        }
+
+        public void Add(ContenitoreDiDenaro contenitore)
+        {
+            _contenitoriDiDenaro.Add(contenitore);
+            OnChanged();
+        }
+
+        public void Add(Prodotto prodotto)
+        {
+            _prodotti.Add(prodotto);
+            OnChanged();
+        }
+
+        public void Add(Dipendente dipendente)
+        {
+            _dipendenti.Add(dipendente);
+            OnChanged();
+        }
+
+        #endregion
+
+        #region Document properties
+
+        public Dipendente UtenteConnesso
+        {
+            get { return _utenteConnesso; }
+            set { _utenteConnesso = value; }
+        }
 
         public IEnumerable<Dipendente> Dipendenti
         {
             get { return _dipendenti; }
 
-        }
-
-        private Document(IDocumentPersister persister)
-        {
-            this._persister = persister;
         }
 
         public IEnumerable<MovimentoDiDenaro> Movimenti
@@ -68,6 +111,10 @@ namespace Team19.Model
             get { return _soggetti; }
         }
 
+        #endregion
+
+        #region Document members
+
         public static void CreateInstance(IDocumentPersister persister)
         {
             _instance = new Document(persister);
@@ -84,12 +131,17 @@ namespace Team19.Model
 
         public static void Autentica(string username, string password)
         {
-            Dipendente d =
-               (from dipendente in _instance._dipendenti
+            IEnumerable<Dipendente> dipendenti = from dipendente in _instance._dipendenti
                 where dipendente.Username.Equals(username) && dipendente.Password.Equals(password)
-                select dipendente).First();
+                select dipendente;
+
+             Dipendente d = null;
+
+            if(dipendenti.Count() != 0)
+               d = dipendenti.First();
+
             if (d == null) throw new KeyNotFoundException("Username o password non corrispondenti");
-            //_instance._utenteConnesso = d;
+            _instance._utenteConnesso = d;
 
         }
 
@@ -102,7 +154,7 @@ namespace Team19.Model
             _contenitoriDiDenaro = loader.LoadContenitori();
             _soggetti = loader.LoadSoggetti();
             _fatture = loader.LoadFatture();
-            _movimenti = loader.LoadMovimenti();          
+            _movimenti = loader.LoadMovimenti();
             OnChanged();
         }
 
@@ -130,6 +182,8 @@ namespace Team19.Model
         {
             return this.Movimenti.Where(movimento => movimento.Sorgente is FatturaVendita);
         }
+
+        #endregion
 
         protected virtual void OnChanged()
         {
