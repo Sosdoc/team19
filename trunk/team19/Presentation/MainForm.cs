@@ -17,67 +17,88 @@ namespace Team19.Presentation
         public MainForm()
         {
             InitializeComponent();
+            try
+            {
+                
+                Autentica();
+            }
+            catch (KeyNotFoundException kexc)
+            {
+                MessageBox.Show(kexc.Message);
+                Autentica();
+            }
+
+        }
+        private void Autentica()
+        {
             AuthenticationForm auth = new AuthenticationForm();
 
-            //DialogResult dr = auth.ShowDialog();
-            //if (dr.Equals(DialogResult.Yes))
-            //{
-            Document.CreateInstance(new DefaultPersister());
-            //Document.Autentica(auth.Username,auth.Password);
-            _document = Document.GetInstance();
+            DialogResult dr = auth.ShowDialog();
+            if (dr.Equals(DialogResult.OK))
+            {
+                #region inizialize
+                Document.CreateInstance(new DefaultPersister());
 
-            // if (Document.GetInstance().UtenteConnesso == null)
-            moneyGrid.DataSource = _document.ContenitoriDiDenaro;
-            this.dgdipendenti.DataSource = _document.Dipendenti;
-            
-            fattureGrid.DataSource = _document.Fatture;
-            ICliente cl = _document.Soggetti.OfType<ICliente>().First();
-            IRiepilogo riepilogo = new RiepilogoCliente(cl);
-            Dictionary<int,Currency> values = riepilogo.GetImportiDaPagare();
-            textBox1.AppendText("Riepilogo importi da pagare cliente\n");
-            foreach (int key in values.Keys)
-            {
-                Currency c=null;
-                values.TryGetValue(key,out c);
-                textBox1.AppendText(key + " " +c.ToString()+"\n");
-            }
-            values = riepilogo.GetImportiPagati();
-            textBox1.AppendText("Riepilogo importi pagati cliente\n");
-            foreach (int key in values.Keys)
-            {
-                Currency c = null;
-                values.TryGetValue(key, out c);
-                textBox1.AppendText(key + " " + c.ToString() + "\n");
-            }
-            IFornitore fo = _document.Soggetti.OfType<IFornitore>().First();
-            riepilogo = new RiepilogoFornitore(fo);
-            values = riepilogo.GetImportiDaPagare();
-            textBox1.AppendText("Riepilogo importi da pagare Fornitore\n");
-            foreach (int key in values.Keys)
-            {
-                Currency c = null;
-                values.TryGetValue(key, out c);
-                textBox1.AppendText(key + " " + c.ToString() + "\n");
-            }
-            values = riepilogo.GetImportiPagati();
-            textBox1.AppendText("Riepilogo importi pagati Fornitore\n");
-            foreach (int key in values.Keys)
-            {
-                Currency c = null;
-                values.TryGetValue(key, out c);
-                textBox1.AppendText(key + " " + c.ToString() + "\n");
-            }
+                Document.Autentica(auth.Username, auth.Password);
+                _document = Document.GetInstance();
 
-            IEnumerable<ISoggetto> soggetti = _document.Soggetti.OfType<ICliente>();
-            foreach (ISoggetto s in soggetti)
-                textBox1.AppendText(s.Denominazione +"\n");
-            soggetti = _document.Soggetti.OfType<IFornitore>();
-            foreach (ISoggetto s in soggetti)
-                textBox1.AppendText(s.Denominazione + "\n");
-            
+                //if (Document.GetInstance().UtenteConnesso == null)
+                moneyGrid.DataSource = _document.ContenitoriDiDenaro;
+                this.dgdipendenti.DataSource = _document.Dipendenti;
+                IEnumerable<MovimentoDiDenaro> pagamenti = _document.GetPagamentiAcquisti();
+                fattureGrid.DataSource = _document.Fatture;
+                ICliente cl = _document.Soggetti.OfType<ICliente>().First();
+                IRiepilogo riepilogo = RiepilogoFactory.CreateRiepilogo(cl);
+                Dictionary<int, Currency> values = riepilogo.GetImportiDaPagare();
+                textBox1.AppendText("Riepilogo importi da pagare cliente\n");
+                foreach (int key in values.Keys)
+                {
+                    Currency c = null;
+                    values.TryGetValue(key, out c);
+                    textBox1.AppendText(key + " " + c.ToString() + "\n");
+                }
+                values = riepilogo.GetImportiPagati();
+                textBox1.AppendText("Riepilogo importi pagati cliente\n");
+                foreach (int key in values.Keys)
+                {
+                    Currency c = null;
+                    values.TryGetValue(key, out c);
+                    textBox1.AppendText(key + " " + c.ToString() + "\n");
+                }
+                IFornitore fo = _document.Soggetti.OfType<IFornitore>().First();
+                riepilogo = RiepilogoFactory.CreateRiepilogo(fo);
+                values = riepilogo.GetImportiDaPagare();
+                textBox1.AppendText("Riepilogo importi da pagare Fornitore\n");
+                foreach (int key in values.Keys)
+                {
+                    Currency c = null;
+                    values.TryGetValue(key, out c);
+                    textBox1.AppendText(key + " " + c.ToString() + "\n");
+                }
+                values = riepilogo.GetImportiPagati();
+                textBox1.AppendText("Riepilogo importi pagati Fornitore\n");
+                foreach (int key in values.Keys)
+                {
+                    Currency c = null;
+                    values.TryGetValue(key, out c);
+                    textBox1.AppendText(key + " " + c.ToString() + "\n");
+                }
+
+                IEnumerable<ISoggetto> soggetti = _document.Soggetti.OfType<ICliente>();
+                foreach (ISoggetto s in soggetti)
+                    textBox1.AppendText(s.Denominazione + "\n");
+                soggetti = _document.Soggetti.OfType<IFornitore>();
+                foreach (ISoggetto s in soggetti)
+                    textBox1.AppendText(s.Denominazione + "\n");
+                #endregion
+            }
+            else
+                this.Close();
+
+
+
 
             //         UpdateDocument();
-            //}
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -148,7 +169,7 @@ namespace Team19.Presentation
             {
                 comboBox1.Items.Clear();
 
-         //       foreach (Soggetto s in _document.GetFornitori()) comboBox1.Items.Add(s.Denominazione);
+                //       foreach (Soggetto s in _document.GetFornitori()) comboBox1.Items.Add(s.Denominazione);
             }
         }
     }
