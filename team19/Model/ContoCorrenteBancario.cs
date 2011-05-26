@@ -9,7 +9,7 @@ namespace Team19.Model
     {
         private String _codConto;
 
-        public override String CodConto
+        public String CodConto
         {
             get { return _codConto; }
         }

@@ -78,6 +78,7 @@
     <Compile Include="Model\ICliente.cs" />
     <Compile Include="Model\IFornitore.cs" />
     <Compile Include="Model\Indirizzo.cs" />
+    <Compile Include="Model\IPersister.cs" />
     <Compile Include="Model\ISoggetto.cs" />
     <Compile Include="Model\MovimentoDiDenaro.cs" />
     <Compile Include="Model\MovimentoFactory.cs" />
@@ -89,7 +90,6 @@
     <Compile Include="Model\Sorgente.cs" />
     <Compile Include="Model\TipoDipendente.cs" />
     <Compile Include="Persistence\DefaultPersister.cs" />
-    <Compile Include="Model\IPersister.cs" />
     <Compile Include="Presentation\AuthenticationForm.cs">
       <SubType>Form</SubType>
     </Compile>
