@@ -11,9 +11,6 @@ namespace Team19.Model
             : base(saldoIniziale)
         { }
 
-        public override string CodConto
-        {
-            get { return "Cassa"; }
-        }
+        
     }
 }

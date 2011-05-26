@@ -20,15 +20,6 @@ namespace Team19.Model
             Document.Changed += Document_Changed;
         }
 
-        public string Tipo
-        {
-            get { return this.GetType().Name; }
-        }
-
-        public virtual string CodConto
-        {
-            get { return ""; }
-        }
 
         public Currency SaldoIniziale
         {
