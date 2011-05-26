@@ -7,6 +7,7 @@ namespace Team19.Model
 {
     public class CodiceProdotto
     {
+        private static readonly char[] numbers={'1','2','3','4','5','6','7','8','9','0'};
         private readonly string _letters;
         private readonly string _numbers;
         public string Codice
@@ -36,16 +37,17 @@ namespace Team19.Model
             _letters = letters;
             _numbers = numbers;
         }
-        //    public CodiceProdotto(string code):this(letters,numbers)
-        //    {
-        //        if (code.Length != 8)
-        //            throw new ArgumentException("Codice non corretto:lunghezza non consentita");
-        //        string letters = code.Substring(0, 3);
-        //        string numbers = code.Substring(3, 5);
-        //      }
+
+        public CodiceProdotto(string code)
+            : this(code.Substring(0,3), code.Substring(3,5))
+        {
+            if (code.Length != 8)
+                throw new ArgumentException("Codice non corretto:lunghezza non consentita");
+        }
         public override string ToString()
         {
             return this.Codice;
         }
     }
+    
 }
