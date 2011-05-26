@@ -56,20 +56,20 @@ namespace Team19.Model
             return (c1 * (new Currency(1 / c2.Value)));
         }
 
-        public static bool operator ==(Currency c1, Currency c2)
-        {
-            return (c1.Value == c2.Value);
-        }
+        //public static bool operator ==(Currency c1, Currency c2)
+        //{
+        //    return (c1.Value == c2.Value);
+        //}
 
-        public static bool operator !=(Currency c1, Currency c2)
-        {
-            return !(c1 == c2);
-        }
+        //public static bool operator !=(Currency c1, Currency c2)
+        //{
+        //    return !(c1 == c2);
+        //}
 
         public override bool Equals(Object c)
         {
-            //if (!(c is Currency))
-            //    throw new ArgumentException("Not a currency!");
+            if (!(c is Currency))
+                return false;
             return (c is Currency && this == (Currency)c);
         }
 

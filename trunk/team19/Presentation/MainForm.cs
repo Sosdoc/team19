@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Team19.Model;
-
+using Team19.Persistence;
 namespace Team19.Presentation
 {
     public partial class MainForm : Form
@@ -22,7 +22,7 @@ namespace Team19.Presentation
             //DialogResult dr = auth.ShowDialog();
             //if (dr.Equals(DialogResult.Yes))
             //{
-            Document.CreateInstance();
+            Document.CreateInstance(new DefaultPersister());
             //Document.Autentica(auth.Username,auth.Password);
             _document = Document.GetInstance();
 

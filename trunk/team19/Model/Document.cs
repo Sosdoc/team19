@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Team19.Persistence;
 
 namespace Team19.Model
 {
@@ -14,8 +15,9 @@ namespace Team19.Model
         private List<ISoggetto> _soggetti;
         private List<Dipendente> _dipendenti;
         private Cassa _cassa;
-        //riepiloghi?
+
         private static Document _instance;
+        private IDocumentPersister _persister;
         //private Dipendente _utenteConnesso;
         public static event EventHandler Changed;
 
@@ -31,8 +33,9 @@ namespace Team19.Model
 
         }
 
-        private Document()
+        private Document(IDocumentPersister persister)
         {
+            this._persister = persister;
         }
 
         public IEnumerable<MovimentoDiDenaro> Movimenti
@@ -65,17 +68,16 @@ namespace Team19.Model
             get { return _soggetti; }
         }
 
-        public static void CreateInstance()
+        public static void CreateInstance(IDocumentPersister persister)
         {
-            _instance = new Document();
+            _instance = new Document(persister);
             _instance.Load();
-
         }
 
         public static Document GetInstance()
         {
             if (_instance == null)
-                CreateInstance();
+                CreateInstance(new DefaultPersister());
             //if (_instance.UtenteConnesso == null) throw new ApplicationException("Nessun utente connesso");
             return _instance;
         }
@@ -93,58 +95,14 @@ namespace Team19.Model
 
         private void Load()
         {
-            //qui inizializzo le liste
-            _movimenti = new List<MovimentoDiDenaro>();
-            _cassa = new Cassa(new Currency(10000m));
-            _contenitoriDiDenaro = new List<ContenitoreDiDenaro>();
-            _fatture = new List<Fattura>();
-            _prodotti = new List<Prodotto>();
-            _soggetti = new List<ISoggetto>();
-            _dipendenti = new List<Dipendente>();
-
-            _dipendenti.Add(new Dipendente("aymen2011", "12345", "aymen", "chakroun", TipoDipendente.Amministratore));
-            _dipendenti.Add(new Dipendente("francesco2011", "12345", "francesco", "casimiro", TipoDipendente.Amministratore));
-            _dipendenti.Add(new Dipendente("valerio2011", "12345", "valerio", "pipolo", TipoDipendente.Amministratore));
-            _dipendenti.Add(new Dipendente("maria2011", "12345", "maria", "rosso", TipoDipendente.Utente));
-            _dipendenti.Add(new Dipendente("elena2011", "12345", "elena", "vasilescu", TipoDipendente.Utente));
-
-            Indirizzo i = new Indirizzo("nessuna", "9001", "Quaggiù", "02983", "BOH", "Ailati");
-            ICliente c1 = SoggettoFactory.CreateCliente("Pinco Pallino", "0", "no", "8301", "PNCPLNlol", i);
-            IFornitore fo1 = SoggettoFactory.CreateFornitore("Pallo Pinchino", "13109", "forse", "9329239", i);
-            Prodotto p1 = new Prodotto(new Currency(10m), "palla", new CodiceProdotto("PAL", "11400"));
-            FatturaAcquisto f1 = FatturaAcquisto.CreateFatturaAcquisto(fo1, DateTime.Now, 1003, new Currency(10004.23m));
-            
-            RigaFattura riga1 = new RigaFattura(10, p1);
-            RigaFattura riga2 = new RigaFattura(320, p1);
-            List<RigaFattura> righe = new List<RigaFattura>();
-            righe.Add(riga1);
-            righe.Add(riga2);
-            FatturaVendita f2 = FatturaVendita.CreateFatturaVendita(c1, DateTime.Now, righe);
-            
-            FatturaVendita f3 = FatturaVendita.CreateFatturaVendita(c1, DateTime.Now, righe);
-            ISoggetto cf = SoggettoFactory.CreateClienteFornitore("Soshito Nakakata", "6786796", "dfhskh", "jhjkhlJH", "hgkhgkjhG", i);
-            Dipendente d = new Dipendente("io", "no", "lol", "asd", TipoDipendente.Amministratore);
-            MovimentoDiDenaro m1 = MovimentoFactory.CreatePagamentoAcquisto(Cassa, f1, DateTime.Now, d, "asd");
-            MovimentoDiDenaro m2 = MovimentoFactory.CreateIncassoVendita(f2, Cassa, DateTime.Now, d, "asd");
-            ContoCorrenteBancario cc = new ContoCorrenteBancario("AOSIDJHOGIHAPI", new Currency(10000m));
-            MovimentoDiDenaro m3 = MovimentoFactory.CreateMovimentoInterno(Cassa, cc, new Currency(1000m), DateTime.Now, d, "loisd");
-            _movimenti.Add(m1);
-            _movimenti.Add(m2);
-            _movimenti.Add(m3);
-            
-            _fatture.Add(f1);
-            _fatture.Add(f2);
-            _fatture.Add(f3);
-            _soggetti.Add(fo1);
-            _soggetti.Add(c1);
-            _soggetti.Add(cf);
-
-
-            _prodotti.Add(p1);
-            _contenitoriDiDenaro.Add(_cassa);
-            _contenitoriDiDenaro.Add(cc);
-
-
+            IDocumentLoader loader = _persister.GetLoader();
+            _prodotti = loader.LoadProdotti();
+            _dipendenti = loader.LoadDipendenti();
+            _cassa = loader.LoadCassa();
+            _contenitoriDiDenaro = loader.LoadContenitori();
+            _soggetti = loader.LoadSoggetti();
+            _fatture = loader.LoadFatture();
+            _movimenti = loader.LoadMovimenti();          
             OnChanged();
         }
 
@@ -165,7 +123,7 @@ namespace Team19.Model
 
         public IEnumerable<MovimentoDiDenaro> GetPagamentiAcquisti()
         {
-            return this.Movimenti.Where(movimento => movimento.Sorgente is FatturaAcquisto);
+            return this.Movimenti.Where(movimento => movimento.Destinazione is FatturaAcquisto);
         }
 
         public IEnumerable<MovimentoDiDenaro> GetIncassiVendite()
