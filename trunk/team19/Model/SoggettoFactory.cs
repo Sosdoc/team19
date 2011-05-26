@@ -20,7 +20,7 @@ namespace Team19.Model
         {
             return new ClienteFornitore(denominazione, telefono, email, partitaIva,codiceFiscale, indirizzo);
         }
-        public abstract class Soggetto
+        public abstract class Soggetto : ISoggetto
         {
             private string _denominazione;
             private string _telefono;
