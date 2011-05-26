@@ -94,7 +94,7 @@ namespace Team19.Persistence
             public List<Model.Prodotto> LoadProdotti()
             {
                 _prodotti = new List<Prodotto>();
-                Prodotto p1 = new Prodotto(new Currency(10m), "palla", new CodiceProdotto("PAL", "11400"));
+                Prodotto p1 = new Prodotto(new Currency(10m), "palla", new CodiceProdotto("PAL11400"));
                 _prodotti.Add(p1);
                 return _prodotti;
             }
