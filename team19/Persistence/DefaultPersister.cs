@@ -55,7 +55,8 @@ namespace Team19.Persistence
                 Indirizzo i = new Indirizzo("nessuna", "9001", "Quaggiù", "02983", "BOH", "Ailati");
                 ICliente c1 = SoggettoFactory.CreateCliente("Pinco Pallino", "0", "no", "8301", "PNCPLNlol", i);
                 IFornitore fo1 = SoggettoFactory.CreateFornitore("Pallo Pinchino", "13109", "forse", "9329239", i);
-                ISoggetto cf = SoggettoFactory.CreateClienteFornitore("Soshito Nakakata", "6786796", "dfhskh", "jhjkhlJH", "hgkhgkjhG", i);
+                ISoggetto cf = SoggettoFactory.CreateCliente("Soshito Nakakata", "6786796", "dfhskh", "jhjkhlJH", "hgkhgkjhG", i);
+                ISoggetto cf2 = SoggettoFactory.CreateFornitore("Soshito Nakakata", "6786796", "dfhskh", "jhjkhlJH",  i);
 
                 _soggetti.Add(fo1);
                 _soggetti.Add(c1);

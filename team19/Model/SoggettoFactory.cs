@@ -8,7 +8,7 @@ namespace Team19.Model
     class SoggettoFactory
     {
 
-        public static ISoggetto CreateCliente(string denominazione, string telefono, string email, string partitaIva, string codiceFiscale, Indirizzo indirizzo)
+        public static ICliente CreateCliente(string denominazione, string telefono, string email, string partitaIva, string codiceFiscale, Indirizzo indirizzo)
         {
             if (String.IsNullOrEmpty(partitaIva) && String.IsNullOrEmpty(codiceFiscale))
                 throw new ArgumentNullException("partitaIva o codicefiscale null");
@@ -18,7 +18,7 @@ namespace Team19.Model
             if (f != null)
             {
                 Document.GetInstance().Remove(f);
-                return CreateClienteFornitore(denominazione, telefono, email, partitaIva, codiceFiscale, indirizzo);
+                return (ICliente)CreateClienteFornitore(denominazione, telefono, email, partitaIva, codiceFiscale, indirizzo);
             }
 
             return new Cliente(denominazione, telefono, email, partitaIva, codiceFiscale, indirizzo);
@@ -26,10 +26,15 @@ namespace Team19.Model
 
         private static IFornitore FornitoreExist(string partitaIva)
         {
-            IFornitore fornitore =
-                (from f in Document.GetInstance().Soggetti.OfType<IFornitore>()
-                 where f.PartitaIva.Equals(partitaIva)
-                 select f).First();
+            IEnumerable<IFornitore> fornitori =
+                from f in Document.GetInstance().Soggetti.OfType<IFornitore>()
+                where f.PartitaIva.Equals(partitaIva)
+                select f;
+
+            IFornitore fornitore = null;
+
+            if (fornitori.Count() != 0)
+                fornitore = fornitori.First();
 
             if (fornitore is ClienteFornitore)
                 return null;
@@ -37,7 +42,7 @@ namespace Team19.Model
             return fornitore;
         }
 
-        public static ISoggetto CreateFornitore(string denominazione, string telefono, string email, string partitaIva, Indirizzo indirizzo)
+        public static IFornitore CreateFornitore(string denominazione, string telefono, string email, string partitaIva, Indirizzo indirizzo)
         {
             if (String.IsNullOrEmpty(partitaIva))
                 throw new ArgumentNullException("partitaIva o codicefiscale null");
@@ -47,7 +52,7 @@ namespace Team19.Model
             if (c != null)
             {
                 Document.GetInstance().Remove(c);
-                return CreateClienteFornitore(denominazione, telefono, email, partitaIva, c.CodiceFiscale, indirizzo);
+                return (IFornitore)CreateClienteFornitore(denominazione, telefono, email, partitaIva, c.CodiceFiscale, indirizzo);
             }
 
             return new Fornitore(denominazione, telefono, email, partitaIva, indirizzo);
@@ -55,10 +60,15 @@ namespace Team19.Model
 
         private static ICliente ClienteExist(string partitaIva)
         {
-            ICliente cliente =
-                (from c in Document.GetInstance().Soggetti.OfType<ICliente>()
-                 where c.PartitaIva.Equals(partitaIva)
-                 select c).First();
+            IEnumerable<ICliente> clienti =
+                from c in Document.GetInstance().Soggetti.OfType<ICliente>()
+                where c.PartitaIva.Equals(partitaIva)
+                select c;
+
+            ICliente cliente = null;
+
+            if (clienti.Count() != 0)
+                cliente = clienti.First();
 
             if (cliente is ClienteFornitore)
                 return null;
@@ -126,17 +136,12 @@ namespace Team19.Model
 
             #endregion
 
-            public override bool Equals(object obj)
-            {
-                if (!(obj is ISoggetto))
-                    return false;
-                return false;
-            }
-
         }
 
         public class Cliente : Soggetto, ICliente
         {
+            private string _codiceFiscale;
+
             public Cliente(string denominazione, string telefono, string email, string partitaIva, string codiceFiscale, Indirizzo indirizzo)
                 : base(denominazione, telefono, email, partitaIva, indirizzo)
             {
@@ -144,8 +149,8 @@ namespace Team19.Model
                     throw new ArgumentNullException("Partita Iva e Codice Fiscale entrambi nulli");
                 _codiceFiscale = codiceFiscale;
             }
-            private string _codiceFiscale;
-            public string CodiceFiscale  // Chiedere per il null
+
+            public override string CodiceFiscale  // Chiedere per il null
             {
                 get { return _codiceFiscale; }
             }
@@ -162,7 +167,7 @@ namespace Team19.Model
                 _codiceFiscale = codiceFiscale;
             }
 
-            public string CodiceFiscale
+            public override string CodiceFiscale
             {
                 get { return _codiceFiscale ?? "Nessun Codice Fiscale"; }
             }
@@ -178,7 +183,7 @@ namespace Team19.Model
             }
 
 
-            public string CodiceFiscale
+            public override string CodiceFiscale
             {
                 get { return "Nessun Codice Fiscale"; }
             }

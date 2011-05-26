@@ -10,7 +10,7 @@ namespace Team19.Model
         private List<RigaFattura> _elencoProdotti;
         private ICliente _cliente;
 
-        private static FatturaVendita _ultimaFattura = new FatturaVendita(SoggettoFactory.CreateCliente("", "", "", "", "", new Indirizzo("", "", "", "", "", "")), DateTime.MinValue, 1, new List<RigaFattura>());
+        private static FatturaVendita _ultimaFattura = new FatturaVendita(SoggettoFactory.CreateCliente(".", ".", ".", ".", ".", new Indirizzo("", "", "", "", "", "")), DateTime.MinValue, 1, new List<RigaFattura>());
 
 
         private FatturaVendita(ICliente cliente, DateTime data, int numero, List<RigaFattura> elencoProdotti)
