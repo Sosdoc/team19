@@ -7,9 +7,5 @@ namespace Team19.Model
 {
     public interface ICliente : ISoggetto
     {
-        string CodiceFiscale
-        {
-            get;
-        }
     }
 }
