@@ -8,14 +8,15 @@ namespace Team19.Model
 {
     public static class MovimentoFactory
     {
+        public static MovimentoDiDenaro CreateInteresseBancario(DepositoDiDenaro deposito, double interesse, DateTime data, Dipendente dipendente, string causale)
+        {
+            throw new NotImplementedException();
+        }
 
-        //public static MovimentoDiDenaro CreatePagamento(ISorgente sorgente, IDestinazione destinazione, DateTime data, Dipendente dipendente, string causale)
-        //{
-        //    if(destinazione is Fattura)
-        //        return new PagamentoAcquisto(sorgente,destinazione,data,dipendente, causale);
-        //    else 
-        //        return new IncassoVendita(sorgente,destinazione,data,dipendente, causale);
-        //}
+        public static MovimentoDiDenaro CreateSpesaBancaria(DepositoDiDenaro deposito, Currency importo, DateTime data, Dipendente dipendente, string causale)
+        {
+            throw new NotImplementedException();
+        }
 
         public static MovimentoDiDenaro CreatePagamentoAcquisto(ISorgente sorgente, IDestinazione destinazione, DateTime data, Dipendente dipendente, string causale)
         {
@@ -82,7 +83,7 @@ namespace Team19.Model
             private Currency _importo;
 
             public MovimentoInterno(ISorgente sorgente, IDestinazione destinazione, Currency importo, DateTime data, Dipendente dipendente, string causale)
-                : base(sorgente, destinazione, data, dipendente)
+                : base(sorgente, destinazione, data, dipendente, causale)
             {
                 _importo = importo;
             }
