@@ -92,7 +92,7 @@ namespace Team19.Model
                 this._fornitore = fornitore;
             }
 
-            IFornitore Fornitore
+            public IFornitore Fornitore
             {
                 get { return _fornitore; }
             }
