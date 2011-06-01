@@ -44,6 +44,10 @@ namespace Team19.Model
         public TipoDipendente Ruolo
         {
             get { return _ruolo; }
-        }   
+        }
+        public override string ToString()
+        {
+            return Nome + " " + Cognome;
+        }
     }
 }
