@@ -12,7 +12,7 @@ namespace Team19.Model
         private List<ContenitoreDiDenaro> _contenitoriDiDenaro;
         private List<Fattura> _fatture;
         private List<Prodotto> _prodotti; //meglio un dictionary?
-        private List<ISoggetto> _soggetti;
+        private List<Soggetto> _soggetti;
         private List<Dipendente> _dipendenti;
         private Cassa _cassa;
 
@@ -28,7 +28,7 @@ namespace Team19.Model
             _dipendenti = new List<Dipendente>();
             
             _contenitoriDiDenaro = new List<ContenitoreDiDenaro>();
-            _soggetti = new List<ISoggetto>();
+            _soggetti = new List<Soggetto>();
             _fatture = new List<Fattura>();
             _movimenti = new List<MovimentoDiDenaro>();
 
@@ -49,7 +49,7 @@ namespace Team19.Model
             OnChanged();
         }
 
-        public void Add(ISoggetto soggetto)
+        public void Add(Soggetto soggetto)
         {
             _soggetti.Add(soggetto);
             OnChanged();
@@ -90,7 +90,7 @@ namespace Team19.Model
             OnChanged();
         }
 
-        public void Remove(ISoggetto soggetto)
+        public void Remove(Soggetto soggetto)
         {
             _soggetti.Remove(soggetto);
             OnChanged();
@@ -156,7 +156,7 @@ namespace Team19.Model
             get { return _prodotti; }
         }
 
-        public IEnumerable<ISoggetto> Soggetti
+        public IEnumerable<Soggetto> Soggetti
         {
             get { return _soggetti; }
         }

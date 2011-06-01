@@ -7,12 +7,12 @@ namespace Team19.Model
 {
     class RiepilogoFactory
     {
-        public static IRiepilogo CreateRiepilogo(ICliente cliente)
+        public static IRiepilogo CreateRiepilogo(Cliente cliente)
         {
             return new RiepilogoCliente(cliente);
         }
 
-        public static IRiepilogo CreateRiepilogo(IFornitore fornitore)
+        public static IRiepilogo CreateRiepilogo(Fornitore fornitore)
         {
             return new RiepilogoFornitore(fornitore);
         }
@@ -48,14 +48,14 @@ namespace Team19.Model
 
         private class RiepilogoCliente : Riepilogo
         {
-            private ICliente _cliente;
+            private Cliente _cliente;
 
-            public RiepilogoCliente(ICliente cliente)
+            public RiepilogoCliente(Cliente cliente)
             {
                 _cliente = cliente;
             }
 
-            public ICliente Cliente
+            public Cliente Cliente
             {
                 get { return _cliente; }
             }
@@ -85,14 +85,14 @@ namespace Team19.Model
 
         private class RiepilogoFornitore : Riepilogo
         {
-            private IFornitore _fornitore;
+            private Fornitore _fornitore;
 
-            public RiepilogoFornitore(IFornitore fornitore)
+            public RiepilogoFornitore(Fornitore fornitore)
             {
                 this._fornitore = fornitore;
             }
 
-            public IFornitore Fornitore
+            public Fornitore Fornitore
             {
                 get { return _fornitore; }
             }
