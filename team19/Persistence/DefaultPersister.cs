@@ -61,6 +61,7 @@ namespace Team19.Persistence
                 _soggetti.Add(fo1);
                 _soggetti.Add(c1);
                 _soggetti.Add(cf);
+                _soggetti.Add(cf2);
                 return _soggetti;
             }
 

@@ -28,6 +28,7 @@ namespace Team19.Presentation
         public AuthenticationForm()
         {
             InitializeComponent();
+            textBox2.UseSystemPasswordChar = true;
         }
 
         private void button1_Click(object sender, EventArgs e)

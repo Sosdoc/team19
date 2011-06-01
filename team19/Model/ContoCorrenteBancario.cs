@@ -7,14 +7,14 @@ namespace Team19.Model
 {
     public class ContoCorrenteBancario : DepositoDiDenaro
     {
-        private String _codConto;
+        private string _codConto;
 
-        public String CodConto
+        public override string Codice
         {
             get { return _codConto; }
         }
 
-        public ContoCorrenteBancario(String codiceConto, Currency saldoIniziale)
+        public ContoCorrenteBancario(string codiceConto, Currency saldoIniziale)
             : base(saldoIniziale)
         {
             _codConto = codiceConto;
@@ -23,7 +23,7 @@ namespace Team19.Model
         public override bool Equals(object obj)
         {
             if (this.GetType().Equals(obj.GetType())) //se il tipo è uguale
-                return this.CodConto.Equals(((ContoCorrenteBancario)obj).CodConto); //se ha lo stesso codice conto
+                return this.Codice.Equals(((ContoCorrenteBancario)obj).Codice); //se ha lo stesso codice conto
             return false;
         }
         public override int GetHashCode()
@@ -32,7 +32,7 @@ namespace Team19.Model
         }
         public override string ToString()
         {
-            return "CCB: " + CodConto;
+            return "CCB: " + Codice;
         }
     }
 }
