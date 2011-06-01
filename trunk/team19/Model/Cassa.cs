@@ -22,6 +22,10 @@ namespace Team19.Model
         {
             return base.GetHashCode();
         }
+        public override string ToString()
+        {
+            return "Cassa";
+        }
 
     }
 }

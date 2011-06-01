@@ -59,6 +59,9 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="Team19, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <ExecutableExtension>.exe</ExecutableExtension>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Model\AltroDepositoDiDenaro.cs" />
@@ -79,6 +82,7 @@
     <Compile Include="Model\IPersister.cs" />
     <Compile Include="Model\MovimentoDiDenaro.cs" />
     <Compile Include="Model\MovimentoFactory.cs" />
+    <Compile Include="Model\NomeVisualizzatoAttribute.cs" />
     <Compile Include="Model\Prodotto.cs" />
     <Compile Include="Model\Riepilogo.cs" />
     <Compile Include="Model\RiepilogoFactory.cs" />
@@ -94,6 +98,13 @@
     <Compile Include="Presentation\AuthenticationForm.Designer.cs">
       <DependentUpon>AuthenticationForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Presentation\Controller.cs" />
+    <Compile Include="Presentation\DocumentListView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Presentation\DocumentListView.Designer.cs">
+      <DependentUpon>DocumentListView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Presentation\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -104,6 +115,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Presentation\AuthenticationForm.resx">
       <DependentUpon>AuthenticationForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\DocumentListView.resx">
+      <DependentUpon>DocumentListView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
