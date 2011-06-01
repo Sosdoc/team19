@@ -23,6 +23,12 @@ namespace Team19.Model
         }
 
         #region Soggetto properties
+        public string Denominazione
+        {
+            get { return _denominazione; }
+            //set { _denominazione = value; }
+        }
+
         public Indirizzo Indirizzo
         {
             get { return _indirizzo; }
@@ -41,12 +47,7 @@ namespace Team19.Model
             //set { _eMail = value; }
         }
 
-        public string Denominazione
-        {
-            get { return _denominazione; }
-            //set { _denominazione = value; }
-        }
-
+      
         public string PartitaIva
         {
             get { return _partitaIva ?? "Nessuna partita IVA"; }

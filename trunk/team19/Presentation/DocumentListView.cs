@@ -16,33 +16,26 @@ namespace Team19.Presentation
         public DocumentListView()
         {
             InitializeComponent();
-            foreach (PropertyInfo info in Document.GetInstance().GetType().GetProperties())
-            {
-                object[] attributes = info.GetCustomAttributes(typeof(NomeVisualizzatoAttribute),true);
-                if (attributes.Count()!=0)
-                {
-
-                    ListViewItem item = new ListViewItem(((NomeVisualizzatoAttribute)attributes[0]).NomeVisualizzato);
-                    item.Tag = info.GetValue(Document.GetInstance(), null);
-                    Items.Add(item);
-                }
-            }
+            AggiornaLista();
         }
 
         private void iconeGrandiToolStripMenuItem_Click(object sender, EventArgs e)
         {
             _listView.View = View.LargeIcon;
+            AggiornaLista();
         }
 
         private void iconePiccoleToolStripMenuItem_Click(object sender, EventArgs e)
         {
             
             _listView.View = View.SmallIcon;
+            AggiornaLista();
         }
 
         private void listaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             _listView.View = View.List;
+            AggiornaLista();
         }
         public ImageList LargeImageList
         {
@@ -51,6 +44,14 @@ namespace Team19.Presentation
             set
             { _listView.LargeImageList = value; }
         }
+        public ImageList SmallImageList
+        {
+            get
+            { return _listView.SmallImageList; }
+            set
+            { _listView.SmallImageList = value; }
+        }
+        
         public ListView.ListViewItemCollection Items
         {
             get
@@ -82,6 +83,22 @@ namespace Team19.Presentation
         private void _listView_SelectedIndexChanged(object sender, EventArgs e)
         {
             OnSelectionChanged();
+        }
+        private void AggiornaLista()
+        {
+            _listView.Clear();
+            foreach (PropertyInfo info in Document.GetInstance().GetType().GetProperties())
+            {
+                object[] attributes = info.GetCustomAttributes(typeof(NomeVisualizzatoAttribute), true);
+                if (attributes.Count() != 0)
+                {
+                    string nomeVisualizzato = ((NomeVisualizzatoAttribute)attributes[0]).NomeVisualizzato;
+                    ListViewItem item = new ListViewItem(nomeVisualizzato);
+                    item.Tag = info.GetValue(Document.GetInstance(), null);
+                    item.ImageKey = nomeVisualizzato;
+                    Items.Add(item);
+                }
+            }
         }
     }
 }

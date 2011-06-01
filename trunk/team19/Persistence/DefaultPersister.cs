@@ -52,7 +52,7 @@ namespace Team19.Persistence
             public List<Model.Soggetto> LoadSoggetti()
             {
                 _soggetti = new List<Soggetto>();
-                Indirizzo i = new Indirizzo("nessuna", "9001", "Quaggiù", "02983", "BOH", "Ailati");
+                Indirizzo i = new Indirizzo("Via GianDomenico Puppa", "42", "Sucate", "02983", "MI", "Italia");
                 Cliente c1 = SoggettoFactory.CreateCliente("Pinco Pallino", "0", "no", "8301", "PNCPLNlol", i);
                 Fornitore fo1 = SoggettoFactory.CreateFornitore("Pallo Pinchino", "13109", "forse", "9329239", i);
                 Soggetto cf = SoggettoFactory.CreateCliente("Soshito Nakakata", "6786796", "dfhskh", "jhjkhlJH", "hgkhgkjhG", i);
