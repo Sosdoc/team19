@@ -14,7 +14,7 @@ namespace Team19.Model
     interface IDocumentLoader
     {
         List<MovimentoDiDenaro> LoadMovimenti();
-        List<ISoggetto> LoadSoggetti();
+        List<Soggetto> LoadSoggetti();
         List<Fattura> LoadFatture();
         List<ContenitoreDiDenaro> LoadContenitori();
         List<Prodotto> LoadProdotti();

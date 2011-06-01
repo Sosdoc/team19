@@ -24,7 +24,7 @@ namespace Team19.Persistence
             private List<ContenitoreDiDenaro> _contenitoriDiDenaro;
             private List<Fattura> _fatture;
             private List<Prodotto> _prodotti; //meglio un dictionary?
-            private List<ISoggetto> _soggetti;
+            private List<Soggetto> _soggetti;
             private List<Dipendente> _dipendenti;
             private Cassa _cassa;
 
@@ -49,14 +49,14 @@ namespace Team19.Persistence
                 return _movimenti;
             }
 
-            public List<Model.ISoggetto> LoadSoggetti()
+            public List<Model.Soggetto> LoadSoggetti()
             {
-                _soggetti = new List<ISoggetto>();
+                _soggetti = new List<Soggetto>();
                 Indirizzo i = new Indirizzo("nessuna", "9001", "Quaggiù", "02983", "BOH", "Ailati");
-                ICliente c1 = SoggettoFactory.CreateCliente("Pinco Pallino", "0", "no", "8301", "PNCPLNlol", i);
-                IFornitore fo1 = SoggettoFactory.CreateFornitore("Pallo Pinchino", "13109", "forse", "9329239", i);
-                ISoggetto cf = SoggettoFactory.CreateCliente("Soshito Nakakata", "6786796", "dfhskh", "jhjkhlJH", "hgkhgkjhG", i);
-                ISoggetto cf2 = SoggettoFactory.CreateFornitore("Soshito Nakakata", "6786796", "dfhskh", "jhjkhlJH",  i);
+                Cliente c1 = SoggettoFactory.CreateCliente("Pinco Pallino", "0", "no", "8301", "PNCPLNlol", i);
+                Fornitore fo1 = SoggettoFactory.CreateFornitore("Pallo Pinchino", "13109", "forse", "9329239", i);
+                Soggetto cf = SoggettoFactory.CreateCliente("Soshito Nakakata", "6786796", "dfhskh", "jhjkhlJH", "hgkhgkjhG", i);
+                Soggetto cf2 = SoggettoFactory.CreateFornitore("Soshito Nakakata", "6786796", "dfhskh", "jhjkhlJH",  i);
 
                 _soggetti.Add(fo1);
                 _soggetti.Add(c1);
@@ -67,15 +67,15 @@ namespace Team19.Persistence
             public List<Model.Fattura> LoadFatture()
             {
                 _fatture = new List<Fattura>();
-                FatturaAcquisto f1 = FatturaAcquisto.CreateFatturaAcquisto(_soggetti.OfType<IFornitore>().First(), DateTime.Now, 1003, new Currency(10004.23m));
+                FatturaAcquisto f1 = FatturaAcquisto.CreateFatturaAcquisto(_soggetti.OfType<Fornitore>().First(), DateTime.Now, 1003, new Currency(10004.23m));
                 RigaFattura riga1 = new RigaFattura(10, _prodotti.First());
                 RigaFattura riga2 = new RigaFattura(320, _prodotti.First());
                 List<RigaFattura> righe = new List<RigaFattura>();
                 righe.Add(riga1);
                 righe.Add(riga2);
 
-                FatturaVendita f2 = FatturaVendita.CreateFatturaVendita(_soggetti.OfType<ICliente>().ElementAt(0), DateTime.Now, righe);
-                FatturaVendita f3 = FatturaVendita.CreateFatturaVendita(_soggetti.OfType<ICliente>().ElementAt(0), DateTime.Now, righe);
+                FatturaVendita f2 = FatturaVendita.CreateFatturaVendita(_soggetti.OfType<Cliente>().ElementAt(0), DateTime.Now, righe);
+                FatturaVendita f3 = FatturaVendita.CreateFatturaVendita(_soggetti.OfType<Cliente>().ElementAt(0), DateTime.Now, righe);
 
                 _fatture.Add(f1);
                 _fatture.Add(f2);

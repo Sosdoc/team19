@@ -48,7 +48,7 @@ namespace Team19.Presentation
                 this.dgdipendenti.DataSource = _document.Dipendenti;
                 IEnumerable<MovimentoDiDenaro> pagamenti = _document.GetPagamentiAcquisti();
                 fattureGrid.DataSource = _document.Fatture;
-                ICliente cl = _document.Soggetti.OfType<ICliente>().First();
+                Cliente cl = _document.Soggetti.OfType<Cliente>().First();
                 IRiepilogo riepilogo = RiepilogoFactory.CreateRiepilogo(cl);
                 Dictionary<int, Currency> values = riepilogo.GetImportiDaPagare();
                 textBox1.AppendText("Riepilogo importi da pagare cliente\n");
@@ -66,7 +66,7 @@ namespace Team19.Presentation
                     values.TryGetValue(key, out c);
                     textBox1.AppendText(key + " " + c.ToString() + "\n");
                 }
-                IFornitore fo = _document.Soggetti.OfType<IFornitore>().First();
+                Fornitore fo = _document.Soggetti.OfType<Fornitore>().First();
                 riepilogo = RiepilogoFactory.CreateRiepilogo(fo);
                 values = riepilogo.GetImportiDaPagare();
                 textBox1.AppendText("Riepilogo importi da pagare Fornitore\n");
@@ -85,11 +85,11 @@ namespace Team19.Presentation
                     textBox1.AppendText(key + " " + c.ToString() + "\n");
                 }
 
-                IEnumerable<ISoggetto> soggetti = _document.Soggetti.OfType<ICliente>();
-                foreach (ISoggetto s in soggetti)
+                IEnumerable<Soggetto> soggetti = _document.Soggetti.OfType<Cliente>();
+                foreach (Soggetto s in soggetti)
                     textBox1.AppendText(s.Denominazione + "\n");
-                soggetti = _document.Soggetti.OfType<IFornitore>();
-                foreach (ISoggetto s in soggetti)
+                soggetti = _document.Soggetti.OfType<Fornitore>();
+                foreach (Soggetto s in soggetti)
                     textBox1.AppendText(s.Denominazione + "\n");
                 #endregion
             }
