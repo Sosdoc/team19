@@ -59,5 +59,9 @@ namespace Team19.Model
             get { return _nazione; }
             set { _nazione = value; }
         }
+        public override string ToString()
+        {
+            return Via + ", " + NumeroCivico + ", " + Località + " (" + Provincia + ")," + Cap + ", " + Nazione;
+        }
     }
 }
