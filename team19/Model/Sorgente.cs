@@ -7,5 +7,6 @@ namespace Team19.Model
 {
     public interface ISorgente
     {
+
     }
 }

@@ -38,10 +38,10 @@ namespace Team19.Persistence
                 MovimentoDiDenaro m1 = MovimentoFactory.CreatePagamentoAcquisto(_cassa, _fatture.OfType<FatturaAcquisto>().ElementAt(0), DateTime.Now, 
                     _dipendenti.ElementAt(0), "asd");
                 MovimentoDiDenaro m2 = MovimentoFactory.CreateIncassoVendita(_fatture.OfType<FatturaVendita>().ElementAt(0), _cassa, DateTime.Now,
-                    _dipendenti.ElementAt(0), "asd");               
+                    _dipendenti.ElementAt(2), "asd");               
                 MovimentoDiDenaro m3 = MovimentoFactory.CreateMovimentoInterno(_cassa, _contenitoriDiDenaro.OfType<ContoCorrenteBancario>().ElementAt(0), 
                     new Currency(1000m), DateTime.Now, 
-                    _dipendenti.ElementAt(0), "loisd");
+                    _dipendenti.ElementAt(1), "loisd");
 
                 _movimenti.Add(m1);
                 _movimenti.Add(m2);

@@ -83,5 +83,10 @@ namespace Team19.Model
         }
         #endregion
 
+        public override string ToString()
+        {
+            return "Contenitore di denaro";
+        }
+
     }
 }

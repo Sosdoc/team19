@@ -124,38 +124,38 @@ namespace Team19.Model
             get { return _utenteConnesso; }
             set { _utenteConnesso = value; }
         }
-
+        [NomeVisualizzato("Dipendenti")]
         public IEnumerable<Dipendente> Dipendenti
         {
             get { return _dipendenti; }
 
         }
-
+        [NomeVisualizzato("Movimenti")]
         public IEnumerable<MovimentoDiDenaro> Movimenti
         {
             get { return _movimenti; }
         }
-
+        [NomeVisualizzato("Depositi")]
         public IEnumerable<ContenitoreDiDenaro> ContenitoriDiDenaro
         {
             get { return _contenitoriDiDenaro; }
         }
-
+        
         public Cassa Cassa
         {
             get { return _cassa; }
         }
-
+        [NomeVisualizzato("Fatture")]
         public IEnumerable<Fattura> Fatture
         {
             get { return _fatture; }
         }
-
+        [NomeVisualizzato("Prodotti")]
         public IEnumerable<Prodotto> Prodotti
         {
             get { return _prodotti; }
         }
-
+        [NomeVisualizzato("Soggetti")]
         public IEnumerable<Soggetto> Soggetti
         {
             get { return _soggetti; }
