@@ -25,5 +25,9 @@ namespace Team19.Model
         {
             return "Altro deposito";
         }
+        public override string Codice
+        {
+            get { return ""; }
+        }
     }
 }

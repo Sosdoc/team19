@@ -20,6 +20,10 @@ namespace Team19.Model
             Document.Changed += Document_Changed;
         }
 
+        public abstract string Codice
+        {
+            get;
+        }
 
         public Currency SaldoIniziale
         {
@@ -88,5 +92,6 @@ namespace Team19.Model
             return "Contenitore di denaro";
         }
 
+        
     }
 }

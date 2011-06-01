@@ -38,7 +38,6 @@
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._smallImageList = new System.Windows.Forms.ImageList(this.components);
             this._largeImageList = new System.Windows.Forms.ImageList(this.components);
-            this._documentListView = new Team19.Presentation.DocumentListView();
             this.nuovoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.apriToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.salvaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -50,6 +49,7 @@
             this.modificaToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.rimuoviToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
+            this._documentListView = new Team19.Presentation.DocumentListView();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -95,6 +95,7 @@
             this._dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this._dataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this._dataGridView.Location = new System.Drawing.Point(0, 0);
+            this._dataGridView.MultiSelect = false;
             this._dataGridView.Name = "_dataGridView";
             this._dataGridView.ReadOnly = true;
             this._dataGridView.Size = new System.Drawing.Size(530, 447);
@@ -117,7 +118,7 @@
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(114, 22);
             this.exitToolStripMenuItem.Text = "&Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -143,50 +144,39 @@
             this._largeImageList.Images.SetKeyName(4, "Soggetti");
             this._largeImageList.Images.SetKeyName(5, "Dipendenti");
             // 
-            // _documentListView
-            // 
-            this._documentListView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._documentListView.LargeImageList = this._largeImageList;
-            this._documentListView.Location = new System.Drawing.Point(0, 0);
-            this._documentListView.Name = "_documentListView";
-            this._documentListView.Size = new System.Drawing.Size(267, 447);
-            this._documentListView.SmallImageList = this._smallImageList;
-            this._documentListView.TabIndex = 0;
-            this._documentListView.View = System.Windows.Forms.View.LargeIcon;
-            // 
             // nuovoToolStripMenuItem
             // 
             this.nuovoToolStripMenuItem.Name = "nuovoToolStripMenuItem";
-            this.nuovoToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.nuovoToolStripMenuItem.Size = new System.Drawing.Size(114, 22);
             this.nuovoToolStripMenuItem.Text = "&Nuovo";
             // 
             // apriToolStripMenuItem
             // 
             this.apriToolStripMenuItem.Name = "apriToolStripMenuItem";
-            this.apriToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.apriToolStripMenuItem.Size = new System.Drawing.Size(114, 22);
             this.apriToolStripMenuItem.Text = "&Apri";
             // 
             // salvaToolStripMenuItem
             // 
             this.salvaToolStripMenuItem.Name = "salvaToolStripMenuItem";
-            this.salvaToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.salvaToolStripMenuItem.Size = new System.Drawing.Size(114, 22);
             this.salvaToolStripMenuItem.Text = "&Salva";
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(149, 6);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(111, 6);
             // 
             // stampaToolStripMenuItem
             // 
             this.stampaToolStripMenuItem.Name = "stampaToolStripMenuItem";
-            this.stampaToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.stampaToolStripMenuItem.Size = new System.Drawing.Size(114, 22);
             this.stampaToolStripMenuItem.Text = "Stam&pa";
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(149, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(111, 6);
             // 
             // modificaToolStripMenuItem
             // 
@@ -201,19 +191,19 @@
             // aggiungiToolStripMenuItem
             // 
             this.aggiungiToolStripMenuItem.Name = "aggiungiToolStripMenuItem";
-            this.aggiungiToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.aggiungiToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
             this.aggiungiToolStripMenuItem.Text = "Aggiungi";
             // 
             // modificaToolStripMenuItem1
             // 
             this.modificaToolStripMenuItem1.Name = "modificaToolStripMenuItem1";
-            this.modificaToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.modificaToolStripMenuItem1.Size = new System.Drawing.Size(123, 22);
             this.modificaToolStripMenuItem1.Text = "Modifica";
             // 
             // rimuoviToolStripMenuItem
             // 
             this.rimuoviToolStripMenuItem.Name = "rimuoviToolStripMenuItem";
-            this.rimuoviToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.rimuoviToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
             this.rimuoviToolStripMenuItem.Text = "Rimuovi";
             // 
             // toolStripMenuItem3
@@ -221,6 +211,17 @@
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
             this.toolStripMenuItem3.Size = new System.Drawing.Size(24, 20);
             this.toolStripMenuItem3.Text = "&?";
+            // 
+            // _documentListView
+            // 
+            this._documentListView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._documentListView.LargeImageList = this._largeImageList;
+            this._documentListView.Location = new System.Drawing.Point(0, 0);
+            this._documentListView.Name = "_documentListView";
+            this._documentListView.Size = new System.Drawing.Size(267, 447);
+            this._documentListView.SmallImageList = this._smallImageList;
+            this._documentListView.TabIndex = 0;
+            this._documentListView.View = System.Windows.Forms.View.LargeIcon;
             // 
             // MainForm
             // 

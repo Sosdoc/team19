@@ -26,6 +26,10 @@ namespace Team19.Model
         {
             return "Cassa";
         }
+        public override string Codice
+        {
+            get { return ""; }
+        }
 
     }
 }
