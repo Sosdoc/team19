@@ -22,13 +22,14 @@ namespace Team19.Model
         {
             return base.GetHashCode();
         }
+
         public override string ToString()
         {
             return "Cassa";
         }
         public override string Codice
         {
-            get { return ""; }
+            get { return "Cassa"; }
         }
 
     }

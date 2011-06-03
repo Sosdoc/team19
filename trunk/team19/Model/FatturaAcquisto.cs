@@ -37,6 +37,10 @@ namespace Team19.Model
             get { return _importo; }
         }
 
+        public override string ToString()
+        {
+            return base.ToString();
+        }
 
     }
 }

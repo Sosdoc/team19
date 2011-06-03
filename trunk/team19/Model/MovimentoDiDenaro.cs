@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.ComponentModel;
 
 namespace Team19.Model
 {
@@ -36,14 +37,28 @@ namespace Team19.Model
             get;
         }
 
+        [Browsable(false)]
         public ISorgente Sorgente
         {
             get { return _sorgente; }
         }
 
+        [Browsable(false)]
         public IDestinazione Destinazione
         {
             get { return _destinazione; }
+        }
+
+        [DisplayName("Sorgente")]
+        public string Da
+        {
+            get { return Sorgente.ToString(); }
+        }
+
+        [DisplayName("Destinazione")]
+        public string A
+        {
+            get { return Destinazione.ToString(); }
         }
 
         public Dipendente Dipendente

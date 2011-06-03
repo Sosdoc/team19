@@ -36,9 +36,14 @@ namespace Team19.Model
             if (numero <= 0)
                 throw new ArgumentException("numero <= 0");
 
-            this._data = data;
+            this._data = data.Date;
             this._numero = numero;
         }
-        
+
+        public override string ToString()
+        {
+            return "Fattura # " + NumeroFattura + " del: " + Data.Date;
+        }
+
     }
 }
