@@ -13,14 +13,18 @@ namespace Team19.Presentation
 {
     public partial class MainForm : Form
     {
-        
+
         private readonly Controller _controller;
         public MainForm()
         {
+            
             InitializeComponent();
-          //  Application.Exit();
+            _controller = new Controller(_documentListView, _dataGridView,_riepilogoContainer.Panel2);
+      //      riepilogoToolStripMenuItem.Click+=_controller.MostraRiepilogo
+            
+            //  Application.Exit();
 
-            _controller = new Controller(_documentListView, _dataGridView);
+            _riepilogoContainer.Panel2Collapsed = true;
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -41,6 +45,20 @@ namespace Team19.Presentation
                 _controller.Autentica();
             }
         }
-        
+
+        private void _documentListView_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void riepilogoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (_dataGridView.DataSource.GetType().GetGenericArguments().First().Equals(typeof(Soggetto)))
+            {
+                _controller.MostraRiepilogo();
+            }
+
+        }
+
     }
 }

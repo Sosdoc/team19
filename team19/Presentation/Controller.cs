@@ -12,10 +12,12 @@ namespace Team19.Presentation
         private Document _document;
         private readonly DocumentListView _documentListView;
         private readonly DataGridView _dataGridView;
-        public Controller(DocumentListView documentListView, DataGridView dataGridView)
+        private readonly SplitterPanel _riepilogoPanel;
+        public Controller(DocumentListView documentListView, DataGridView dataGridView,SplitterPanel riepilogoPanel)
         {
             _documentListView = documentListView;
             _dataGridView = dataGridView;
+            _riepilogoPanel = riepilogoPanel;
             _documentListView.SelectionChanged += AggiornaTabella;
 
         }
@@ -25,7 +27,7 @@ namespace Team19.Presentation
             {
                 if (auth.ShowDialog() == DialogResult.OK)
                 {
-                    #region inizialize
+                    #region initialize
                     Document.CreateInstance(new DefaultPersister());
 
                     Document.Autentica(auth.Username, auth.Password);
@@ -51,6 +53,24 @@ namespace Team19.Presentation
         {
             if(_documentListView.SelectedItem!=null)
             _dataGridView.DataSource = _documentListView.SelectedItem.Tag;
+        }
+
+        public void MostraRiepilogo()
+        {
+           RiepilogoView riepilogoView;
+           Soggetto s = null;
+            if (_dataGridView.SelectedRows.Count == 1)
+            {
+                s = _document.Soggetti.ElementAt(_dataGridView.SelectedRows[0].Index);
+                riepilogoView = new RiepilogoView(s);
+                
+            }
+            else
+                riepilogoView = new RiepilogoView(s);
+            
+            riepilogoView.Dock = DockStyle.Fill;
+            _riepilogoPanel.Controls.Add(riepilogoView);
+            //_riepilogoPanel.
         }
     }
 }
