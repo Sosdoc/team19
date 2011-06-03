@@ -12,14 +12,14 @@ namespace Team19.Presentation
         private Document _document;
         private readonly DocumentListView _documentListView;
         private readonly DataGridView _dataGridView;
-        private readonly SplitterPanel _riepilogoPanel;
-        public Controller(DocumentListView documentListView, DataGridView dataGridView,SplitterPanel riepilogoPanel)
+        
+        public Controller(DocumentListView documentListView, DataGridView dataGridView)
         {
             _documentListView = documentListView;
             _dataGridView = dataGridView;
-            _riepilogoPanel = riepilogoPanel;
+           
             _documentListView.SelectionChanged += AggiornaTabella;
-            
+           
 
         }
         public void Autentica()
@@ -61,14 +61,17 @@ namespace Team19.Presentation
 
         public void MostraRiepilogo()
         {
-           //RiepilogoView riepilogoView;
-           //Soggetto s = null;
-           // if (_dataGridView.SelectedRows.Count == 1)
-           // {
-           //     s = _document.Soggetti.ElementAt(_dataGridView.SelectedRows[0].Index);
-           //     riepilogoView = new RiepilogoView(s);
+            Soggetto s = null;
+            if (_dataGridView.SelectedRows.Count == 1)
+            {
+                s = _document.Soggetti.ElementAt(_dataGridView.SelectedRows[0].Index);
                 
-           // }
+
+            }
+            using (FormRiepilogo formRiepilogo = new FormRiepilogo(s))
+            {
+                formRiepilogo.ShowDialog();
+            }
            // else
            //     riepilogoView = new RiepilogoView(s);
             

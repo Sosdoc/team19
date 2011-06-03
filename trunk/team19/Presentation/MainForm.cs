@@ -19,12 +19,12 @@ namespace Team19.Presentation
         {
             
             InitializeComponent();
-            _controller = new Controller(_documentListView, _dataGridView,_riepilogoContainer.Panel2);
+            _controller = new Controller(_documentListView, _dataGridView);
       //      riepilogoToolStripMenuItem.Click+=_controller.MostraRiepilogo
             
             //  Application.Exit();
 
-            _riepilogoContainer.Panel2Collapsed = true;
+            
           
         }
 
