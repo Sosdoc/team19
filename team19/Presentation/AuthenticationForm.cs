@@ -43,6 +43,5 @@ namespace Team19.Presentation
             Close();
         }
         
-        
     }
 }

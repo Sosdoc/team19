@@ -40,19 +40,19 @@ namespace Team19.Model
                 _soggetto = soggetto;
             }
 
-            public Dictionary<int, Currency> GetImportiPagati()
+            public IEnumerable<Fattura> GetImportiPagati()
             {
-                Dictionary<int, Currency> result = new Dictionary<int, Currency>();
+                IList<Fattura> result = new List<Fattura>();
                 foreach (Fattura fattura in this.FatturePagate)
-                    result.Add(fattura.NumeroFattura, fattura.Importo);
+                    result.Add(fattura);
                 return result;
             }
 
-            public Dictionary<int, Currency> GetImportiDaPagare()
+            public IEnumerable<Fattura> GetImportiDaPagare()
             {
-                Dictionary<int, Currency> result = new Dictionary<int, Currency>();
+                IList<Fattura> result = new List<Fattura>();
                 foreach (Fattura fattura in this.FattureDaPagare)
-                    result.Add(fattura.NumeroFattura, fattura.Importo);
+                    result.Add(fattura);
                 return result;
             }
             public Soggetto Soggetto
@@ -100,7 +100,8 @@ namespace Team19.Model
             {
                 get
                 {
-                    return Document.GetInstance().Fatture.OfType<FatturaVendita>().Except(this.FatturePagate);
+                    IEnumerable<FatturaVendita> fatture= Document.GetInstance().Fatture.OfType<FatturaVendita>().Where(fattura=>fattura.Cliente.Equals(Soggetto));
+                    return fatture.Except(FatturePagate);
                 }
             }
             #endregion
@@ -137,7 +138,8 @@ namespace Team19.Model
             {
                 get
                 {
-                    return Document.GetInstance().Fatture.OfType<FatturaAcquisto>().Except(this.FatturePagate);
+                    IEnumerable<FatturaAcquisto> fatture = Document.GetInstance().Fatture.OfType<FatturaAcquisto>().Where(fattura=>fattura.Fornitore.Equals(Soggetto));
+                    return fatture.Except(FatturePagate);
                 }
             }
 

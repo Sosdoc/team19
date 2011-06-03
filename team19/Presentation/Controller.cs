@@ -12,16 +12,15 @@ namespace Team19.Presentation
         private Document _document;
         private readonly DocumentListView _documentListView;
         private readonly DataGridView _dataGridView;
-        
+
         public Controller(DocumentListView documentListView, DataGridView dataGridView)
         {
             _documentListView = documentListView;
             _dataGridView = dataGridView;
-           
-            _documentListView.SelectionChanged += AggiornaTabella;
-           
 
+            _documentListView.SelectionChanged += AggiornaTabella;
         }
+
         public void Autentica()
         {
             using (AuthenticationForm auth = new AuthenticationForm())
@@ -39,24 +38,15 @@ namespace Team19.Presentation
                     _dataGridView.DataSource = _document.Movimenti;
                     #endregion
                     IEnumerable<MovimentoDiDenaro> m = _document.Movimenti;
-                    //ImageList list = new ImageList();
-                    //list.Images.Add(Icon);
-                    //_documentListView.LargeImageList = list;
-                    IRiepilogo riepilogo = RiepilogoFactory.CreateRiepilogo((Cliente)_document.Soggetti.ElementAt(1));
-                    Dictionary<int, Currency> imp1 = riepilogo.GetImportiDaPagare();
-                    imp1 = riepilogo.GetImportiPagati();
-                   
                 }
                 else Application.Exit();
             }
-
-
         }
 
         private void AggiornaTabella(object sender, EventArgs e)
         {
-            if(_documentListView.SelectedItem!=null)
-            _dataGridView.DataSource = _documentListView.SelectedItem.Tag;
+            if (_documentListView.SelectedItem != null)
+                _dataGridView.DataSource = _documentListView.SelectedItem.Tag;
         }
 
         public void MostraRiepilogo()
@@ -65,19 +55,11 @@ namespace Team19.Presentation
             if (_dataGridView.SelectedRows.Count == 1)
             {
                 s = _document.Soggetti.ElementAt(_dataGridView.SelectedRows[0].Index);
-                
-
             }
             using (FormRiepilogo formRiepilogo = new FormRiepilogo(s))
             {
                 formRiepilogo.ShowDialog();
             }
-           // else
-           //     riepilogoView = new RiepilogoView(s);
-            
-           // riepilogoView.Dock = DockStyle.Fill;
-           // _riepilogoPanel.Controls.Add(riepilogoView);
-           // //_riepilogoPanel.
         }
     }
 }

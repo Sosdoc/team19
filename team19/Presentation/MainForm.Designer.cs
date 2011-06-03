@@ -31,6 +31,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.nuovoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -68,7 +69,7 @@
             this.toolStripMenuItem3});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(797, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(927, 24);
             this.menuStrip1.TabIndex = 3;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -89,41 +90,41 @@
             // nuovoToolStripMenuItem
             // 
             this.nuovoToolStripMenuItem.Name = "nuovoToolStripMenuItem";
-            this.nuovoToolStripMenuItem.Size = new System.Drawing.Size(114, 22);
+            this.nuovoToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.nuovoToolStripMenuItem.Text = "&Nuovo";
             // 
             // apriToolStripMenuItem
             // 
             this.apriToolStripMenuItem.Name = "apriToolStripMenuItem";
-            this.apriToolStripMenuItem.Size = new System.Drawing.Size(114, 22);
+            this.apriToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.apriToolStripMenuItem.Text = "&Apri";
             // 
             // salvaToolStripMenuItem
             // 
             this.salvaToolStripMenuItem.Name = "salvaToolStripMenuItem";
-            this.salvaToolStripMenuItem.Size = new System.Drawing.Size(114, 22);
+            this.salvaToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.salvaToolStripMenuItem.Text = "&Salva";
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(111, 6);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(149, 6);
             // 
             // stampaToolStripMenuItem
             // 
             this.stampaToolStripMenuItem.Name = "stampaToolStripMenuItem";
-            this.stampaToolStripMenuItem.Size = new System.Drawing.Size(114, 22);
+            this.stampaToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.stampaToolStripMenuItem.Text = "Stam&pa";
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(111, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(149, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(114, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.exitToolStripMenuItem.Text = "&Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -140,19 +141,19 @@
             // aggiungiToolStripMenuItem
             // 
             this.aggiungiToolStripMenuItem.Name = "aggiungiToolStripMenuItem";
-            this.aggiungiToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
+            this.aggiungiToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.aggiungiToolStripMenuItem.Text = "Aggiungi";
             // 
             // modificaToolStripMenuItem1
             // 
             this.modificaToolStripMenuItem1.Name = "modificaToolStripMenuItem1";
-            this.modificaToolStripMenuItem1.Size = new System.Drawing.Size(123, 22);
+            this.modificaToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.modificaToolStripMenuItem1.Text = "Modifica";
             // 
             // rimuoviToolStripMenuItem
             // 
             this.rimuoviToolStripMenuItem.Name = "rimuoviToolStripMenuItem";
-            this.rimuoviToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
+            this.rimuoviToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.rimuoviToolStripMenuItem.Text = "Rimuovi";
             // 
             // riepilogoToolStripMenuItem
@@ -181,8 +182,8 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this._dataGridView);
-            this.splitContainer1.Size = new System.Drawing.Size(797, 447);
-            this.splitContainer1.SplitterDistance = 265;
+            this.splitContainer1.Size = new System.Drawing.Size(927, 472);
+            this.splitContainer1.SplitterDistance = 263;
             this.splitContainer1.TabIndex = 4;
             // 
             // _documentListView
@@ -191,11 +192,10 @@
             this._documentListView.LargeImageList = this._largeImageList;
             this._documentListView.Location = new System.Drawing.Point(0, 0);
             this._documentListView.Name = "_documentListView";
-            this._documentListView.Size = new System.Drawing.Size(265, 447);
+            this._documentListView.Size = new System.Drawing.Size(263, 472);
             this._documentListView.SmallImageList = this._smallImageList;
             this._documentListView.TabIndex = 0;
             this._documentListView.View = System.Windows.Forms.View.LargeIcon;
-            this._documentListView.Load += new System.EventHandler(this._documentListView_Load);
             // 
             // _largeImageList
             // 
@@ -224,20 +224,30 @@
             this._dataGridView.AllowUserToAddRows = false;
             this._dataGridView.AllowUserToDeleteRows = false;
             this._dataGridView.AllowUserToOrderColumns = true;
+            this._dataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this._dataGridView.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this._dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this._dataGridView.DefaultCellStyle = dataGridViewCellStyle1;
             this._dataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this._dataGridView.Location = new System.Drawing.Point(0, 0);
             this._dataGridView.MultiSelect = false;
             this._dataGridView.Name = "_dataGridView";
             this._dataGridView.ReadOnly = true;
-            this._dataGridView.Size = new System.Drawing.Size(528, 447);
+            this._dataGridView.Size = new System.Drawing.Size(660, 472);
             this._dataGridView.TabIndex = 5;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(797, 471);
+            this.ClientSize = new System.Drawing.Size(927, 496);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;

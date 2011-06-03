@@ -7,8 +7,8 @@ namespace Team19.Model
 {
     public interface IRiepilogo
     {
-        Dictionary<int, Currency> GetImportiPagati();
-        Dictionary<int, Currency> GetImportiDaPagare();
+        IEnumerable<Fattura> GetImportiPagati();
+        IEnumerable<Fattura> GetImportiDaPagare();
     }
     
 

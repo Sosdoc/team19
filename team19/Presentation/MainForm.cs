@@ -17,15 +17,8 @@ namespace Team19.Presentation
         private readonly Controller _controller;
         public MainForm()
         {
-            
             InitializeComponent();
-            _controller = new Controller(_documentListView, _dataGridView);
-      //      riepilogoToolStripMenuItem.Click+=_controller.MostraRiepilogo
-            
-            //  Application.Exit();
-
-            
-          
+            _controller = new Controller(_documentListView, _dataGridView);           
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -37,7 +30,6 @@ namespace Team19.Presentation
         {
             try
             {
-
                 _controller.Autentica();
             }
             catch (KeyNotFoundException kexc)
@@ -47,18 +39,12 @@ namespace Team19.Presentation
             }
         }
 
-        private void _documentListView_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void riepilogoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (_dataGridView.DataSource.GetType().GetGenericArguments().First().Equals(typeof(Soggetto)))
             {
                 _controller.MostraRiepilogo();
             }
-
         }
 
     }
