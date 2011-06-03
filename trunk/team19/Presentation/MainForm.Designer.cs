@@ -47,21 +47,15 @@
             this.riepilogoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this._documentListView = new Team19.Presentation.DocumentListView();
             this._largeImageList = new System.Windows.Forms.ImageList(this.components);
             this._smallImageList = new System.Windows.Forms.ImageList(this.components);
-            this._riepilogoContainer = new System.Windows.Forms.SplitContainer();
             this._dataGridView = new System.Windows.Forms.DataGridView();
-            this._documentListView = new Team19.Presentation.DocumentListView();
-            this._viewRiepilogo = new Team19.Presentation.RiepilogoView();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this._riepilogoContainer)).BeginInit();
-            this._riepilogoContainer.Panel1.SuspendLayout();
-            this._riepilogoContainer.Panel2.SuspendLayout();
-            this._riepilogoContainer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this._dataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -186,10 +180,22 @@
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this._riepilogoContainer);
+            this.splitContainer1.Panel2.Controls.Add(this._dataGridView);
             this.splitContainer1.Size = new System.Drawing.Size(797, 447);
             this.splitContainer1.SplitterDistance = 265;
             this.splitContainer1.TabIndex = 4;
+            // 
+            // _documentListView
+            // 
+            this._documentListView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._documentListView.LargeImageList = this._largeImageList;
+            this._documentListView.Location = new System.Drawing.Point(0, 0);
+            this._documentListView.Name = "_documentListView";
+            this._documentListView.Size = new System.Drawing.Size(265, 447);
+            this._documentListView.SmallImageList = this._smallImageList;
+            this._documentListView.TabIndex = 0;
+            this._documentListView.View = System.Windows.Forms.View.LargeIcon;
+            this._documentListView.Load += new System.EventHandler(this._documentListView_Load);
             // 
             // _largeImageList
             // 
@@ -213,23 +219,6 @@
             this._smallImageList.Images.SetKeyName(4, "Soggetti");
             this._smallImageList.Images.SetKeyName(5, "Dipendenti");
             // 
-            // _riepilogoContainer
-            // 
-            this._riepilogoContainer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._riepilogoContainer.Location = new System.Drawing.Point(0, 0);
-            this._riepilogoContainer.Name = "_riepilogoContainer";
-            // 
-            // _riepilogoContainer.Panel1
-            // 
-            this._riepilogoContainer.Panel1.Controls.Add(this._dataGridView);
-            // 
-            // _riepilogoContainer.Panel2
-            // 
-            this._riepilogoContainer.Panel2.Controls.Add(this._viewRiepilogo);
-            this._riepilogoContainer.Size = new System.Drawing.Size(528, 447);
-            this._riepilogoContainer.SplitterDistance = 400;
-            this._riepilogoContainer.TabIndex = 0;
-            // 
             // _dataGridView
             // 
             this._dataGridView.AllowUserToAddRows = false;
@@ -241,28 +230,8 @@
             this._dataGridView.MultiSelect = false;
             this._dataGridView.Name = "_dataGridView";
             this._dataGridView.ReadOnly = true;
-            this._dataGridView.Size = new System.Drawing.Size(400, 447);
-            this._dataGridView.TabIndex = 4;
-            // 
-            // _documentListView
-            // 
-            this._documentListView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._documentListView.LargeImageList = this._largeImageList;
-            this._documentListView.Location = new System.Drawing.Point(0, 0);
-            this._documentListView.Name = "_documentListView";
-            this._documentListView.Size = new System.Drawing.Size(265, 447);
-            this._documentListView.SmallImageList = this._smallImageList;
-            this._documentListView.TabIndex = 0;
-            this._documentListView.View = System.Windows.Forms.View.LargeIcon;
-            this._documentListView.Load += new System.EventHandler(this._documentListView_Load);
-            // 
-            // _viewRiepilogo
-            // 
-            this._viewRiepilogo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._viewRiepilogo.Location = new System.Drawing.Point(0, 0);
-            this._viewRiepilogo.Name = "_viewRiepilogo";
-            this._viewRiepilogo.Size = new System.Drawing.Size(124, 447);
-            this._viewRiepilogo.TabIndex = 0;
+            this._dataGridView.Size = new System.Drawing.Size(528, 447);
+            this._dataGridView.TabIndex = 5;
             // 
             // MainForm
             // 
@@ -281,10 +250,6 @@
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
-            this._riepilogoContainer.Panel1.ResumeLayout(false);
-            this._riepilogoContainer.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this._riepilogoContainer)).EndInit();
-            this._riepilogoContainer.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this._dataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -312,8 +277,7 @@
         private System.Windows.Forms.ToolStripMenuItem rimuoviToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
         private System.Windows.Forms.ToolStripMenuItem riepilogoToolStripMenuItem;
-        private System.Windows.Forms.SplitContainer _riepilogoContainer;
         private System.Windows.Forms.DataGridView _dataGridView;
-        private RiepilogoView _viewRiepilogo;
+       
     }
 }
