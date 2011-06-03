@@ -70,7 +70,7 @@ namespace Team19.Model
         {
             if (!(c is Currency))
                 return false;
-            return (c is Currency && this == (Currency)c);
+            return ((c is Currency && this == (Currency)c) || object.ReferenceEquals(this, c));
         }
 
         public override int GetHashCode()

@@ -7,18 +7,38 @@ namespace Team19.Model
 {
     class RiepilogoFactory
     {
-        public static IRiepilogo CreateRiepilogo(Cliente cliente)
+        private static Dictionary<Type, Riepilogo> _riepiloghi;
+        static RiepilogoFactory()
         {
-            return new RiepilogoCliente(cliente);
+            _riepiloghi = new Dictionary<Type, Riepilogo>();
+            _riepiloghi.Add(typeof(Cliente), new RiepilogoCliente(null));
+            _riepiloghi.Add(typeof(Fornitore), new RiepilogoFornitore(null));
         }
+        public static IRiepilogo CreateRiepilogo(Soggetto soggetto)
+        {
+            Riepilogo result = _riepiloghi[soggetto.GetType()];
+            result.Soggetto = soggetto;
+            return result;
+        }
+        //public static IRiepilogo CreateRiepilogo(Cliente cliente)
+        //{
+        //    return new RiepilogoCliente(cliente);
+        //}
 
-        public static IRiepilogo CreateRiepilogo(Fornitore fornitore)
-        {
-            return new RiepilogoFornitore(fornitore);
-        }
+        //public static IRiepilogo CreateRiepilogo(Fornitore fornitore)
+        //{
+        //    return new RiepilogoFornitore(fornitore);
+        //}
 
         public abstract class Riepilogo : IRiepilogo
         {
+            private Soggetto _soggetto;
+
+
+            protected Riepilogo(Soggetto soggetto)
+            {
+                _soggetto = soggetto;
+            }
 
             public Dictionary<int, Currency> GetImportiPagati()
             {
@@ -35,7 +55,11 @@ namespace Team19.Model
                     result.Add(fattura.NumeroFattura, fattura.Importo);
                 return result;
             }
-
+            public Soggetto Soggetto
+            {
+                get { return _soggetto; }
+                set { _soggetto = value; }
+            }
             protected abstract IEnumerable<Fattura> FatturePagate
             {
                 get;
@@ -48,17 +72,16 @@ namespace Team19.Model
 
         private class RiepilogoCliente : Riepilogo
         {
-            private Cliente _cliente;
 
-            public RiepilogoCliente(Cliente cliente)
+            public RiepilogoCliente(Soggetto cliente)
+                : base(cliente)
             {
-                _cliente = cliente;
             }
 
-            public Cliente Cliente
-            {
-                get { return _cliente; }
-            }
+            //public Cliente Cliente
+            //{
+            //    get { return _cliente; }
+            //}
 
             #region Riepilogo Members
             protected override IEnumerable<Fattura> FatturePagate
@@ -68,7 +91,7 @@ namespace Team19.Model
                     IEnumerable<FatturaVendita> fatture =
                         from fattura in Document.GetInstance().GetFattureVendita()
                         join movimento in Document.GetInstance().GetIncassiVendite() on fattura equals (FatturaVendita)movimento.Sorgente
-                        where fattura.Cliente.Equals(Cliente)
+                        where fattura.Cliente.Equals(Soggetto)
                         select fattura;
                     return fatture;
                 }
@@ -85,17 +108,16 @@ namespace Team19.Model
 
         private class RiepilogoFornitore : Riepilogo
         {
-            private Fornitore _fornitore;
 
-            public RiepilogoFornitore(Fornitore fornitore)
+            public RiepilogoFornitore(Soggetto fornitore)
+                : base(fornitore)
             {
-                this._fornitore = fornitore;
             }
 
-            public Fornitore Fornitore
-            {
-                get { return _fornitore; }
-            }
+            //public Fornitore Fornitore
+            //{
+            //    get { return _fornitore; }
+            //}
 
             #region Riepilogo Members
 
@@ -106,7 +128,7 @@ namespace Team19.Model
                     IEnumerable<FatturaAcquisto> fatture =
                         from fattura in Document.GetInstance().GetFattureAcquisto()
                         join movimento in Document.GetInstance().GetPagamentiAcquisti() on fattura equals (FatturaAcquisto)movimento.Destinazione
-                        where fattura.Fornitore.Equals(Fornitore)
+                        where fattura.Fornitore.Equals(Soggetto)
                         select fattura;
                     return fatture;
                 }

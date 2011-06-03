@@ -16,26 +16,27 @@ namespace Team19.Presentation
         public DocumentListView()
         {
             InitializeComponent();
-            AggiornaLista();
+            Document.Changed += AggiornaLista;
+            //AggiornaLista();
         }
 
         private void iconeGrandiToolStripMenuItem_Click(object sender, EventArgs e)
         {
             _listView.View = View.LargeIcon;
-            AggiornaLista();
+            AggiornaLista(sender, e);
         }
 
         private void iconePiccoleToolStripMenuItem_Click(object sender, EventArgs e)
         {
             
             _listView.View = View.SmallIcon;
-            AggiornaLista();
+            AggiornaLista(sender, e);
         }
 
         private void listaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             _listView.View = View.List;
-            AggiornaLista();
+            AggiornaLista(sender, e);
         }
         public ImageList LargeImageList
         {
@@ -84,7 +85,8 @@ namespace Team19.Presentation
         {
             OnSelectionChanged();
         }
-        private void AggiornaLista()
+
+        private void AggiornaLista(object sender, EventArgs e)
         {
             _listView.Clear();
             foreach (PropertyInfo info in Document.GetInstance().GetType().GetProperties())

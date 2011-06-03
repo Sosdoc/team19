@@ -5,7 +5,7 @@ using System.Text;
 using System.Linq.Expressions;
 namespace Team19.Model
 {
-    interface IRiepilogo
+    public interface IRiepilogo
     {
         Dictionary<int, Currency> GetImportiPagati();
         Dictionary<int, Currency> GetImportiDaPagare();
