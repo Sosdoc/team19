@@ -25,6 +25,7 @@ namespace Team19.Presentation
             //  Application.Exit();
 
             _riepilogoContainer.Panel2Collapsed = true;
+          
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)

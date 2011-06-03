@@ -19,6 +19,7 @@ namespace Team19.Presentation
             _dataGridView = dataGridView;
             _riepilogoPanel = riepilogoPanel;
             _documentListView.SelectionChanged += AggiornaTabella;
+            
 
         }
         public void Autentica()
@@ -41,6 +42,9 @@ namespace Team19.Presentation
                     //ImageList list = new ImageList();
                     //list.Images.Add(Icon);
                     //_documentListView.LargeImageList = list;
+                    IRiepilogo riepilogo = RiepilogoFactory.CreateRiepilogo((Cliente)_document.Soggetti.ElementAt(1));
+                    Dictionary<int, Currency> imp1 = riepilogo.GetImportiDaPagare();
+                    imp1 = riepilogo.GetImportiPagati();
                    
                 }
                 else Application.Exit();
@@ -57,20 +61,20 @@ namespace Team19.Presentation
 
         public void MostraRiepilogo()
         {
-           RiepilogoView riepilogoView;
-           Soggetto s = null;
-            if (_dataGridView.SelectedRows.Count == 1)
-            {
-                s = _document.Soggetti.ElementAt(_dataGridView.SelectedRows[0].Index);
-                riepilogoView = new RiepilogoView(s);
+           //RiepilogoView riepilogoView;
+           //Soggetto s = null;
+           // if (_dataGridView.SelectedRows.Count == 1)
+           // {
+           //     s = _document.Soggetti.ElementAt(_dataGridView.SelectedRows[0].Index);
+           //     riepilogoView = new RiepilogoView(s);
                 
-            }
-            else
-                riepilogoView = new RiepilogoView(s);
+           // }
+           // else
+           //     riepilogoView = new RiepilogoView(s);
             
-            riepilogoView.Dock = DockStyle.Fill;
-            _riepilogoPanel.Controls.Add(riepilogoView);
-            //_riepilogoPanel.
+           // riepilogoView.Dock = DockStyle.Fill;
+           // _riepilogoPanel.Controls.Add(riepilogoView);
+           // //_riepilogoPanel.
         }
     }
 }

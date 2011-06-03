@@ -101,23 +101,11 @@
     <Compile Include="Presentation\DocumentListView.Designer.cs">
       <DependentUpon>DocumentListView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Presentation\FormRiepilogo.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Presentation\FormRiepilogo.Designer.cs">
-      <DependentUpon>FormRiepilogo.cs</DependentUpon>
-    </Compile>
     <Compile Include="Presentation\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Presentation\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Presentation\RiepilogoView.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Presentation\RiepilogoView.Designer.cs">
-      <DependentUpon>RiepilogoView.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -127,14 +115,8 @@
     <EmbeddedResource Include="Presentation\DocumentListView.resx">
       <DependentUpon>DocumentListView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Presentation\FormRiepilogo.resx">
-      <DependentUpon>FormRiepilogo.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Presentation\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Presentation\RiepilogoView.resx">
-      <DependentUpon>RiepilogoView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
