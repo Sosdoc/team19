@@ -61,6 +61,10 @@ namespace Team19.Model
 
         #endregion
 
+        public override string ToString()
+        {
+            return Denominazione;
+        }
     }
 
     public class Cliente : Soggetto
@@ -95,5 +99,6 @@ namespace Team19.Model
         {
             get { return "Nessun Codice Fiscale"; }
         }
+
     }
 }
