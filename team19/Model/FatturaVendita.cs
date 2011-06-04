@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.ComponentModel;
+using System.Windows.Forms;
 
 namespace Team19.Model
 {
@@ -51,6 +52,7 @@ namespace Team19.Model
         }
 
         [Browsable(false)]
+        [ControlloAssociato(typeof(ComboBox))]
         public IEnumerable<RigaFattura> ElencoProdotti
         {
             get
@@ -68,11 +70,13 @@ namespace Team19.Model
             }
         }
 
+        [ControlloAssociato(typeof(ComboBox))]
         public Cliente Cliente
         {
             get { return _cliente; }
         }
 
+        [ControlloAssociato(typeof(TextBox))]
         public override Currency Importo
         {
             get

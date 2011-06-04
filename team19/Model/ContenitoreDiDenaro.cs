@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows.Forms;
 
 namespace Team19.Model
 {
@@ -25,6 +26,7 @@ namespace Team19.Model
             get;
         }
 
+        [ControlloAssociato(typeof(TextBox))]
         public Currency SaldoIniziale
         {
             get { return _saldoIniziale; }
