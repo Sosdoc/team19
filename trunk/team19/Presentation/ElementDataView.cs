@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Reflection;
+using Team19.Model;
 namespace Team19.Presentation
 {
     public partial class ElementDataView : UserControl
@@ -15,14 +16,15 @@ namespace Team19.Presentation
         public ElementDataView()
         {
             InitializeComponent();
+            _subItemsCombo.SelectionChangeCommitted += FiltraElenco;
         }
 
         private void FiltraElenco(object sender, EventArgs e)
         {
            // _dataGridView.DataSource = _dataSource;
-            RadioButton radio = (RadioButton)sender;
-            Type tipo = (Type)radio.Tag;
-
+            //RadioButton radio = (RadioButton)sender;
+            //Type tipo = (Type)radio.Tag;
+            Type tipo = (Type)_subItemsCombo.SelectedItem;
             IEnumerable<object> elenco = ((IEnumerable<object>)_dataSource);
             IList<object> elencoFiltrato = new List<object>();
             foreach (object obj in elenco)
@@ -31,6 +33,7 @@ namespace Team19.Presentation
                     elencoFiltrato.Add(obj);
             }
             _dataGridView.DataSource = elencoFiltrato;
+            
 
         }
 
@@ -48,7 +51,8 @@ namespace Team19.Presentation
                 _dataGridView.DataSource = _dataSource;
                 if (_dataSource != null)
                 {
-                    _radioButtonPanel.Controls.Clear();
+                    //_radioButtonPanel.Controls.Clear();
+                    _subItemsCombo.Items.Clear();
                     Type mainclass = _dataSource.GetType().GetGenericArguments()[0];
                     if (mainclass.IsAbstract)
                     {
@@ -57,22 +61,25 @@ namespace Team19.Presentation
                             
                             if (type.IsSubclassOf(mainclass))
                             {
-                                RadioButton subclassRadio = new RadioButton();
-                                subclassRadio.Anchor = AnchorStyles.Top | AnchorStyles.Left;
-                                subclassRadio.TextAlign = ContentAlignment.MiddleLeft;
-                                subclassRadio.Text = type.Name;
-                                _radioButtonPanel.Controls.Add(subclassRadio);
-                                subclassRadio.CheckedChanged += FiltraElenco;
-                                subclassRadio.Tag = type;
+                                //RadioButton subclassRadio = new RadioButton();
+                                //subclassRadio.Anchor = AnchorStyles.Top | AnchorStyles.Left;
+                                //subclassRadio.TextAlign = ContentAlignment.MiddleLeft;
+                                //subclassRadio.Text = type.Name;
+                                //_radioButtonPanel.Controls.Add(subclassRadio);
+                                //subclassRadio.CheckedChanged += FiltraElenco;
+                                //subclassRadio.Tag = type;
+                                
+                                _subItemsCombo.Items.Add(type);
                             }
                         }
-                        RadioButton mainclassRadio = new RadioButton();
-                        mainclassRadio.TextAlign = ContentAlignment.MiddleLeft;
-                        mainclassRadio.Text = "Tutti";
-                        _radioButtonPanel.Controls.Add(mainclassRadio);
-                        mainclassRadio.Anchor = AnchorStyles.Top | AnchorStyles.Left;
-                        mainclassRadio.CheckedChanged += FiltraElenco;
-                        mainclassRadio.Tag = mainclass;
+                        //RadioButton mainclassRadio = new RadioButton();
+                        //mainclassRadio.TextAlign = ContentAlignment.MiddleLeft;
+                        //mainclassRadio.Text = "Tutti";
+                        //_radioButtonPanel.Controls.Add(mainclassRadio);
+                        //mainclassRadio.Anchor = AnchorStyles.Top | AnchorStyles.Left;
+                        //mainclassRadio.CheckedChanged += FiltraElenco;
+                        //mainclassRadio.Tag = mainclass;
+                        _subItemsCombo.Items.Add(mainclass);
                     }
                 }
             }

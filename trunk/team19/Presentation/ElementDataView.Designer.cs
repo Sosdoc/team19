@@ -28,23 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this._radioButtonPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this._dataGridView = new System.Windows.Forms.DataGridView();
+            this._subItemsCombo = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this._dataGridView)).BeginInit();
             this.SuspendLayout();
-            // 
-            // _radioButtonPanel
-            // 
-            this._radioButtonPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._radioButtonPanel.Location = new System.Drawing.Point(0, 0);
-            this._radioButtonPanel.Name = "_radioButtonPanel";
-            this._radioButtonPanel.Size = new System.Drawing.Size(197, 25);
-            this._radioButtonPanel.TabIndex = 0;
             // 
             // splitContainer1
             // 
@@ -55,7 +47,7 @@
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this._radioButtonPanel);
+            this.splitContainer1.Panel1.Controls.Add(this._subItemsCombo);
             // 
             // splitContainer1.Panel2
             // 
@@ -76,6 +68,15 @@
             this._dataGridView.Size = new System.Drawing.Size(197, 319);
             this._dataGridView.TabIndex = 0;
             // 
+            // _subItemsCombo
+            // 
+            this._subItemsCombo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._subItemsCombo.FormattingEnabled = true;
+            this._subItemsCombo.Location = new System.Drawing.Point(0, 0);
+            this._subItemsCombo.Name = "_subItemsCombo";
+            this._subItemsCombo.Size = new System.Drawing.Size(197, 21);
+            this._subItemsCombo.TabIndex = 0;
+            // 
             // ElementDataView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -94,8 +95,8 @@
 
         #endregion
 
-        private System.Windows.Forms.FlowLayoutPanel _radioButtonPanel;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.DataGridView _dataGridView;
+        private System.Windows.Forms.ComboBox _subItemsCombo;
     }
 }
