@@ -51,35 +51,21 @@ namespace Team19.Presentation
                 _dataGridView.DataSource = _dataSource;
                 if (_dataSource != null)
                 {
-                    //_radioButtonPanel.Controls.Clear();
                     _subItemsCombo.Items.Clear();
+                    _subItemsCombo.Text = "";
                     Type mainclass = _dataSource.GetType().GetGenericArguments()[0];
+                    
                     if (mainclass.IsAbstract)
                     {
                         foreach (Type type in Assembly.GetAssembly(mainclass).GetTypes())
                         {
                             
-                            if (type.IsSubclassOf(mainclass))
+                            if (type.IsSubclassOf(mainclass) &&!type.IsAbstract)
                             {
-                                //RadioButton subclassRadio = new RadioButton();
-                                //subclassRadio.Anchor = AnchorStyles.Top | AnchorStyles.Left;
-                                //subclassRadio.TextAlign = ContentAlignment.MiddleLeft;
-                                //subclassRadio.Text = type.Name;
-                                //_radioButtonPanel.Controls.Add(subclassRadio);
-                                //subclassRadio.CheckedChanged += FiltraElenco;
-                                //subclassRadio.Tag = type;
-                                
                                 _subItemsCombo.Items.Add(type);
                             }
                         }
-                        //RadioButton mainclassRadio = new RadioButton();
-                        //mainclassRadio.TextAlign = ContentAlignment.MiddleLeft;
-                        //mainclassRadio.Text = "Tutti";
-                        //_radioButtonPanel.Controls.Add(mainclassRadio);
-                        //mainclassRadio.Anchor = AnchorStyles.Top | AnchorStyles.Left;
-                        //mainclassRadio.CheckedChanged += FiltraElenco;
-                        //mainclassRadio.Tag = mainclass;
-                        _subItemsCombo.Items.Add(mainclass);
+                        _subItemsCombo.DisplayMember = "Name";
                     }
                 }
             }
