@@ -181,7 +181,7 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this._dataGridView);
             this.splitContainer1.Size = new System.Drawing.Size(927, 472);
-            this.splitContainer1.SplitterDistance = 263;
+            this.splitContainer1.SplitterDistance = 266;
             this.splitContainer1.TabIndex = 4;
             // 
             // _largeImageList
@@ -212,18 +212,19 @@
             this._documentListView.LargeImageList = this._largeImageList;
             this._documentListView.Location = new System.Drawing.Point(0, 0);
             this._documentListView.Name = "_documentListView";
-            this._documentListView.Size = new System.Drawing.Size(263, 472);
+            this._documentListView.Size = new System.Drawing.Size(266, 472);
             this._documentListView.SmallImageList = this._smallImageList;
             this._documentListView.TabIndex = 0;
             this._documentListView.View = System.Windows.Forms.View.LargeIcon;
             // 
             // _dataGridView
             // 
+            this._dataGridView.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this._dataGridView.DataSource = null;
             this._dataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this._dataGridView.Location = new System.Drawing.Point(0, 0);
             this._dataGridView.Name = "_dataGridView";
-            this._dataGridView.Size = new System.Drawing.Size(660, 472);
+            this._dataGridView.Size = new System.Drawing.Size(657, 472);
             this._dataGridView.TabIndex = 0;
             // 
             // MainForm
