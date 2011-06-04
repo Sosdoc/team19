@@ -27,6 +27,7 @@ namespace Team19.Model
         {
 
         }
+
         public double Quantità
         {
             get { return _quantità; }
@@ -42,5 +43,9 @@ namespace Team19.Model
             get { return _prodotto; }
         }
 
+        public override string ToString()
+        {
+            return "#"+Quantità.ToString()+" "+Prodotto.ToString();
+        }
     }
 }

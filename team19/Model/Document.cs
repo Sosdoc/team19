@@ -35,87 +35,87 @@ namespace Team19.Model
         }
 
 
-        #region Document Adders
+        //#region Document Adders
 
-        public void Add(MovimentoDiDenaro movimento)
-        {
-            _movimenti.Add(movimento);
-            OnChanged();
-        }
+        //public void Add(MovimentoDiDenaro movimento)
+        //{
+        //    _movimenti.Add(movimento);
+        //    OnChanged();
+        //}
 
-        public void Add(Fattura fattura)
-        {
-            _fatture.Add(fattura);
-            OnChanged();
-        }
+        //public void Add(Fattura fattura)
+        //{
+        //    _fatture.Add(fattura);
+        //    OnChanged();
+        //}
 
-        public void Add(Soggetto soggetto)
-        {
-            _soggetti.Add(soggetto);
-            OnChanged();
-        }
+        //public void Add(Soggetto soggetto)
+        //{
+        //    _soggetti.Add(soggetto);
+        //    OnChanged();
+        //}
 
-        public void Add(ContenitoreDiDenaro contenitore)
-        {
-            _contenitoriDiDenaro.Add(contenitore);
-            OnChanged();
-        }
+        //public void Add(ContenitoreDiDenaro contenitore)
+        //{
+        //    _contenitoriDiDenaro.Add(contenitore);
+        //    OnChanged();
+        //}
 
-        public void Add(Prodotto prodotto)
-        {
-            _prodotti.Add(prodotto);
-            OnChanged();
-        }
+        //public void Add(Prodotto prodotto)
+        //{
+        //    _prodotti.Add(prodotto);
+        //    OnChanged();
+        //}
 
-        public void Add(Dipendente dipendente)
-        {
-            IsAmministratore();
-            _dipendenti.Add(dipendente);
-            OnChanged();
-        }
+        //public void Add(Dipendente dipendente)
+        //{
+        //    IsAmministratore();
+        //    _dipendenti.Add(dipendente);
+        //    OnChanged();
+        //}
 
-        #endregion
+        //#endregion
 
-        #region Document Removers
+        //#region Document Removers
 
-        public void Remove(MovimentoDiDenaro movimento)
-        {
-            _movimenti.Remove(movimento);
-            OnChanged();
-        }
+        //public void Remove(MovimentoDiDenaro movimento)
+        //{
+        //    _movimenti.Remove(movimento);
+        //    OnChanged();
+        //}
 
-        public void Remove(Fattura fattura)
-        {
-            _fatture.Remove(fattura);
-            OnChanged();
-        }
+        //public void Remove(Fattura fattura)
+        //{
+        //    _fatture.Remove(fattura);
+        //    OnChanged();
+        //}
 
-        public void Remove(Soggetto soggetto)
-        {
-            _soggetti.Remove(soggetto);
-            OnChanged();
-        }
+        //public void Remove(Soggetto soggetto)
+        //{
+        //    _soggetti.Remove(soggetto);
+        //    OnChanged();
+        //}
 
-        public void Remove(ContenitoreDiDenaro contenitore)
-        {
-            _contenitoriDiDenaro.Remove(contenitore);
-            OnChanged();
-        }
+        //public void Remove(ContenitoreDiDenaro contenitore)
+        //{
+        //    _contenitoriDiDenaro.Remove(contenitore);
+        //    OnChanged();
+        //}
 
-        public void Remove(Prodotto prodotto)
-        {
-            _prodotti.Remove(prodotto);
-            OnChanged();
-        }
+        //public void Remove(Prodotto prodotto)
+        //{
+        //    _prodotti.Remove(prodotto);
+        //    OnChanged();
+        //}
 
-        public void Remove(Dipendente dipendente)
-        {
-            IsAmministratore();
-            _dipendenti.Remove(dipendente);
-            OnChanged();
-        }
+        //public void Remove(Dipendente dipendente)
+        //{
+        //    IsAmministratore();
+        //    _dipendenti.Remove(dipendente);
+        //    OnChanged();
+        //}
 
-        #endregion
+        //#endregion
 
         #region Document properties
 
@@ -124,19 +124,22 @@ namespace Team19.Model
             get { return _utenteConnesso; }
             set { _utenteConnesso = value; }
         }
+
         [NomeVisualizzato("Dipendenti")]
-        public IEnumerable<Dipendente> Dipendenti
+        public IList<Dipendente> Dipendenti
         {
             get { return _dipendenti; }
 
         }
+
         [NomeVisualizzato("Movimenti")]
-        public IEnumerable<MovimentoDiDenaro> Movimenti
+        public IList<MovimentoDiDenaro> Movimenti
         {
             get { return _movimenti; }
         }
+
         [NomeVisualizzato("Depositi")]
-        public IEnumerable<ContenitoreDiDenaro> ContenitoriDiDenaro
+        public IList<ContenitoreDiDenaro> ContenitoriDiDenaro
         {
             get { return _contenitoriDiDenaro; }
         }
@@ -145,18 +148,21 @@ namespace Team19.Model
         {
             get { return _cassa; }
         }
+
         [NomeVisualizzato("Fatture")]
-        public IEnumerable<Fattura> Fatture
+        public IList<Fattura> Fatture
         {
             get { return _fatture; }
         }
+
         [NomeVisualizzato("Prodotti")]
-        public IEnumerable<Prodotto> Prodotti
+        public IList<Prodotto> Prodotti
         {
             get { return _prodotti; }
         }
+
         [NomeVisualizzato("Soggetti")]
-        public IEnumerable<Soggetto> Soggetti
+        public IList<Soggetto> Soggetti
         {
             get { return _soggetti; }
         }
@@ -219,7 +225,8 @@ namespace Team19.Model
 
         public void Save()
         {
-            //questo metodo non fa nulla
+            //questo metodo non fa nulla -- defaultPersister lancia NotImplementedException
+            //_persister.Save();
         }
 
         public IEnumerable<FatturaVendita> GetFattureVendita()

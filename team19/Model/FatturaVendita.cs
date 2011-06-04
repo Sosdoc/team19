@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.ComponentModel;
 
 namespace Team19.Model
 {
@@ -49,11 +50,21 @@ namespace Team19.Model
 
         }
 
+        [Browsable(false)]
         public IEnumerable<RigaFattura> ElencoProdotti
         {
             get
             {
                 return _elencoProdotti;
+            }
+        }
+
+        [DisplayName("Prodotti")]
+        public string Elenco
+        {
+            get
+            {
+                return "Vendita di " + ElencoProdotti.Count() + " prodotti diversi";
             }
         }
 

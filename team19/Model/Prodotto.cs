@@ -32,5 +32,10 @@ namespace Team19.Model
         {
             get { return _codProdotto; }
         }
+
+        public override string ToString()
+        {
+            return Descrizione;
+        }
     }
 }
