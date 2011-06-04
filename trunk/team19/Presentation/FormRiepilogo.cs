@@ -28,6 +28,7 @@ namespace Team19.Presentation
         public FormRiepilogo(Soggetto soggetto)
             : this()
         {
+            
             _soggettiCombo.SelectedItem = soggetto;
             if (soggetto != null) MostraRiepilogo(this, EventArgs.Empty);
         }
