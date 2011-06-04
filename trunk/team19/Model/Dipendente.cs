@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Data;
+using System.Windows.Forms;
+
 namespace Team19.Model
 {
     public class Dipendente 
@@ -24,27 +26,37 @@ namespace Team19.Model
             this._nome = nome;
             this._ruolo = ruolo;//A Amministratore o U  utente
         }
+
+        [ControlloAssociato(typeof(TextBox))]
         public string Nome
         {
             get { return _nome; }
         }
+
+        [ControlloAssociato(typeof(TextBox))]
         public string Cognome
         {
             get { return _cognome; }
         }
+
+        [ControlloAssociato(typeof(TextBox))]
         public string Username
         {
             get { return _username; }
         }
+
+        [ControlloAssociato(typeof(TextBox))]
         public string Password
         {
             get { return _password; }
         }
-       
+
+        [ControlloAssociato(typeof(ComboBox))]
         public TipoDipendente Ruolo
         {
             get { return _ruolo; }
         }
+
         public override string ToString()
         {
             return Nome + " " + Cognome;

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows.Forms;
 
 namespace Team19.Model
 {
@@ -9,6 +10,7 @@ namespace Team19.Model
     {
         private string _codConto;
 
+        [ControlloAssociato(typeof(TextBox))]
         public override string Codice
         {
             get { return _codConto; }
@@ -26,10 +28,12 @@ namespace Team19.Model
                 return this.Codice.Equals(((ContoCorrenteBancario)obj).Codice); //se ha lo stesso codice conto
             return false;
         }
+
         public override int GetHashCode()
         {
             return base.GetHashCode();
         }
+
         public override string ToString()
         {
             return "CCB: " + Codice;

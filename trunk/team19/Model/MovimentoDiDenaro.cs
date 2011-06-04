@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.ComponentModel;
-
+using System.Windows.Forms;
 namespace Team19.Model
 {
     public abstract class MovimentoDiDenaro
@@ -27,23 +27,27 @@ namespace Team19.Model
             _causale = causale;
         }
 
+        [ControlloAssociato(typeof(DateTimePicker))]
         public DateTime Data
         {
             get { return _data; }
         }
 
+        [ControlloAssociato(typeof(TextBox))]
         public abstract Currency Importo
         {
             get;
         }
 
         [Browsable(false)]
+        [ControlloAssociato(typeof(ComboBox))]
         public ISorgente Sorgente
         {
             get { return _sorgente; }
         }
 
         [Browsable(false)]
+        [ControlloAssociato(typeof(ComboBox))]
         public IDestinazione Destinazione
         {
             get { return _destinazione; }
@@ -61,6 +65,7 @@ namespace Team19.Model
             get { return Destinazione.ToString(); }
         }
 
+        [ControlloAssociato(typeof(ComboBox))]
         public Dipendente Dipendente
         {
             get { return _dipendente; }
@@ -71,6 +76,11 @@ namespace Team19.Model
             get { return _dataRegistrazione; }
         }
 
+        [ControlloAssociato(typeof(TextBox))]
+        public string Causale
+        {
+            get { return _causale; }
+        }
 
 
     }

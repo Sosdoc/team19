@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows.Forms;
 
 namespace Team19.Model
 {
@@ -27,11 +28,13 @@ namespace Team19.Model
             return new FatturaAcquisto(fornitore, data, numero, importo);
         }
 
+        [ControlloAssociato(typeof(ComboBox))]
         public Fornitore Fornitore
         {
             get { return _fornitore; }
         }
 
+        [ControlloAssociato(typeof(TextBox))]
         public override Currency Importo
         {
             get { return _importo; }
