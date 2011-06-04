@@ -21,20 +21,14 @@ namespace Team19.Presentation
 
         private void FiltraElenco(object sender, EventArgs e)
         {
-           // _dataGridView.DataSource = _dataSource;
-            //RadioButton radio = (RadioButton)sender;
-            //Type tipo = (Type)radio.Tag;
             Type tipo = (Type)_subItemsCombo.SelectedItem;
-            IEnumerable<object> elenco = ((IEnumerable<object>)_dataSource);
             IList<object> elencoFiltrato = new List<object>();
-            foreach (object obj in elenco)
+            foreach (object obj in (IEnumerable<object>)_dataSource)
             {
                 if (obj.GetType().Equals(tipo))
                     elencoFiltrato.Add(obj);
             }
             _dataGridView.DataSource = elencoFiltrato;
-            
-
         }
 
         public DataGridViewSelectedRowCollection SelectedRows
@@ -47,6 +41,7 @@ namespace Team19.Presentation
             get { return _dataSource; }
             set
             {
+                _subItemsCombo.Enabled = true;
                 _dataSource = value;
                 _dataGridView.DataSource = _dataSource;
                 if (_dataSource != null)
@@ -54,12 +49,10 @@ namespace Team19.Presentation
                     _subItemsCombo.Items.Clear();
                     _subItemsCombo.Text = "";
                     Type mainclass = _dataSource.GetType().GetGenericArguments()[0];
-                    
                     if (mainclass.IsAbstract)
                     {
                         foreach (Type type in Assembly.GetAssembly(mainclass).GetTypes())
                         {
-                            
                             if (type.IsSubclassOf(mainclass) &&!type.IsAbstract)
                             {
                                 _subItemsCombo.Items.Add(type);
@@ -67,6 +60,7 @@ namespace Team19.Presentation
                         }
                         _subItemsCombo.DisplayMember = "Name";
                     }
+                    if (_subItemsCombo.Items.Count == 0) _subItemsCombo.Enabled = false;
                 }
             }
         }

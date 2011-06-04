@@ -42,7 +42,7 @@ namespace Team19.Model
 
         public override string ToString()
         {
-            return "Fattura # " + NumeroFattura + " del: " + Data.Date;
+            return "Fattura # " + NumeroFattura + " del: " + Data;
         }
 
     }
