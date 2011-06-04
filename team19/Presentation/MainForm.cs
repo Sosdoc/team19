@@ -18,7 +18,8 @@ namespace Team19.Presentation
         public MainForm()
         {
             InitializeComponent();
-            _controller = new Controller(_documentListView, _dataGridView);           
+            _controller = new Controller(_documentListView, _dataGridView);
+
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
