@@ -11,9 +11,9 @@ namespace Team19.Presentation
     {
         private Document _document;
         private readonly DocumentListView _documentListView;
-        private readonly DataGridView _dataGridView;
+        private readonly ElementDataView _dataGridView;
 
-        public Controller(DocumentListView documentListView, DataGridView dataGridView)
+        public Controller(DocumentListView documentListView, ElementDataView dataGridView)
         {
             _documentListView = documentListView;
             _dataGridView = dataGridView;
