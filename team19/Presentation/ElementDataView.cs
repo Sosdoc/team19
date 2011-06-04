@@ -16,24 +16,29 @@ namespace Team19.Presentation
         {
             InitializeComponent();
         }
+
         private void FiltraElenco(object sender, EventArgs e)
         {
-            _dataGridView.DataSource = _dataSource;
+           // _dataGridView.DataSource = _dataSource;
             RadioButton radio = (RadioButton)sender;
-            Type t = (Type)radio.Tag;
+            Type tipo = (Type)radio.Tag;
+
             IEnumerable<object> elenco = ((IEnumerable<object>)_dataSource);
-            //for (int i = 0; i < elenco.Count(); i++)
-            //{
-            //    if (!elenco.ElementAt(i).GetType().Equals(t))
-            //        _dataGridView.Rows.RemoveAt(i);
-            //}
-            //_dataGridView
-            //
+            IList<object> elencoFiltrato = new List<object>();
+            foreach (object obj in elenco)
+            {
+                if (obj.GetType().Equals(tipo))
+                    elencoFiltrato.Add(obj);
+            }
+            _dataGridView.DataSource = elencoFiltrato;
+
         }
+
         public DataGridViewSelectedRowCollection SelectedRows
         {
             get { return _dataGridView.SelectedRows; }
         }
+
         public object DataSource
         {
             get { return _dataSource; }
