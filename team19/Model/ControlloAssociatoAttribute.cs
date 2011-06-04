@@ -9,14 +9,18 @@ namespace Team19.Model
     [AttributeUsage(AttributeTargets.Property, Inherited = true, AllowMultiple = false)]
     class ControlloAssociatoAttribute : System.Attribute
     {
-        private Control _controllo;
+        private Type _controllo;
 
-        public ControlloAssociatoAttribute(Control controllo)
+        public ControlloAssociatoAttribute(Type controllo)
         {
+            if (!controllo.IsSubclassOf(typeof(Control)))
+                throw new ArgumentException("Non un controllo");
+                
             _controllo = controllo;
+            
         }
 
-        public Control Controllo
+        public Type Controllo
         {
             get { return _controllo; }
             set { _controllo = value; }
