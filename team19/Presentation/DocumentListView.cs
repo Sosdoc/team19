@@ -17,7 +17,6 @@ namespace Team19.Presentation
         {
             InitializeComponent();
             Document.Changed += AggiornaLista;
-            //AggiornaLista();
         }
 
         private void iconeGrandiToolStripMenuItem_Click(object sender, EventArgs e)

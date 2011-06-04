@@ -19,7 +19,7 @@ namespace Team19.Model
 
         protected MovimentoDiDenaro(ISorgente sorgente, IDestinazione destinazione, DateTime data, Dipendente dipendente, string causale)
         {
-            _data = data;
+            _data = data.Date;
             _sorgente = sorgente;
             _destinazione = destinazione;
             _dataRegistrazione = DateTime.Now;
