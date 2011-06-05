@@ -155,8 +155,6 @@ namespace Team19.Model
             //_persister.Save();
         }
 
-
-
         public IList<Cliente> GetClienti()
         {
             return this.Soggetti.OfType<Cliente>().ToList();
