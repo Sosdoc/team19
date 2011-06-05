@@ -19,6 +19,14 @@ namespace Team19.Model
             this._value = value;
         }
 
+        public static Currency ParseCurrency(string toParse)
+        {
+            decimal value;
+            if(Decimal.TryParse(toParse, out value))
+                return new Currency(value);
+            throw new ArgumentException("Parsing non riuscito");
+        }
+
         public override String ToString()
         {
             return String.Format("{0:C}", this.Value);
