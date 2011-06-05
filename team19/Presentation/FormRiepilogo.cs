@@ -15,9 +15,7 @@ namespace Team19.Presentation
         public FormRiepilogo()
         {
             InitializeComponent();
-            //   _soggettiCombo.DataSource = Document.GetInstance().Soggetti;
-            foreach (Soggetto s in Document.GetInstance().Soggetti)
-                _soggettiCombo.Items.Add(s);
+            _soggettiCombo.DataSource = Document.GetInstance().Soggetti;
             _soggettiCombo.SelectionChangeCommitted += MostraRiepilogo;
             _checkPagate.Checked = true;
             _checkNonPagate.Checked = true;

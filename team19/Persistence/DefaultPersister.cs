@@ -21,7 +21,7 @@ namespace Team19.Persistence
         class DefaultLoader : IDocumentLoader
         {
             private List<MovimentoDiDenaro> _movimenti;
-            private List<ContenitoreDiDenaro> _contenitoriDiDenaro;
+            private List<DepositoDiDenaro> _contenitoriDiDenaro;
             private List<Fattura> _fatture;
             private List<Prodotto> _prodotti; //meglio un dictionary?
             private List<Soggetto> _soggetti;
@@ -85,12 +85,11 @@ namespace Team19.Persistence
                 return _fatture;
             }
 
-            public List<Model.ContenitoreDiDenaro> LoadContenitori()
+            public List<Model.DepositoDiDenaro> LoadContenitori()
             {
-                _contenitoriDiDenaro = new List<ContenitoreDiDenaro>();
+                _contenitoriDiDenaro = new List<DepositoDiDenaro>();
                 ContoCorrenteBancario cc = new ContoCorrenteBancario("AOSIDJHOGIHAPI", new Currency(10000m));
                 _contenitoriDiDenaro.Add(cc);
-                _contenitoriDiDenaro.Add(_cassa);
                 return _contenitoriDiDenaro;
             }
 

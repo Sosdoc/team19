@@ -25,42 +25,36 @@ namespace Team19.Model
 
         #region Soggetto properties
 
-        [ControlloAssociato(typeof(TextBox))]
         public string Denominazione
         {
             get { return _denominazione; }
             //set { _denominazione = value; }
         }
 
-        [ControlloAssociato(typeof(TextBox))]
         public Indirizzo Indirizzo
         {
             get { return _indirizzo; }
             //set { _indirizzo = value; }
         }
-
-        [ControlloAssociato(typeof(TextBox))]
+        
         public string Telefono
         {
             get { return _telefono; }
             //set { _telefono = value; }
         }
 
-        [ControlloAssociato(typeof(TextBox))]
         public string EMail
         {
             get { return _eMail; }
             //set { _eMail = value; }
         }
 
-        [ControlloAssociato(typeof(TextBox))]
         public string PartitaIva
         {
             get { return _partitaIva ?? "Nessuna partita IVA"; }
             //set { _partitaIva = value; }
         }
 
-        [ControlloAssociato(typeof(TextBox))]
         public abstract string CodiceFiscale
         {
             get;
@@ -86,7 +80,6 @@ namespace Team19.Model
             _codiceFiscale = codiceFiscale;
         }
 
-        [ControlloAssociato(typeof(TextBox))]
         public override string CodiceFiscale  
         {
             get { return _codiceFiscale; }
