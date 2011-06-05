@@ -96,17 +96,17 @@ namespace Team19.Presentation
                 {
                     string nomeVisualizzato = ((DisplayNameAttribute)attributes[0]).DisplayName;
                     ListViewItem item = new ListViewItem(nomeVisualizzato);
-                    object tag =info.GetValue(Document.GetInstance(), null);
-                    
-                    if (tag!= null)
+                    item.Tag = info.GetValue(Document.GetInstance(), null);
+
+                    if (item.Tag != null)
                     {
-                        if (tag.GetType().GetGenericArguments().Count() == 0)
+                        if (item.Tag.GetType().BaseType.GetGenericArguments().Count() == 0)
                         {
-                            List<object> list = new List<object>();
-                            list.Add(tag);
-                            tag = list;
+                            IList<object> list = new List<object>();
+                            list.Add(item.Tag);
+                            item.Tag = list;
                         }
-                        item.Tag = tag;
+                        
                         item.ImageKey = nomeVisualizzato;
                         Items.Add(item);
                     }

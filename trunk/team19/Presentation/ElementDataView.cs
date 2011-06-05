@@ -48,25 +48,42 @@ namespace Team19.Presentation
                 {
                     _subItemsCombo.Items.Clear();
                     _subItemsCombo.Text = "";
-                    Type mainclass = _dataSource.GetType().GetGenericArguments()[0];
-                    if (mainclass.IsAbstract)
+                    Type mainclass;
+                    Type contenitore = _dataSource.GetType();
+
+                    if (contenitore.BaseType.GetGenericArguments().Count() != 0)
                     {
-                        foreach (Type type in Assembly.GetAssembly(mainclass).GetTypes())
+                        mainclass = _dataSource.GetType().BaseType.GetGenericArguments()[0];
+
+
+                        //trova le sottoclassi
+                        if (mainclass.IsAbstract)
                         {
-                            if (type.IsSubclassOf(mainclass) &&!type.IsAbstract)
+                            foreach (Type type in Assembly.GetAssembly(mainclass).GetTypes())
                             {
-                                _subItemsCombo.Items.Add(type);
+                                if (type.IsSubclassOf(mainclass) && !type.IsAbstract)
+                                {
+                                    _subItemsCombo.Items.Add(type);
+                                }
                             }
+                            _subItemsCombo.DisplayMember = "Name";
                         }
-                        _subItemsCombo.DisplayMember = "Name";
                     }
-                    if (_subItemsCombo.Items.Count == 0) _subItemsCombo.Enabled = false;
+
+                    if (_subItemsCombo.Items.Count == 0)
+                        _subItemsCombo.Enabled = false;
                 }
             }
         }
         public Type DataType
         {
-            get { return _dataSource.GetType().GetGenericArguments()[0]; }
+            get
+            {
+                if (_dataSource.GetType().BaseType.GetGenericArguments().Count() != 0)
+                    return _dataSource.GetType().BaseType.GetGenericArguments()[0];
+                else
+                    return _dataSource.GetType();
+            }
         }
     }
 }
