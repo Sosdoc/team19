@@ -34,89 +34,6 @@ namespace Team19.Model
 
         }
 
-
-        //#region Document Adders
-
-        //public void Add(MovimentoDiDenaro movimento)
-        //{
-        //    _movimenti.Add(movimento);
-        //    OnChanged();
-        //}
-
-        //public void Add(Fattura fattura)
-        //{
-        //    _fatture.Add(fattura);
-        //    OnChanged();
-        //}
-
-        //public void Add(Soggetto soggetto)
-        //{
-        //    _soggetti.Add(soggetto);
-        //    OnChanged();
-        //}
-
-        //public void Add(ContenitoreDiDenaro contenitore)
-        //{
-        //    _contenitoriDiDenaro.Add(contenitore);
-        //    OnChanged();
-        //}
-
-        //public void Add(Prodotto prodotto)
-        //{
-        //    _prodotti.Add(prodotto);
-        //    OnChanged();
-        //}
-
-        //public void Add(Dipendente dipendente)
-        //{
-        //    IsAmministratore();
-        //    _dipendenti.Add(dipendente);
-        //    OnChanged();
-        //}
-
-        //#endregion
-
-        //#region Document Removers
-
-        //public void Remove(MovimentoDiDenaro movimento)
-        //{
-        //    _movimenti.Remove(movimento);
-        //    OnChanged();
-        //}
-
-        //public void Remove(Fattura fattura)
-        //{
-        //    _fatture.Remove(fattura);
-        //    OnChanged();
-        //}
-
-        //public void Remove(Soggetto soggetto)
-        //{
-        //    _soggetti.Remove(soggetto);
-        //    OnChanged();
-        //}
-
-        //public void Remove(ContenitoreDiDenaro contenitore)
-        //{
-        //    _contenitoriDiDenaro.Remove(contenitore);
-        //    OnChanged();
-        //}
-
-        //public void Remove(Prodotto prodotto)
-        //{
-        //    _prodotti.Remove(prodotto);
-        //    OnChanged();
-        //}
-
-        //public void Remove(Dipendente dipendente)
-        //{
-        //    IsAmministratore();
-        //    _dipendenti.Remove(dipendente);
-        //    OnChanged();
-        //}
-
-        //#endregion
-
         #region Document properties
 
         public Dipendente UtenteConnesso
@@ -126,7 +43,7 @@ namespace Team19.Model
         }
 
         [DisplayName("Dipendenti")]
-        public IList<Dipendente> Dipendenti 
+        public IList<Dipendente> Dipendenti
         {
             get
             {
@@ -199,12 +116,12 @@ namespace Team19.Model
 
         public void Autentica(string username, string password)
         {
+
             try
             {
                 IEnumerable<Dipendente> dipendenti = from dipendente in _instance._dipendenti
                                                      where dipendente.Username.Equals(username) && dipendente.Password.Equals(password)
                                                      select dipendente;
-
                 Dipendente d = null;
 
                 if (dipendenti.Count() != 0)
@@ -238,14 +155,41 @@ namespace Team19.Model
             //_persister.Save();
         }
 
-        public IEnumerable<FatturaVendita> GetFattureVendita()
+
+
+        public IList<Cliente> GetClienti()
         {
-            return this.Fatture.OfType<FatturaVendita>();
+            return this.Soggetti.OfType<Cliente>().ToList();
         }
 
-        public IEnumerable<FatturaAcquisto> GetFattureAcquisto()
+        public IList<Fornitore> GetFornitori()
         {
-            return this.Fatture.OfType<FatturaAcquisto>();
+            return this.Soggetti.OfType<Fornitore>().ToList();
+        }
+
+        public IList<FatturaVendita> GetFattureVendita()
+        {
+            return this.Fatture.OfType<FatturaVendita>().ToList();
+        }
+
+        public IList<FatturaAcquisto> GetFattureAcquisto()
+        {
+            return this.Fatture.OfType<FatturaAcquisto>().ToList();
+        }
+
+        public IList<DepositoDiDenaro> GetDepositi()
+        {
+            return this.ContenitoriDiDenaro.OfType<DepositoDiDenaro>().ToList();
+        }
+
+        public IList<ContenitoreDiDenaro> GetContenitori()
+        {
+            return this.ContenitoriDiDenaro.ToList();
+        }
+
+        public Cassa GetCassa()
+        {
+            return this.Cassa;
         }
 
         public IEnumerable<MovimentoDiDenaro> GetPagamentiAcquisti()

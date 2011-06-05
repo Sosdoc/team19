@@ -50,6 +50,7 @@ namespace Team19.Model
             public PagamentoAcquisto(ISorgente sorgente, IDestinazione destinazione, DateTime data, Dipendente dipendente, string causale)
                 : base(sorgente, destinazione, data, dipendente, causale)
             {
+
             }
 
             [ControlloAssociato(typeof(TextBox))]
@@ -58,6 +59,23 @@ namespace Team19.Model
                 get { return ((FatturaAcquisto)Destinazione).Importo; }
             }
 
+            [ControlloAssociato(typeof(ComboBox), typeof(IList<FatturaAcquisto>))]
+            public override IDestinazione Destinazione
+            {
+                get
+                {
+                    return base.Destinazione;
+                }
+            }
+
+            [ControlloAssociato(typeof(ComboBox), typeof(IList<ContenitoreDiDenaro>))]
+            public override ISorgente Sorgente
+            {
+                get
+                {
+                    return base.Sorgente;
+                }
+            }
             //    public override string ToString()
             //    {
             ////        return _data + ") " + _importo + ",da " + _sorgente.getInfo() + " a " + _destinazione.getInfo() + ", registrato da " + _dipendente.ToString() + " " + _dataRegistrazione;
@@ -78,7 +96,22 @@ namespace Team19.Model
                 get { return ((FatturaVendita)Sorgente).Importo; }
             }
 
-
+            [ControlloAssociato(typeof(ComboBox), typeof(IList<FatturaVendita>))]
+            public override ISorgente Sorgente
+            {
+                get
+                {
+                    return base.Sorgente;
+                }
+            }
+            [ControlloAssociato(typeof(ComboBox), typeof(IList<ContenitoreDiDenaro>))]
+            public override IDestinazione Destinazione
+            {
+                get
+                {
+                    return base.Destinazione;
+                }
+            }
         }
 
         private abstract class MovimentoInterno : MovimentoDiDenaro
@@ -96,6 +129,8 @@ namespace Team19.Model
             {
                 get { return _importo; }
             }
+
+
         }
 
         private class Prelievo : MovimentoInterno
@@ -103,6 +138,24 @@ namespace Team19.Model
             public Prelievo(ISorgente sorgente, IDestinazione destinazione, Currency importo, DateTime data, Dipendente dipendente, string causale)
                 : base(sorgente, destinazione, importo, data, dipendente, causale)
             { }
+
+            [ControlloAssociato(typeof(ComboBox), typeof(IList<DepositoDiDenaro>))]
+            public override ISorgente Sorgente
+            {
+                get
+                {
+                    return base.Sorgente;
+                }
+            }
+
+             [ControlloAssociato(typeof(Label), typeof(Cassa))]
+            public override IDestinazione Destinazione
+            {
+                get
+                {
+                    return base.Destinazione;
+                }
+            }
         }
 
         private class Spostamento : MovimentoInterno
@@ -110,6 +163,24 @@ namespace Team19.Model
             public Spostamento(ISorgente sorgente, IDestinazione destinazione, Currency importo, DateTime data, Dipendente dipendente, string causale)
                 : base(sorgente, destinazione, importo, data, dipendente, causale)
             { }
+
+             [ControlloAssociato(typeof(ComboBox), typeof(IList<DepositoDiDenaro>))]
+            public override ISorgente Sorgente
+            {
+                get
+                {
+                    return base.Sorgente;
+                }
+            }
+
+            [ControlloAssociato(typeof(ComboBox), typeof(IList<DepositoDiDenaro>))]
+             public override IDestinazione Destinazione
+             {
+                 get
+                 {
+                     return base.Destinazione;
+                 }
+             }
         }
 
         private class Versamento : MovimentoInterno
@@ -117,6 +188,24 @@ namespace Team19.Model
             public Versamento(ISorgente sorgente, IDestinazione destinazione, Currency importo, DateTime data, Dipendente dipendente, string causale)
                 : base(sorgente, destinazione, importo, data, dipendente, causale)
             { }
+
+            [ControlloAssociato(typeof(Label), typeof(Cassa))]
+            public override ISorgente Sorgente
+            {
+                get
+                {
+                    return base.Sorgente;
+                }
+            }
+
+            [ControlloAssociato(typeof(ComboBox), typeof(IList<DepositoDiDenaro>))]
+            public override IDestinazione Destinazione
+            {
+                get
+                {
+                    return base.Destinazione;
+                }
+            }
         }
     }
 }

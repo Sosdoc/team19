@@ -70,7 +70,7 @@ namespace Team19.Model
             }
         }
 
-        [ControlloAssociato(typeof(ComboBox))]
+        [ControlloAssociato(typeof(ComboBox), typeof(IList< Cliente>))]
         public Cliente Cliente
         {
             get { return _cliente; }

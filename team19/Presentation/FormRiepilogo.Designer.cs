@@ -53,7 +53,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 7.017544F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 92.98245F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(337, 363);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(421, 359);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // _soggettiCombo
@@ -62,7 +62,7 @@
             this._soggettiCombo.FormattingEnabled = true;
             this._soggettiCombo.Location = new System.Drawing.Point(3, 3);
             this._soggettiCombo.Name = "_soggettiCombo";
-            this._soggettiCombo.Size = new System.Drawing.Size(331, 21);
+            this._soggettiCombo.Size = new System.Drawing.Size(415, 21);
             this._soggettiCombo.TabIndex = 0;
             // 
             // _riepilogoDataGrid
@@ -74,7 +74,7 @@
             this._riepilogoDataGrid.Location = new System.Drawing.Point(3, 26);
             this._riepilogoDataGrid.Name = "_riepilogoDataGrid";
             this._riepilogoDataGrid.ReadOnly = true;
-            this._riepilogoDataGrid.Size = new System.Drawing.Size(331, 304);
+            this._riepilogoDataGrid.Size = new System.Drawing.Size(415, 300);
             this._riepilogoDataGrid.TabIndex = 1;
             // 
             // flowLayoutPanel1
@@ -82,9 +82,9 @@
             this.flowLayoutPanel1.Controls.Add(this._checkPagate);
             this.flowLayoutPanel1.Controls.Add(this._checkNonPagate);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 336);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 332);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(331, 24);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(415, 24);
             this.flowLayoutPanel1.TabIndex = 2;
             // 
             // _checkPagate
@@ -113,7 +113,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(337, 363);
+            this.ClientSize = new System.Drawing.Size(421, 359);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "FormRiepilogo";
             this.Text = "FormRiepilogo";

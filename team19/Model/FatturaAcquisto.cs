@@ -28,7 +28,7 @@ namespace Team19.Model
             return new FatturaAcquisto(fornitore, data, numero, importo);
         }
 
-        [ControlloAssociato(typeof(ComboBox))]
+        [ControlloAssociato(typeof(ComboBox), typeof(IList<Fornitore>))]
         public Fornitore Fornitore
         {
             get { return _fornitore; }

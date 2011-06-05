@@ -43,6 +43,7 @@
             this.textBox1.Size = new System.Drawing.Size(140, 20);
             this.textBox1.TabIndex = 0;
             this.textBox1.Text = "francesco2011";
+            this.textBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox2_KeyDown);
             // 
             // textBox2
             // 
@@ -51,6 +52,7 @@
             this.textBox2.Size = new System.Drawing.Size(140, 20);
             this.textBox2.TabIndex = 1;
             this.textBox2.Text = "12345";
+            this.textBox2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox2_KeyDown);
             // 
             // button1
             // 

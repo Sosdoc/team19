@@ -71,6 +71,7 @@
     <Compile Include="Model\Destinazione.cs" />
     <Compile Include="Model\Document.cs" />
     <Compile Include="Model\Dipendente.cs" />
+    <Compile Include="Model\ElementFactory.cs" />
     <Compile Include="Model\Fattura.cs" />
     <Compile Include="Model\FatturaAcquisto.cs" />
     <Compile Include="Model\FatturaVendita.cs" />
@@ -83,7 +84,6 @@
     <Compile Include="Model\RiepilogoFactory.cs" />
     <Compile Include="Model\RigaFattura.cs" />
     <Compile Include="Model\Soggetto.cs" />
-    <Compile Include="Model\SoggettoFactory.cs" />
     <Compile Include="Model\Sorgente.cs" />
     <Compile Include="Model\TipoDipendente.cs" />
     <Compile Include="Persistence\DefaultPersister.cs" />

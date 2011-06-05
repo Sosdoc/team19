@@ -42,6 +42,12 @@ namespace Team19.Presentation
         {
             Close();
         }
+
+        private void textBox2_KeyDown(object sender, KeyEventArgs e)
+        {
+           if (e.KeyCode == Keys.Return)
+                button1_Click(sender, e);
+        }
         
     }
 }
