@@ -68,12 +68,12 @@ namespace Team19.Presentation
             {
                 using (InsertForm form = new InsertForm(_dataGridView.DataType))
                 {
-                    if (form.ShowDialog() == DialogResult.OK)
-                    {
-                        PropertyInfo property = _document.GetType().GetProperties().Where(prop => prop.PropertyType.GetGenericArguments().Contains(_dataGridView.DataType)).First();
-                        _document.Add(form.ElementoCreato);
-                        //((IList<object>)property.GetValue(_document, null)).Add(form.ElementoCreato);
-                    }
+					if( form.ShowDialog() == DialogResult.OK)
+					{
+                    PropertyInfo property = _document.GetType().GetProperties().Where(prop => prop.PropertyType.GetGenericArguments().Contains(_dataGridView.DataType)).First();
+                    MethodInfo add = property.GetValue(_document, null).GetType().GetMethod("Add", new Type[] { typeof(object) });
+                    add.Invoke(property.GetValue(_document, null), new object[1] { form.ElementoCreato} );
+					}
                 }
             }
             catch (InvalidOperationException ex)

@@ -13,12 +13,12 @@ namespace Team19.Model
 
     interface IDocumentLoader
     {
-        List<MovimentoDiDenaro> LoadMovimenti();
-        List<Soggetto> LoadSoggetti();
-        List<Fattura> LoadFatture();
-        List<DepositoDiDenaro> LoadContenitori();
-        List<Prodotto> LoadProdotti();
-        List<Dipendente> LoadDipendenti();
+        Movimenti LoadMovimenti();
+        Soggetti LoadSoggetti();
+        Fatture LoadFatture();
+        ContenitoriDiDenaro LoadContenitori();
+        Prodotti LoadProdotti();
+        Dipendenti LoadDipendenti();
         Cassa LoadCassa();
     }
 }

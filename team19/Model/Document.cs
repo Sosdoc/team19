@@ -8,12 +8,12 @@ namespace Team19.Model
 {
     class Document
     {
-        private List<MovimentoDiDenaro> _movimenti;
-        private List<DepositoDiDenaro> _contenitoriDiDenaro;
-        private List<Fattura> _fatture;
-        private List<Prodotto> _prodotti; //meglio un dictionary?
-        private List<Soggetto> _soggetti;
-        private List<Dipendente> _dipendenti;
+        private Movimenti _movimenti;
+        private ContenitoriDiDenaro _contenitoriDiDenaro;
+        private Fatture _fatture;
+        private Prodotti _prodotti; 
+        private Soggetti _soggetti;
+        private Dipendenti _dipendenti;
         private Cassa _cassa;
 
         private static Document _instance;
@@ -24,13 +24,13 @@ namespace Team19.Model
         private Document(IDocumentPersister persister)
         {
             this._persister = persister;
-            _prodotti = new List<Prodotto>();
-            _dipendenti = new List<Dipendente>();
+            _prodotti = new Prodotti();
+            _dipendenti = new Dipendenti();
 
-            _contenitoriDiDenaro = new List<DepositoDiDenaro>();
-            _soggetti = new List<Soggetto>();
-            _fatture = new List<Fattura>();
-            _movimenti = new List<MovimentoDiDenaro>();
+            _contenitoriDiDenaro = new ContenitoriDiDenaro();
+            _soggetti = new Soggetti();
+            _fatture = new Fatture();
+            _movimenti = new Movimenti();
 
         }
 

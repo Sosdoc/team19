@@ -20,21 +20,21 @@ namespace Team19.Persistence
 
         class DefaultLoader : IDocumentLoader
         {
-            private List<MovimentoDiDenaro> _movimenti;
-            private List<DepositoDiDenaro> _contenitoriDiDenaro;
-            private List<Fattura> _fatture;
-            private List<Prodotto> _prodotti; //meglio un dictionary?
-            private List<Soggetto> _soggetti;
-            private List<Dipendente> _dipendenti;
+            private Movimenti _movimenti;
+            private ContenitoriDiDenaro _contenitoriDiDenaro;
+            private Fatture _fatture;
+            private Prodotti _prodotti; 
+            private Soggetti _soggetti;
+            private Dipendenti _dipendenti;
             private Cassa _cassa;
 
             public DefaultLoader()
             {
             }
 
-            public List<Model.MovimentoDiDenaro> LoadMovimenti()
+            public Movimenti LoadMovimenti()
             {
-                _movimenti = new List<MovimentoDiDenaro>();
+                _movimenti = new Movimenti();
                 
                 MovimentoDiDenaro m1 = MovimentoFactory.CreatePagamentoAcquisto(_cassa, _fatture.OfType<FatturaAcquisto>().ElementAt(0), DateTime.Now,
                    _dipendenti.ElementAt(0), "asd");
@@ -50,9 +50,9 @@ namespace Team19.Persistence
                 return _movimenti;
             }
 
-            public List<Model.Soggetto> LoadSoggetti()
+            public Soggetti LoadSoggetti()
             {
-                _soggetti = new List<Soggetto>();
+                _soggetti = new Soggetti();
                 Indirizzo i = new Indirizzo("Via GianDomenico Puppa", "42", "Sucate", "02983", "MI", "Italia");
                 Cliente c1 = new Cliente("Pinco Pallino", "0", "no", "8301", "PNCPLNlol", i);
                 Fornitore fo1 = new Fornitore("Pallo Pinchino", "13109", "forse", "9329239", i);
@@ -66,9 +66,9 @@ namespace Team19.Persistence
                 return _soggetti;
             }
 
-            public List<Model.Fattura> LoadFatture()
+            public Fatture LoadFatture()
             {
-                _fatture = new List<Fattura>();
+                _fatture = new Fatture();
                 FatturaAcquisto f1 = FatturaAcquisto.CreateFatturaAcquisto(_soggetti.OfType<Fornitore>().First(), DateTime.Now, 1003, new Currency(10004.23m));
                 RigaFattura riga1 = new RigaFattura(10, _prodotti.First());
                 RigaFattura riga2 = new RigaFattura(320, _prodotti.First());
@@ -85,25 +85,25 @@ namespace Team19.Persistence
                 return _fatture;
             }
 
-            public List<Model.DepositoDiDenaro> LoadContenitori()
+            public ContenitoriDiDenaro LoadContenitori()
             {
-                _contenitoriDiDenaro = new List<DepositoDiDenaro>();
+                _contenitoriDiDenaro = new ContenitoriDiDenaro();
                 ContoCorrenteBancario cc = new ContoCorrenteBancario("AOSIDJHOGIHAPI", new Currency(10000m));
                 _contenitoriDiDenaro.Add(cc);
                 return _contenitoriDiDenaro;
             }
 
-            public List<Model.Prodotto> LoadProdotti()
+            public Prodotti LoadProdotti()
             {
-                _prodotti = new List<Prodotto>();
+                _prodotti = new Prodotti();
                 Prodotto p1 = new Prodotto(new Currency(10m), "palla", new CodiceProdotto("PAL11400"));
                 _prodotti.Add(p1);
                 return _prodotti;
             }
 
-            public List<Model.Dipendente> LoadDipendenti()
+            public Dipendenti LoadDipendenti()
             {
-                _dipendenti = new List<Dipendente>();
+                _dipendenti = new Dipendenti();
 
                 _dipendenti.Add(new Dipendente("aymen2011", "12345", "aymen", "chakroun", TipoDipendente.Amministratore));
                 _dipendenti.Add(new Dipendente("francesco2011", "12345", "francesco", "casimiro", TipoDipendente.Amministratore));
@@ -114,7 +114,7 @@ namespace Team19.Persistence
                 return _dipendenti;
             }
 
-            public Model.Cassa LoadCassa()
+            public Cassa LoadCassa()
             {
                 _cassa = new Cassa(new Currency(10000.00m));
                 return _cassa;

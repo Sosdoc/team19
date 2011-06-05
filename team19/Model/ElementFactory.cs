@@ -16,9 +16,9 @@ namespace Team19.Model
         }
 
         [MetodoCreazione("FatturaAcquisto", new Type[] { typeof(ComboBox), typeof(DateTimePicker), typeof(TextBox), typeof(TextBox) })]
-        public static FatturaAcquisto CreateFatturaAcquisto(Fornitore fornitore, string data, int numero, string importo)
+        public static FatturaAcquisto CreateFatturaAcquisto(Fornitore fornitore, string data, string numero, string importo)
         {
-            return FatturaAcquisto.CreateFatturaAcquisto(fornitore, DateTime.Parse(data) , numero, Currency.ParseCurrency(importo));
+            return FatturaAcquisto.CreateFatturaAcquisto(fornitore, DateTime.Parse(data) , Int32.Parse(numero), Currency.ParseCurrency(importo));
         }
         #endregion
 
