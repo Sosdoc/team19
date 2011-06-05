@@ -20,7 +20,7 @@ namespace Team19.Presentation
         {
             InitializeComponent();
             _controller = new Controller(_documentListView, _dataGridView);
-
+            aggiungiToolStripMenuItem.Click += _controller.CreaElemento;
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -49,16 +49,7 @@ namespace Team19.Presentation
             }
         }
 
-        private void aggiungiToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (_documentListView.SelectedItem != null)
-            {
-                using (InsertForm form = new InsertForm(_dataGridView.DataType))
-                {
-                    form.ShowDialog();
-                }
-            }
-        }
+        
 
     }
 }

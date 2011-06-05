@@ -91,7 +91,7 @@ namespace Team19.Model
 
         #endregion
 
-        #region Document members
+        #region Document Instance
 
         public static void CreateInstance(IDocumentPersister persister)
         {
@@ -107,7 +107,9 @@ namespace Team19.Model
             //    throw new ApplicationException("Nessun utente connesso");
             return _instance;
         }
+        #endregion
 
+        #region Document Autenticazione/Persistenza
         private void IsAmministratore()
         {
             if (!UtenteConnesso.Ruolo.Equals(TipoDipendente.Amministratore))
@@ -154,7 +156,9 @@ namespace Team19.Model
             //questo metodo non fa nulla -- defaultPersister lancia NotImplementedException
             //_persister.Save();
         }
+        #endregion
 
+        #region Document utility
         public IList<Cliente> GetClienti()
         {
             return this.Soggetti.OfType<Cliente>().ToList();
