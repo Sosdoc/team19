@@ -61,11 +61,13 @@ namespace Team19.Model
         {
             return MovimentoFactory.CreateMovimentoInterno(sorgente, destinazione, importo, data, causale);
         }
+
         [MetodoCreazione("Versamento", new Type[] { typeof(Label), typeof(ComboBox), typeof(TextBox), typeof(DateTimePicker), typeof(TextBox) })]
-        public static MovimentoDiDenaro CreateMovimentoInterno(Cassa sorgente, DepositoDiDenaro destinazione, Currency importo, DateTime data, string causale)
+        public static MovimentoDiDenaro CreateMovimentoInterno(Cassa sorgente, DepositoDiDenaro destinazione, string importo, string data, string causale)
         {
-            return MovimentoFactory.CreateMovimentoInterno(sorgente, destinazione, importo, data, causale);
+            return MovimentoFactory.CreateMovimentoInterno(sorgente, destinazione, Currency.ParseCurrency(importo), DateTime.Parse(data), causale);
         }
+
         [MetodoCreazione("Spostamento", new Type[] { typeof(ComboBox), typeof(ComboBox), typeof(TextBox), typeof(DateTimePicker), typeof(TextBox) })]
         public static MovimentoDiDenaro CreateMovimentoInterno(DepositoDiDenaro sorgente, DepositoDiDenaro destinazione, Currency importo, DateTime data, string causale)
         {
