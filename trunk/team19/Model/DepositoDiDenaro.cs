@@ -9,8 +9,6 @@ namespace Team19.Model
     {
         public DepositoDiDenaro(Currency saldoIniziale)
             : base(saldoIniziale)
-        { }
-
-        
+        { }        
     }
 }

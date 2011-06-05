@@ -49,7 +49,8 @@ namespace Team19.Presentation
                 object[] attributes = info.GetCustomAttributes(typeof(ControlloAssociatoAttribute), true);
                 if (attributes.Count() != 0)
                 {
-                    Type tipoControlloAssociato = ((ControlloAssociatoAttribute)info.GetCustomAttributes(typeof(ControlloAssociatoAttribute), true)[0]).Controllo;
+                    ControlloAssociatoAttribute attributoTipoControllo = (ControlloAssociatoAttribute)info.GetCustomAttributes(typeof(ControlloAssociatoAttribute), true)[0];
+                    Type tipoControlloAssociato = attributoTipoControllo.Controllo;
                     Label propertyLabel = new Label();
                     propertyLabel.Text = info.Name;
                     _detailsPanel.Controls.Add(propertyLabel);
@@ -57,16 +58,19 @@ namespace Team19.Presentation
                     _detailsPanel.Controls.Add(controlloAssociato);
                     if (controlloAssociato is ComboBox)
                     {
-                        foreach (PropertyInfo docInfo in Document.GetInstance().GetType().GetProperties())
+                        foreach (MethodInfo method in Document.GetInstance().GetType().GetMethods())
                         {
                             //Provare con attributo custom nei metodi di document (aggiungere getter per i sottotipi
-                            Type[] generics = docInfo.PropertyType.GetGenericArguments();
-                            if (generics.Contains(info.PropertyType.BaseType))
+                            Type returnType = method.ReturnType;
+                            if (attributoTipoControllo.Tipo != null && attributoTipoControllo.Tipo.Equals(returnType))
                             {
-                                
-                                    ((ComboBox)controlloAssociato).DataSource = docInfo.GetValue(Document.GetInstance(), null);
+                                ((ComboBox)controlloAssociato).DataSource = method.Invoke(Document.GetInstance(), null);
                             }
                         }
+                    }
+                    if (controlloAssociato is Label)
+                    {
+                        ((Label)controlloAssociato).Text = attributoTipoControllo.Tipo.Name;
                     }
 
                 }

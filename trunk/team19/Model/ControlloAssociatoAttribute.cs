@@ -10,7 +10,9 @@ namespace Team19.Model
     class ControlloAssociatoAttribute : System.Attribute
     {
         private Type _controllo;
+        private Type _tipo;
 
+        
         public ControlloAssociatoAttribute(Type controllo)
         {
             if (!controllo.IsSubclassOf(typeof(Control)))
@@ -20,10 +22,22 @@ namespace Team19.Model
             
         }
 
+        public ControlloAssociatoAttribute(Type controllo, Type tipo)
+            : this(controllo)
+        {
+            _tipo = tipo;
+        }
+
         public Type Controllo
         {
             get { return _controllo; }
             set { _controllo = value; }
+        }
+
+        public Type Tipo
+        {
+            get { return _tipo; }
+            set { _tipo = value; }
         }
 
 

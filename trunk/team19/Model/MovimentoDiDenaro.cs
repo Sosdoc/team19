@@ -41,14 +41,14 @@ namespace Team19.Model
 
         [Browsable(false)]
         [ControlloAssociato(typeof(ComboBox))]
-        public ISorgente Sorgente
+        public virtual ISorgente Sorgente
         {
             get { return _sorgente; }
         }
 
         [Browsable(false)]
         [ControlloAssociato(typeof(ComboBox))]
-        public IDestinazione Destinazione
+        public virtual IDestinazione Destinazione
         {
             get { return _destinazione; }
         }
@@ -65,7 +65,6 @@ namespace Team19.Model
             get { return Destinazione.ToString(); }
         }
 
-        [ControlloAssociato(typeof(ComboBox))]
         public Dipendente Dipendente
         {
             get { return _dipendente; }

@@ -29,18 +29,18 @@
         private void InitializeComponent()
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this._detailsBox = new System.Windows.Forms.GroupBox();
-            this._buttonPanel = new System.Windows.Forms.Panel();
-            this._cancelButton = new System.Windows.Forms.Button();
-            this._okButton = new System.Windows.Forms.Button();
             this._subtypeCombo = new System.Windows.Forms.ComboBox();
+            this._buttonPanel = new System.Windows.Forms.Panel();
+            this._okButton = new System.Windows.Forms.Button();
+            this._cancelButton = new System.Windows.Forms.Button();
+            this._detailsBox = new System.Windows.Forms.GroupBox();
             this._detailsPanel = new System.Windows.Forms.FlowLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            this._detailsBox.SuspendLayout();
             this._buttonPanel.SuspendLayout();
+            this._detailsBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -62,15 +62,14 @@
             this.splitContainer1.SplitterDistance = 25;
             this.splitContainer1.TabIndex = 0;
             // 
-            // _detailsBox
+            // _subtypeCombo
             // 
-            this._detailsBox.Controls.Add(this._detailsPanel);
-            this._detailsBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._detailsBox.Location = new System.Drawing.Point(0, 0);
-            this._detailsBox.Name = "_detailsBox";
-            this._detailsBox.Size = new System.Drawing.Size(500, 378);
-            this._detailsBox.TabIndex = 0;
-            this._detailsBox.TabStop = false;
+            this._subtypeCombo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._subtypeCombo.FormattingEnabled = true;
+            this._subtypeCombo.Location = new System.Drawing.Point(0, 0);
+            this._subtypeCombo.Name = "_subtypeCombo";
+            this._subtypeCombo.Size = new System.Drawing.Size(500, 21);
+            this._subtypeCombo.TabIndex = 0;
             // 
             // _buttonPanel
             // 
@@ -82,16 +81,6 @@
             this._buttonPanel.Size = new System.Drawing.Size(500, 35);
             this._buttonPanel.TabIndex = 1;
             // 
-            // _cancelButton
-            // 
-            this._cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this._cancelButton.Location = new System.Drawing.Point(413, 9);
-            this._cancelButton.Name = "_cancelButton";
-            this._cancelButton.Size = new System.Drawing.Size(75, 23);
-            this._cancelButton.TabIndex = 0;
-            this._cancelButton.Text = "Annulla";
-            this._cancelButton.UseVisualStyleBackColor = true;
-            // 
             // _okButton
             // 
             this._okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -102,14 +91,25 @@
             this._okButton.Text = "OK";
             this._okButton.UseVisualStyleBackColor = true;
             // 
-            // _subtypeCombo
+            // _cancelButton
             // 
-            this._subtypeCombo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._subtypeCombo.FormattingEnabled = true;
-            this._subtypeCombo.Location = new System.Drawing.Point(0, 0);
-            this._subtypeCombo.Name = "_subtypeCombo";
-            this._subtypeCombo.Size = new System.Drawing.Size(500, 21);
-            this._subtypeCombo.TabIndex = 0;
+            this._cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this._cancelButton.Location = new System.Drawing.Point(413, 9);
+            this._cancelButton.Name = "_cancelButton";
+            this._cancelButton.Size = new System.Drawing.Size(75, 23);
+            this._cancelButton.TabIndex = 0;
+            this._cancelButton.Text = "Annulla";
+            this._cancelButton.UseVisualStyleBackColor = true;
+            // 
+            // _detailsBox
+            // 
+            this._detailsBox.Controls.Add(this._detailsPanel);
+            this._detailsBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._detailsBox.Location = new System.Drawing.Point(0, 0);
+            this._detailsBox.Name = "_detailsBox";
+            this._detailsBox.Size = new System.Drawing.Size(500, 378);
+            this._detailsBox.TabIndex = 0;
+            this._detailsBox.TabStop = false;
             // 
             // _detailsPanel
             // 
@@ -131,8 +131,8 @@
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
-            this._detailsBox.ResumeLayout(false);
             this._buttonPanel.ResumeLayout(false);
+            this._detailsBox.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

@@ -26,7 +26,7 @@ namespace Team19.Model
             get;
         }
 
-        [ControlloAssociato(typeof(TextBox))]
+        
         public Currency SaldoIniziale
         {
             get { return _saldoIniziale; }
@@ -74,7 +74,7 @@ namespace Team19.Model
                 Changed(this, EventArgs.Empty);
         }
 
-
+        //metodo di cui fare l'override per il corretto funzioamento del saldo
         public abstract override bool Equals(object obj);
 
         public override int GetHashCode()
