@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Team19.Persistence;
-
+using System.ComponentModel;
 namespace Team19.Model
 {
     class Document
@@ -125,25 +125,25 @@ namespace Team19.Model
             set { _utenteConnesso = value; }
         }
 
-        [NomeVisualizzato("Dipendenti")]
+        [DisplayName("Dipendenti")]
         public IList<Dipendente> Dipendenti 
         {
             get
             {
-                if (_utenteConnesso!=null && _utenteConnesso.Ruolo != TipoDipendente.Amministratore) 
-                    throw new InvalidOperationException("L'utente corrente non dispone dei privilegi di amministratore");
+                if (_utenteConnesso != null && _utenteConnesso.Ruolo != TipoDipendente.Amministratore)
+                    return null;
                 return _dipendenti;
             }
 
         }
 
-        [NomeVisualizzato("Movimenti")]
+        [DisplayName("Movimenti")]
         public IList<MovimentoDiDenaro> Movimenti
         {
             get { return _movimenti; }
         }
 
-        [NomeVisualizzato("Depositi")]
+        [DisplayName("Depositi")]
         public IList<ContenitoreDiDenaro> ContenitoriDiDenaro
         {
             get { return _contenitoriDiDenaro; }
@@ -154,19 +154,19 @@ namespace Team19.Model
             get { return _cassa; }
         }
 
-        [NomeVisualizzato("Fatture")]
+        [DisplayName("Fatture")]
         public IList<Fattura> Fatture
         {
             get { return _fatture; }
         }
 
-        [NomeVisualizzato("Prodotti")]
+        [DisplayName("Prodotti")]
         public IList<Prodotto> Prodotti
         {
             get { return _prodotti; }
         }
 
-        [NomeVisualizzato("Soggetti")]
+        [DisplayName("Soggetti")]
         public IList<Soggetto> Soggetti
         {
             get { return _soggetti; }

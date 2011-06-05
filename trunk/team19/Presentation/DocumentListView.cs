@@ -91,16 +91,19 @@ namespace Team19.Presentation
 
             foreach (PropertyInfo info in Document.GetInstance().GetType().GetProperties())
             {
-                object[] attributes = info.GetCustomAttributes(typeof(NomeVisualizzatoAttribute), true);
+                object[] attributes = info.GetCustomAttributes(typeof(DisplayNameAttribute), true);
                 if (attributes.Count() != 0)
                 {
-                    string nomeVisualizzato = ((NomeVisualizzatoAttribute)attributes[0]).NomeVisualizzato;
+                    string nomeVisualizzato = ((DisplayNameAttribute)attributes[0]).DisplayName;
                     ListViewItem item = new ListViewItem(nomeVisualizzato);
                     try
                     {
                         item.Tag = info.GetValue(Document.GetInstance(), null);
-                        item.ImageKey = nomeVisualizzato;
-                        Items.Add(item);
+                        if (item.Tag != null)
+                        {
+                            item.ImageKey = nomeVisualizzato;
+                            Items.Add(item);
+                        }
                     }
                     catch (Exception ex)
                     { }

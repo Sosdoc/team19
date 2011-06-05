@@ -78,7 +78,6 @@
     <Compile Include="Model\IPersister.cs" />
     <Compile Include="Model\MovimentoDiDenaro.cs" />
     <Compile Include="Model\MovimentoFactory.cs" />
-    <Compile Include="Model\NomeVisualizzatoAttribute.cs" />
     <Compile Include="Model\Prodotto.cs" />
     <Compile Include="Model\Riepilogo.cs" />
     <Compile Include="Model\RiepilogoFactory.cs" />
