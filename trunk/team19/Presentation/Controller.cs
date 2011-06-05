@@ -29,15 +29,10 @@ namespace Team19.Presentation
                 if (auth.ShowDialog() == DialogResult.OK)
                 {
                     #region initialize
-                    try
-                    {
-                        Document.CreateInstance(new DefaultPersister());
-                        _document = Document.GetInstance();
-                        _document.Autentica(auth.Username, auth.Password);
-                    }
-                    catch (InvalidOperationException ex)
-                    { }
 
+                    Document.CreateInstance(new DefaultPersister());
+                    _document = Document.GetInstance();
+                    _document.Autentica(auth.Username, auth.Password);
 
                     //if (Document.GetInstance().UtenteConnesso == null)
                     _dataGridView.DataSource = _document.Movimenti;
@@ -74,7 +69,8 @@ namespace Team19.Presentation
                 if (form.ShowDialog() == DialogResult.OK)
                 {
                     PropertyInfo property = _document.GetType().GetProperties().Where(prop => prop.PropertyType.GetGenericArguments().Contains(_dataGridView.DataType)).First();
-                    ((IList<object>)property.GetValue(_document, null)).Add(form.ElementoCreato);
+                    _document.Add(form.ElementoCreato);
+                    //((IList<object>)property.GetValue(_document, null)).Add(form.ElementoCreato);
                 }
             }
         }

@@ -89,7 +89,7 @@ namespace Team19.Model
                 get
                 {
                     IEnumerable<FatturaVendita> fatture =
-                        from fattura in Document.GetInstance().GetFattureVendita()
+                        from fattura in Document.GetInstance().Fatture.OfType<FatturaVendita>()
                         join movimento in Document.GetInstance().GetIncassiVendite() on fattura equals (FatturaVendita)movimento.Sorgente
                         where fattura.Cliente.Equals(Soggetto)
                         select fattura;
@@ -127,7 +127,7 @@ namespace Team19.Model
                 get
                 {
                     IEnumerable<FatturaAcquisto> fatture =
-                        from fattura in Document.GetInstance().GetFattureAcquisto()
+                        from fattura in Document.GetInstance().Fatture.OfType<FatturaAcquisto>()
                         join movimento in Document.GetInstance().GetPagamentiAcquisti() on fattura equals (FatturaAcquisto)movimento.Destinazione
                         where fattura.Fornitore.Equals(Soggetto)
                         select fattura;

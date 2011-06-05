@@ -47,17 +47,17 @@ namespace Team19.Model
             throw new NotImplementedException();
         }
         [MetodoCreazione("PagamentoAcquisto", new Type[] { typeof(ComboBox), typeof(ComboBox), typeof(DateTimePicker), typeof(TextBox) })]
-        public static MovimentoDiDenaro CreatePagamentoAcquisto(ISorgente sorgente, IDestinazione destinazione, string data, string causale)
+        public static MovimentoDiDenaro CreatePagamentoAcquisto(ContenitoreDiDenaro sorgente, FatturaAcquisto destinazione, string data, string causale)
         {
             return MovimentoFactory.CreatePagamentoAcquisto(sorgente, destinazione, DateTime.Parse(data), causale);
         }
 
         [MetodoCreazione("IncassoVendita", new Type[] { typeof(ComboBox), typeof(ComboBox), typeof(DateTimePicker), typeof(TextBox) })]
-        public static MovimentoDiDenaro CreateIncassoVendita(FatturaVendita sorgente, IDestinazione destinazione, string data, string causale)
+        public static MovimentoDiDenaro CreateIncassoVendita(FatturaVendita sorgente, ContenitoreDiDenaro destinazione, string data, string causale)
         {
             return MovimentoFactory.CreateIncassoVendita(sorgente, destinazione, DateTime.Parse(data), causale);
         }
-        [MetodoCreazione("Prelievo", new Type[] { typeof(ComboBox), typeof(Label), typeof(TextBox), typeof(DateTimePicker), typeof(TextBox) })]
+        [MetodoCreazione("Prelievo", new Type[] { typeof(ComboBox), typeof(ComboBox), typeof(TextBox), typeof(DateTimePicker), typeof(TextBox) })]
         public static MovimentoDiDenaro CreateMovimentoInterno(DepositoDiDenaro sorgente, Cassa destinazione, string importo, string data, string causale)
         {
             return MovimentoFactory.CreateMovimentoInterno(sorgente, destinazione, Currency.ParseCurrency(importo), DateTime.Parse(data), causale);

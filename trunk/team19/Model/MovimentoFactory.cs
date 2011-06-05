@@ -24,7 +24,7 @@ namespace Team19.Model
         }
 
         [MetodoCreazione("PagamentoAcquisto", new Type[] { typeof(ComboBox), typeof(ComboBox), typeof(DateTimePicker), typeof(TextBox) })]
-        public static MovimentoDiDenaro CreatePagamentoAcquisto(ISorgente sorgente, IDestinazione destinazione, DateTime data, string causale)
+        public static MovimentoDiDenaro CreatePagamentoAcquisto(ContenitoreDiDenaro sorgente, FatturaAcquisto destinazione, DateTime data, string causale)
         {
             return new PagamentoAcquisto(sorgente, destinazione, data, Document.GetInstance().UtenteConnesso, causale);
         }
@@ -35,7 +35,7 @@ namespace Team19.Model
         }
 
         [MetodoCreazione("IncassoVendita", new Type[] { typeof(ComboBox), typeof(ComboBox), typeof(DateTimePicker), typeof(TextBox) })]
-        public static MovimentoDiDenaro CreateIncassoVendita(FatturaVendita sorgente, IDestinazione destinazione, DateTime data, string causale)
+        public static MovimentoDiDenaro CreateIncassoVendita(FatturaVendita sorgente, ContenitoreDiDenaro destinazione, DateTime data, string causale)
         {
             return new IncassoVendita(sorgente, destinazione, data, Document.GetInstance().UtenteConnesso, causale);
         }

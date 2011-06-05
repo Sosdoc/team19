@@ -40,8 +40,6 @@ namespace Team19.Presentation
                 _subtypeCombo.Items.Add(tipoElemento);
                 _subtypeCombo.SelectedItem = tipoElemento;
                 InizializzaForm(this, EventArgs.Empty);
-
-
             }
             _detailsBox.Text = "Inserimento " + tipoElemento.Name;
             _subtypeCombo.SelectionChangeCommitted += InizializzaForm;
@@ -55,7 +53,8 @@ namespace Team19.Presentation
                 if (method.GetCustomAttributes(typeof(MetodoCreazioneAttribute), false).Count() != 0)
                 {
                     MetodoCreazioneAttribute metodoCreazione = (MetodoCreazioneAttribute)method.GetCustomAttributes(typeof(MetodoCreazioneAttribute), false).First();
-                    if (tipoElemento.Name.Equals(metodoCreazione.Tipo)) return method;
+                    if (tipoElemento.Name.Equals(metodoCreazione.Tipo))
+                        return method;
                 }
             }
             return null;
@@ -78,7 +77,7 @@ namespace Team19.Presentation
                 {
                     foreach (MethodInfo docMethod in Document.GetInstance().GetType().GetMethods())
                     {
-                        //Provare con attributo custom nei metodi di document (aggiungere getter per i sottotipi
+                        //Provare con attributo custom nei metodi di document (aggiungere getter per i sottotipis
                         if (docMethod.ReturnType.GetGenericArguments().Count() != 0)
                         {
                             Type genericType = docMethod.ReturnType.GetGenericArguments()[0];
@@ -86,7 +85,7 @@ namespace Team19.Presentation
                             if (genericType.Equals(type) || (genericType.GetInterfaces().Count() != 0 && type.Equals(genericType.GetInterfaces().First())))
                             {
                                 ((ComboBox)parameterControl).DataSource = docMethod.Invoke(Document.GetInstance(), null);
-                                
+
                             }
                         }
                     }
@@ -97,17 +96,10 @@ namespace Team19.Presentation
 
                 }
             }
-            //    }
-            //}
-
-            //}
-
         }
 
         private void _cancelButton_Click(object sender, EventArgs e)
         {
-            
-
             this.Close();
         }
 
@@ -120,14 +112,14 @@ namespace Team19.Presentation
                 List<object> parameters = new List<object>();
                 foreach (Control c in _detailsPanel.Controls)
                 {
-                    
-                    if (c.Tag !=null)
+
+                    if (c.Tag != null)
                     {
                         if (c is ComboBox)
                             parameters.Add(((ComboBox)c).SelectedItem);
                         else
                             parameters.Add(c.Text);
-                        
+
                     }
                 }
 
