@@ -35,8 +35,9 @@ namespace Team19.Persistence
             public List<Model.MovimentoDiDenaro> LoadMovimenti()
             {
                 _movimenti = new List<MovimentoDiDenaro>();
-                MovimentoDiDenaro m1 = MovimentoFactory.CreatePagamentoAcquisto(_cassa, _fatture.OfType<FatturaAcquisto>().ElementAt(0), DateTime.Now, 
-                    _dipendenti.ElementAt(0), "asd");
+                
+                MovimentoDiDenaro m1 = MovimentoFactory.CreatePagamentoAcquisto(_cassa, _fatture.OfType<FatturaAcquisto>().ElementAt(0), DateTime.Now,
+                   _dipendenti.ElementAt(0), "asd");
                 MovimentoDiDenaro m2 = MovimentoFactory.CreateIncassoVendita(_fatture.OfType<FatturaVendita>().ElementAt(0), _cassa, DateTime.Now,
                     _dipendenti.ElementAt(2), "asd");               
                 MovimentoDiDenaro m3 = MovimentoFactory.CreateMovimentoInterno(_cassa, _contenitoriDiDenaro.OfType<ContoCorrenteBancario>().ElementAt(0), 

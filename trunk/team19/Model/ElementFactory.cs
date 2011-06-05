@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+using System.Windows.Forms;
 namespace Team19.Model
 {
     static class ElementFactory
@@ -41,30 +41,30 @@ namespace Team19.Model
         {
             throw new NotImplementedException();
         }
-
-        public static MovimentoDiDenaro CreatePagamentoAcquisto(ISorgente sorgente, IDestinazione destinazione, DateTime data, Dipendente dipendente, string causale)
+        [MetodoCreazione("PagamentoAcquisto", new Type[] { typeof(ComboBox), typeof(ComboBox), typeof(DateTimePicker), typeof(TextBox) })]
+        public static MovimentoDiDenaro CreatePagamentoAcquisto(ISorgente sorgente, IDestinazione destinazione, DateTime data, string causale)
         {
-            return MovimentoFactory.CreatePagamentoAcquisto(sorgente, destinazione, data, dipendente, causale);
+            return MovimentoFactory.CreatePagamentoAcquisto(sorgente, destinazione, data, causale);
         }
-
-        public static MovimentoDiDenaro CreateIncassoVendita(FatturaVendita sorgente, IDestinazione destinazione, DateTime data, Dipendente dipendente, string causale)
+        [MetodoCreazione("IncassoVendita", new Type[] { typeof(ComboBox), typeof(ComboBox), typeof(DateTimePicker), typeof(TextBox) })]
+        public static MovimentoDiDenaro CreateIncassoVendita(FatturaVendita sorgente, IDestinazione destinazione, DateTime data, string causale)
         {
-            return MovimentoFactory.CreateIncassoVendita(sorgente, destinazione, data, dipendente, causale);
+            return MovimentoFactory.CreateIncassoVendita(sorgente, destinazione, data, causale);
         }
-
-        public static MovimentoDiDenaro CreateMovimentoInterno(Cassa sorgente, DepositoDiDenaro destinazione, Currency importo, DateTime data, Dipendente dipendente, string causale)
+        [MetodoCreazione("Prelievo", new Type[] { typeof(ComboBox), typeof(Label), typeof(TextBox), typeof(DateTimePicker), typeof(TextBox) })]
+        public static MovimentoDiDenaro CreateMovimentoInterno(DepositoDiDenaro sorgente, Cassa destinazione, Currency importo, DateTime data, string causale)
         {
-            return MovimentoFactory.CreateMovimentoInterno(sorgente, destinazione, importo, data, dipendente, causale);
+            return MovimentoFactory.CreateMovimentoInterno(sorgente, destinazione, importo, data, causale);
         }
-
-        public static MovimentoDiDenaro CreateMovimentoInterno(DepositoDiDenaro sorgente, Cassa destinazione, Currency importo, DateTime data, Dipendente dipendente, string causale)
+        [MetodoCreazione("Versamento", new Type[] { typeof(Label), typeof(ComboBox), typeof(TextBox), typeof(DateTimePicker), typeof(TextBox) })]
+        public static MovimentoDiDenaro CreateMovimentoInterno(Cassa sorgente, DepositoDiDenaro destinazione, Currency importo, DateTime data, string causale)
         {
-            return MovimentoFactory.CreateMovimentoInterno(sorgente, destinazione, importo, data, dipendente, causale);
+            return MovimentoFactory.CreateMovimentoInterno(sorgente, destinazione, importo, data, causale);
         }
-
-        public static MovimentoDiDenaro CreateMovimentoInterno(DepositoDiDenaro sorgente, DepositoDiDenaro destinazione, Currency importo, DateTime data, Dipendente dipendente, string causale)
+        [MetodoCreazione("Spostamento", new Type[] { typeof(ComboBox), typeof(ComboBox), typeof(TextBox), typeof(DateTimePicker), typeof(TextBox) })]
+        public static MovimentoDiDenaro CreateMovimentoInterno(DepositoDiDenaro sorgente, DepositoDiDenaro destinazione, Currency importo, DateTime data, string causale)
         {
-            return MovimentoFactory.CreateMovimentoInterno(sorgente, destinazione, importo, data, dipendente, causale);
+            return MovimentoFactory.CreateMovimentoInterno(sorgente, destinazione, importo, data, causale);
         }
         #endregion
 

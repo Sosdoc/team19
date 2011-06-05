@@ -13,7 +13,6 @@ namespace Team19.Model
         {
             throw new NotImplementedException();
         }
-
         public static MovimentoDiDenaro CreateSpesaBancaria(DepositoDiDenaro deposito, Currency importo, DateTime data, Dipendente dipendente, string causale)
         {
             throw new NotImplementedException();
@@ -24,24 +23,54 @@ namespace Team19.Model
             return new PagamentoAcquisto(sorgente, destinazione, data, dipendente, causale);
         }
 
+        [MetodoCreazione("PagamentoAcquisto", new Type[] { typeof(ComboBox), typeof(ComboBox), typeof(DateTimePicker), typeof(TextBox) })]
+        public static MovimentoDiDenaro CreatePagamentoAcquisto(ISorgente sorgente, IDestinazione destinazione, DateTime data, string causale)
+        {
+            return new PagamentoAcquisto(sorgente, destinazione, data, Document.GetInstance().UtenteConnesso, causale);
+        }
+
         public static MovimentoDiDenaro CreateIncassoVendita(FatturaVendita sorgente, IDestinazione destinazione, DateTime data, Dipendente dipendente, string causale)
         {
             return new IncassoVendita(sorgente, destinazione, data, dipendente, causale);
         }
 
-        public static MovimentoDiDenaro CreateMovimentoInterno(Cassa sorgente, DepositoDiDenaro destinazione, Currency importo, DateTime data, Dipendente dipendente, string causale)
+        [MetodoCreazione("IncassoVendita", new Type[] { typeof(ComboBox), typeof(ComboBox), typeof(DateTimePicker), typeof(TextBox) })]
+        public static MovimentoDiDenaro CreateIncassoVendita(FatturaVendita sorgente, IDestinazione destinazione, DateTime data, string causale)
+        {
+            return new IncassoVendita(sorgente, destinazione, data, Document.GetInstance().UtenteConnesso, causale);
+        }
+
+        public static MovimentoDiDenaro CreateMovimentoInterno(DepositoDiDenaro sorgente,Cassa destinazione, Currency importo, DateTime data, Dipendente dipendente, string causale)
         {
             return new Prelievo(sorgente, destinazione, importo, data, dipendente, causale);
         }
 
-        public static MovimentoDiDenaro CreateMovimentoInterno(DepositoDiDenaro sorgente, Cassa destinazione, Currency importo, DateTime data, Dipendente dipendente, string causale)
+        [MetodoCreazione("Prelievo", new Type[] { typeof(ComboBox), typeof(Label), typeof(TextBox), typeof(DateTimePicker), typeof(TextBox) })]
+        public static MovimentoDiDenaro CreateMovimentoInterno(DepositoDiDenaro sorgente, Cassa destinazione, Currency importo, DateTime data, string causale)
+        {
+            return new Prelievo(sorgente, destinazione, importo, data, Document.GetInstance().UtenteConnesso, causale);
+        }
+
+        public static MovimentoDiDenaro CreateMovimentoInterno(Cassa sorgente,DepositoDiDenaro  destinazione, Currency importo, DateTime data, Dipendente dipendente, string causale)
         {
             return new Versamento(sorgente, destinazione, importo, data, dipendente, causale);
+        }
+
+        [MetodoCreazione("Versamento", new Type[] {  typeof(Label), typeof(ComboBox), typeof(TextBox), typeof(DateTimePicker), typeof(TextBox) })]
+        public static MovimentoDiDenaro CreateMovimentoInterno(Cassa sorgente,DepositoDiDenaro destinazione, Currency importo, DateTime data, string causale)
+        {
+            return new Versamento(sorgente, destinazione, importo, data, Document.GetInstance().UtenteConnesso, causale);
         }
 
         public static MovimentoDiDenaro CreateMovimentoInterno(DepositoDiDenaro sorgente, DepositoDiDenaro destinazione, Currency importo, DateTime data, Dipendente dipendente, string causale)
         {
             return new Spostamento(sorgente, destinazione, importo, data, dipendente, causale);
+        }
+
+        [MetodoCreazione("Spostamento",new Type[]{typeof(ComboBox),typeof(ComboBox),typeof(TextBox),typeof(DateTimePicker),typeof(TextBox)})]
+        public static MovimentoDiDenaro CreateMovimentoInterno(DepositoDiDenaro sorgente, DepositoDiDenaro destinazione, Currency importo, DateTime data, string causale)
+        {
+            return new Spostamento(sorgente, destinazione, importo, data, Document.GetInstance().UtenteConnesso, causale);
         }
 
         private class PagamentoAcquisto : MovimentoDiDenaro
