@@ -38,9 +38,16 @@ namespace Team19.Presentation
             IRiepilogo riepilogo = RiepilogoFactory.CreateRiepilogo((Soggetto)_soggettiCombo.SelectedItem);
             IList<Fattura> listaFatture = new List<Fattura>();
 
-            if (_checkPagate.Checked) listaFatture = riepilogo.GetImportiPagati().ToList();
-            if (_checkNonPagate.Checked) listaFatture = riepilogo.GetImportiDaPagare().ToList();
-            
+            if (_checkPagate.Checked)
+            {
+                foreach(Fattura f in riepilogo.GetImportiPagati().ToList())
+                    listaFatture.Add(f);
+            }
+            if (_checkNonPagate.Checked)
+            {
+                foreach (Fattura f in riepilogo.GetImportiDaPagare().ToList())
+                    listaFatture.Add(f);
+            }
             _riepilogoDataGrid.DataSource = listaFatture;
         }
     }
