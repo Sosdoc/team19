@@ -141,7 +141,6 @@
             this.aggiungiToolStripMenuItem.Name = "aggiungiToolStripMenuItem";
             this.aggiungiToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.aggiungiToolStripMenuItem.Text = "Aggiungi";
-            this.aggiungiToolStripMenuItem.Click += new System.EventHandler(this.aggiungiToolStripMenuItem_Click);
             // 
             // modificaToolStripMenuItem1
             // 

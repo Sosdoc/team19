@@ -5,6 +5,7 @@ using System.Text;
 using System.Windows.Forms;
 using Team19.Model;
 using Team19.Persistence;
+using System.Reflection;
 namespace Team19.Presentation
 {
     class Controller
@@ -36,7 +37,7 @@ namespace Team19.Presentation
                     }
                     catch (InvalidOperationException ex)
                     { }
-                    
+
 
                     //if (Document.GetInstance().UtenteConnesso == null)
                     _dataGridView.DataSource = _document.Movimenti;
@@ -63,6 +64,18 @@ namespace Team19.Presentation
             using (FormRiepilogo formRiepilogo = new FormRiepilogo(s))
             {
                 formRiepilogo.ShowDialog();
+            }
+        }
+
+        public void CreaElemento(object sender, EventArgs e)
+        {
+            using (InsertForm form = new InsertForm(_dataGridView.DataType))
+            {
+                if (form.ShowDialog() == DialogResult.OK)
+                {
+                    PropertyInfo property = _document.GetType().GetProperties().Where(prop => prop.PropertyType.GetGenericArguments().Contains(_dataGridView.DataType)).First();
+                    ((IList<object>)property.GetValue(_document, null)).Add(form.ElementoCreato);
+                }
             }
         }
     }
