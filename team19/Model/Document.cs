@@ -185,9 +185,11 @@ namespace Team19.Model
             return this.ContenitoriDiDenaro.ToList();
         }
 
-        public Cassa GetCassa()
+        public IList<Cassa> GetCassa()
         {
-            return this.Cassa;
+            IList<Cassa> result = new List<Cassa>();
+            result.Add(Cassa);
+            return result;
         }
 
         public IEnumerable<MovimentoDiDenaro> GetPagamentiAcquisti()
