@@ -8,11 +8,14 @@ namespace Team19.Model
     static class ElementFactory
     {
         #region Fatture
+
+        [MetodoCreazione("FatturaVendita", new Type[] { typeof(ComboBox), typeof(DateTimePicker), typeof(TextBox) })]
         public static FatturaVendita CreateFatturaVendita(Cliente cliente, DateTime data, List<RigaFattura> elencoProdotti)
         {
             return FatturaVendita.CreateFatturaVendita(cliente, data, elencoProdotti);
         }
 
+        [MetodoCreazione("FatturaAcquisto", new Type[] { typeof(ComboBox), typeof(DateTimePicker), typeof(TextBox), typeof(TextBox) })]
         public static FatturaAcquisto CreateFatturaAcquisto(Fornitore fornitore, DateTime data, int numero, Currency importo)
         {
             return FatturaAcquisto.CreateFatturaAcquisto(fornitore, data, numero, importo);
@@ -20,11 +23,13 @@ namespace Team19.Model
         #endregion
 
         #region Soggetti
+        [MetodoCreazione("Cliente", new Type[] { typeof(TextBox), typeof(TextBox), typeof(TextBox), typeof(TextBox), typeof(TextBox), typeof(TextBox) })]
         public static Cliente CreateCliente(string denominazione, string telefono, string email, string partitaIva, string codiceFiscale, Indirizzo indirizzo)
         {
             return new Cliente(denominazione, telefono, email, partitaIva, codiceFiscale, indirizzo);
         }
 
+        [MetodoCreazione("Fornitore", new Type[] { typeof(TextBox), typeof(TextBox), typeof(TextBox), typeof(TextBox), typeof(TextBox), typeof(TextBox) })]
         public static Fornitore CreateFornitore(string denominazione, string telefono, string email, string partitaIva, Indirizzo indirizzo)
         {
             return new Fornitore(denominazione, telefono, email, partitaIva, indirizzo);
@@ -66,6 +71,34 @@ namespace Team19.Model
         {
             return MovimentoFactory.CreateMovimentoInterno(sorgente, destinazione, importo, data, causale);
         }
+        #endregion
+
+        #region Prodotti
+
+        [MetodoCreazione("Prodotto", new Type[] { typeof(TextBox), typeof(TextBox), typeof(TextBox) })]
+        public static Prodotto CreateProdotto(Currency prezzo, string descrizione, CodiceProdotto codice)
+        {
+            return new Prodotto(prezzo, descrizione, codice);
+        }
+
+        #endregion
+
+        #region Dipendenti
+        [MetodoCreazione("Dipendente", new Type[] { typeof(TextBox), typeof(TextBox), typeof(TextBox), typeof(TextBox), typeof(ComboBox) })]
+        public static Dipendente createDipendente(string username, string password, string nome, string cognome, TipoDipendente ruolo)
+        {
+            return new Dipendente(username, password, nome, cognome, ruolo);
+        }
+        #endregion
+
+        #region Contenitori di denaro
+        [MetodoCreazione("ContoCorrenteBancario", new Type[] { typeof(TextBox), typeof(TextBox)})]
+        public static ContoCorrenteBancario createContoCorrente(string IBAN, Currency saldoIniziale)
+        {
+            return new ContoCorrenteBancario(IBAN, saldoIniziale);
+        }
+
+
         #endregion
 
     }
