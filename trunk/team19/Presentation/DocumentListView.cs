@@ -27,7 +27,7 @@ namespace Team19.Presentation
 
         private void iconePiccoleToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
+
             _listView.View = View.SmallIcon;
             AggiornaLista(sender, e);
         }
@@ -51,12 +51,12 @@ namespace Team19.Presentation
             set
             { _listView.SmallImageList = value; }
         }
-        
+
         public ListView.ListViewItemCollection Items
         {
             get
             { return _listView.Items; }
-           
+
         }
         public View View
         {
@@ -74,7 +74,7 @@ namespace Team19.Presentation
         {
             get
             {
-                if(_listView.SelectedItems.Count!=0)
+                if (_listView.SelectedItems.Count != 0)
                     return _listView.SelectedItems[0];
                 return null;
             }
@@ -88,6 +88,7 @@ namespace Team19.Presentation
         private void AggiornaLista(object sender, EventArgs e)
         {
             _listView.Clear();
+
             foreach (PropertyInfo info in Document.GetInstance().GetType().GetProperties())
             {
                 object[] attributes = info.GetCustomAttributes(typeof(NomeVisualizzatoAttribute), true);
@@ -95,11 +96,17 @@ namespace Team19.Presentation
                 {
                     string nomeVisualizzato = ((NomeVisualizzatoAttribute)attributes[0]).NomeVisualizzato;
                     ListViewItem item = new ListViewItem(nomeVisualizzato);
-                    item.Tag = info.GetValue(Document.GetInstance(), null);
-                    item.ImageKey = nomeVisualizzato;
-                    Items.Add(item);
+                    try
+                    {
+                        item.Tag = info.GetValue(Document.GetInstance(), null);
+                        item.ImageKey = nomeVisualizzato;
+                        Items.Add(item);
+                    }
+                    catch (Exception ex)
+                    { }
                 }
             }
+
         }
     }
 }

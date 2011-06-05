@@ -64,5 +64,9 @@ namespace Team19.Presentation
                 }
             }
         }
+        public Type DataType
+        {
+            get { return _dataSource.GetType().GetGenericArguments()[0]; }
+        }
     }
 }

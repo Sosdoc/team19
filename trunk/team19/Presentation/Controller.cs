@@ -28,11 +28,15 @@ namespace Team19.Presentation
                 if (auth.ShowDialog() == DialogResult.OK)
                 {
                     #region initialize
-                    Document.CreateInstance(new DefaultPersister());
-
-                    Document.Autentica(auth.Username, auth.Password);
-
-                    _document = Document.GetInstance();
+                    try
+                    {
+                        Document.CreateInstance(new DefaultPersister());
+                        _document = Document.GetInstance();
+                        _document.Autentica(auth.Username, auth.Password);
+                    }
+                    catch (InvalidOperationException ex)
+                    { }
+                    
 
                     //if (Document.GetInstance().UtenteConnesso == null)
                     _dataGridView.DataSource = _document.Movimenti;

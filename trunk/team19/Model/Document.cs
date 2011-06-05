@@ -26,7 +26,7 @@ namespace Team19.Model
             this._persister = persister;
             _prodotti = new List<Prodotto>();
             _dipendenti = new List<Dipendente>();
-            
+
             _contenitoriDiDenaro = new List<ContenitoreDiDenaro>();
             _soggetti = new List<Soggetto>();
             _fatture = new List<Fattura>();
@@ -126,9 +126,14 @@ namespace Team19.Model
         }
 
         [NomeVisualizzato("Dipendenti")]
-        public IList<Dipendente> Dipendenti
+        public IList<Dipendente> Dipendenti 
         {
-            get { return _dipendenti; }
+            get
+            {
+                if (_utenteConnesso!=null && _utenteConnesso.Ruolo != TipoDipendente.Amministratore) 
+                    throw new InvalidOperationException("L'utente corrente non dispone dei privilegi di amministratore");
+                return _dipendenti;
+            }
 
         }
 
@@ -143,7 +148,7 @@ namespace Team19.Model
         {
             get { return _contenitoriDiDenaro; }
         }
-        
+
         public Cassa Cassa
         {
             get { return _cassa; }
@@ -192,26 +197,30 @@ namespace Team19.Model
                 throw new InvalidOperationException("Non hai privilegi di amministratore");
         }
 
-        public static void Autentica(string username, string password)
+        public void Autentica(string username, string password)
         {
-            IEnumerable<Dipendente> dipendenti = from dipendente in _instance._dipendenti
-                where dipendente.Username.Equals(username) && dipendente.Password.Equals(password)
-                select dipendente;
+            try
+            {
+                IEnumerable<Dipendente> dipendenti = from dipendente in _instance._dipendenti
+                                                     where dipendente.Username.Equals(username) && dipendente.Password.Equals(password)
+                                                     select dipendente;
 
-             Dipendente d = null;
+                Dipendente d = null;
 
-            if(dipendenti.Count() != 0)
-               d = dipendenti.First();
+                if (dipendenti.Count() != 0)
+                    d = dipendenti.First();
 
-            if (d == null) throw new KeyNotFoundException("Username o password non corrispondenti");
-            _instance._utenteConnesso = d;
-
+                if (d == null) throw new KeyNotFoundException("Username o password non corrispondenti");
+                _utenteConnesso = d;
+                OnChanged();
+            }
+            catch (InvalidOperationException ex) { }
         }
 
         private void Load()
         {
             IDocumentLoader loader = _persister.GetLoader();
-           
+
             _prodotti = loader.LoadProdotti();
             _dipendenti = loader.LoadDipendenti();
             _cassa = loader.LoadCassa();
