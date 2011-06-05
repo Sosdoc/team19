@@ -9,7 +9,7 @@ namespace Team19.Model
     class Document
     {
         private List<MovimentoDiDenaro> _movimenti;
-        private List<ContenitoreDiDenaro> _contenitoriDiDenaro;
+        private List<DepositoDiDenaro> _contenitoriDiDenaro;
         private List<Fattura> _fatture;
         private List<Prodotto> _prodotti; //meglio un dictionary?
         private List<Soggetto> _soggetti;
@@ -27,7 +27,7 @@ namespace Team19.Model
             _prodotti = new List<Prodotto>();
             _dipendenti = new List<Dipendente>();
 
-            _contenitoriDiDenaro = new List<ContenitoreDiDenaro>();
+            _contenitoriDiDenaro = new List<DepositoDiDenaro>();
             _soggetti = new List<Soggetto>();
             _fatture = new List<Fattura>();
             _movimenti = new List<MovimentoDiDenaro>();
@@ -61,11 +61,11 @@ namespace Team19.Model
         }
 
         [DisplayName("Depositi")]
-        public IList<ContenitoreDiDenaro> ContenitoriDiDenaro
+        public IList<DepositoDiDenaro> ContenitoriDiDenaro
         {
             get { return _contenitoriDiDenaro; }
         }
-
+        [DisplayName("Cassa")]
         public Cassa Cassa
         {
             get { return _cassa; }
@@ -188,7 +188,7 @@ namespace Team19.Model
             return this.ContenitoriDiDenaro.OfType<DepositoDiDenaro>().ToList();
         }
 
-        public IList<ContenitoreDiDenaro> GetContenitori()
+        public IList<DepositoDiDenaro> GetContenitori()
         {
             return this.ContenitoriDiDenaro.ToList();
         }

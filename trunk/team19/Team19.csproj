@@ -65,7 +65,6 @@
     <Compile Include="Model\CodiceProdotto.cs" />
     <Compile Include="Model\ContenitoreDiDenaro.cs" />
     <Compile Include="Model\ContoCorrenteBancario.cs" />
-    <Compile Include="Model\ControlloAssociatoAttribute.cs" />
     <Compile Include="Model\Currency.cs" />
     <Compile Include="Model\DepositoDiDenaro.cs" />
     <Compile Include="Model\Destinazione.cs" />

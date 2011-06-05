@@ -10,7 +10,6 @@ namespace Team19.Model
     {
         private string _codConto;
 
-        [ControlloAssociato(typeof(TextBox))]
         public override string Codice
         {
             get { return _codConto; }

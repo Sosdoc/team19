@@ -27,27 +27,23 @@ namespace Team19.Model
             _causale = causale;
         }
 
-        [ControlloAssociato(typeof(DateTimePicker))]
         public DateTime Data
         {
             get { return _data; }
         }
 
-        [ControlloAssociato(typeof(TextBox))]
         public abstract Currency Importo
         {
             get;
         }
 
         [Browsable(false)]
-        [ControlloAssociato(typeof(ComboBox))]
         public virtual ISorgente Sorgente
         {
             get { return _sorgente; }
         }
 
         [Browsable(false)]
-        [ControlloAssociato(typeof(ComboBox))]
         public virtual IDestinazione Destinazione
         {
             get { return _destinazione; }
@@ -75,7 +71,6 @@ namespace Team19.Model
             get { return _dataRegistrazione; }
         }
 
-        [ControlloAssociato(typeof(TextBox))]
         public string Causale
         {
             get { return _causale; }

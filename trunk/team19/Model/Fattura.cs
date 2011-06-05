@@ -11,13 +11,11 @@ namespace Team19.Model
         private DateTime _data;
         private int _numero;
 
-        [ControlloAssociato(typeof(TextBox))]
         public abstract Currency Importo
         {
             get;
         }
 
-        [ControlloAssociato(typeof(TextBox))]
         public int NumeroFattura
         {
             get
@@ -26,7 +24,6 @@ namespace Team19.Model
             }
         }
 
-        [ControlloAssociato(typeof(DateTimePicker))]
         public DateTime Data
         {
             get

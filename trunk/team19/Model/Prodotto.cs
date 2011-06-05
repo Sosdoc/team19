@@ -19,19 +19,16 @@ namespace Team19.Model
             this._codProdotto = codProdotto;
         }
 
-        [ControlloAssociato(typeof(TextBox))]
         public string Descrizione
         {
             get { return _descrizione; }
         }
 
-        [ControlloAssociato(typeof(TextBox))]
         public Currency Prezzo
         {
             get { return _prezzo; }
         }
 
-        [ControlloAssociato(typeof(TextBox))]
         public CodiceProdotto CodProdotto
         {
             get { return _codProdotto; }

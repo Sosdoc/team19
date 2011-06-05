@@ -27,31 +27,26 @@ namespace Team19.Model
             this._ruolo = ruolo;//A Amministratore o U  utente
         }
 
-        [ControlloAssociato(typeof(TextBox))]
         public string Nome
         {
             get { return _nome; }
         }
 
-        [ControlloAssociato(typeof(TextBox))]
         public string Cognome
         {
             get { return _cognome; }
         }
 
-        [ControlloAssociato(typeof(TextBox))]
         public string Username
         {
             get { return _username; }
         }
 
-        [ControlloAssociato(typeof(TextBox))]
         public string Password
         {
             get { return _password; }
         }
 
-        [ControlloAssociato(typeof(ComboBox))]
         public TipoDipendente Ruolo
         {
             get { return _ruolo; }

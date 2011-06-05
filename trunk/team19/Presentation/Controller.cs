@@ -64,14 +64,21 @@ namespace Team19.Presentation
 
         public void CreaElemento(object sender, EventArgs e)
         {
-            using (InsertForm form = new InsertForm(_dataGridView.DataType))
+            try
             {
-                if (form.ShowDialog() == DialogResult.OK)
+                using (InsertForm form = new InsertForm(_dataGridView.DataType))
                 {
-                    PropertyInfo property = _document.GetType().GetProperties().Where(prop => prop.PropertyType.GetGenericArguments().Contains(_dataGridView.DataType)).First();
-                    _document.Add(form.ElementoCreato);
-                    //((IList<object>)property.GetValue(_document, null)).Add(form.ElementoCreato);
+                    if (form.ShowDialog() == DialogResult.OK)
+                    {
+                        PropertyInfo property = _document.GetType().GetProperties().Where(prop => prop.PropertyType.GetGenericArguments().Contains(_dataGridView.DataType)).First();
+                        _document.Add(form.ElementoCreato);
+                        //((IList<object>)property.GetValue(_document, null)).Add(form.ElementoCreato);
+                    }
                 }
+            }
+            catch (InvalidOperationException ex)
+            {
+                MessageBox.Show(ex.Message,"Errore",MessageBoxButtons.OK,MessageBoxIcon.Error);
             }
         }
     }

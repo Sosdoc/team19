@@ -16,7 +16,7 @@ namespace Team19.Model
         List<MovimentoDiDenaro> LoadMovimenti();
         List<Soggetto> LoadSoggetti();
         List<Fattura> LoadFatture();
-        List<ContenitoreDiDenaro> LoadContenitori();
+        List<DepositoDiDenaro> LoadContenitori();
         List<Prodotto> LoadProdotti();
         List<Dipendente> LoadDipendenti();
         Cassa LoadCassa();

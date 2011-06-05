@@ -23,6 +23,8 @@ namespace Team19.Presentation
         public InsertForm(Type tipoElemento)
         {
             InitializeComponent();
+            _okButton.Click += CreaElemento;
+
             if (tipoElemento.IsAbstract)
             {
                 foreach (Type type in Assembly.GetAssembly(tipoElemento).GetTypes())
@@ -65,19 +67,23 @@ namespace Team19.Presentation
             _detailsPanel.Controls.Clear();
             _tipoElemento = (Type)_subtypeCombo.SelectedItem;
             MethodInfo metodoCreazione = trovaMetodoCreazione(_tipoElemento);
+            if (metodoCreazione == null) throw new InvalidOperationException("Impossibile aggiungere un nuovo oggetto");
+            Type[] controlli = ((MetodoCreazioneAttribute)metodoCreazione.GetCustomAttributes(typeof(MetodoCreazioneAttribute), false).First()).Controlli;
             for (int i = 0; i < metodoCreazione.GetParameters().Count(); i++)
             {
+                //Aggiunta label con nome della proprietà e controllo per inserimento del valore
                 Label parameterLabel = new Label();
-                parameterLabel.Text = metodoCreazione.GetParameters()[i].Name;
+                parameterLabel.Text = metodoCreazione.GetParameters()[i].Name.ToUpper();
                 _detailsPanel.Controls.Add(parameterLabel);
-                Control parameterControl = (System.Windows.Forms.Control)typeof(Form).Assembly.CreateInstance(((MetodoCreazioneAttribute)metodoCreazione.GetCustomAttributes(typeof(MetodoCreazioneAttribute), false)[0]).Controlli[i].FullName);
+                Control parameterControl = (System.Windows.Forms.Control)typeof(Form).Assembly.CreateInstance(controlli[i].FullName);
                 parameterControl.Tag = metodoCreazione.GetParameters()[i];
                 _detailsPanel.Controls.Add(parameterControl);
+
+                //Riempimento combobox
                 if (parameterControl is ComboBox)
                 {
                     foreach (MethodInfo docMethod in Document.GetInstance().GetType().GetMethods())
                     {
-                        //Provare con attributo custom nei metodi di document (aggiungere getter per i sottotipis
                         if (docMethod.ReturnType.GetGenericArguments().Count() != 0)
                         {
                             Type genericType = docMethod.ReturnType.GetGenericArguments()[0];
@@ -103,12 +109,11 @@ namespace Team19.Presentation
             this.Close();
         }
 
-        private void _okButton_Click(object sender, EventArgs e)
+        private void CreaElemento(object sender, EventArgs e)
         {
             MethodInfo metodoCreazione = trovaMetodoCreazione(_tipoElemento);
             if (metodoCreazione != null)
             {
-                Type t;
                 List<object> parameters = new List<object>();
                 foreach (Control c in _detailsPanel.Controls)
                 {
@@ -128,7 +133,6 @@ namespace Team19.Presentation
 
             this.Close();
         }
-
 
     }
 }
