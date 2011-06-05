@@ -14,6 +14,17 @@ namespace Team19.Model
         private string _provincia;
         private string _nazione;
 
+        public Indirizzo(string indirizzo)
+        {
+            string[] splitIndirizzo = indirizzo.Split(',');
+            _via = splitIndirizzo[0];
+            _numeroCivico = splitIndirizzo[1];
+            _cap = splitIndirizzo[2];
+            _località = splitIndirizzo[3];
+            _provincia = splitIndirizzo[4];
+            _nazione = splitIndirizzo[5];
+        }
+
         public Indirizzo(string via, string numeroCivico, string località, string cap, string provincia, string nazione)
         {
             _via = via;

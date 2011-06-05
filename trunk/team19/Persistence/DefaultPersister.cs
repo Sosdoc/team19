@@ -54,10 +54,10 @@ namespace Team19.Persistence
             {
                 _soggetti = new List<Soggetto>();
                 Indirizzo i = new Indirizzo("Via GianDomenico Puppa", "42", "Sucate", "02983", "MI", "Italia");
-                Cliente c1 = ElementFactory.CreateCliente("Pinco Pallino", "0", "no", "8301", "PNCPLNlol", i);
-                Fornitore fo1 = ElementFactory.CreateFornitore("Pallo Pinchino", "13109", "forse", "9329239", i);
-                Soggetto cf = ElementFactory.CreateCliente("Soshito Nakakata", "6786796", "dfhskh", "jhjkhlJH", "hgkhgkjhG", i);
-                Soggetto cf2 = ElementFactory.CreateFornitore("Soshito Nakakata", "6786796", "dfhskh", "jhjkhlJH", i);
+                Cliente c1 = new Cliente("Pinco Pallino", "0", "no", "8301", "PNCPLNlol", i);
+                Fornitore fo1 = new Fornitore("Pallo Pinchino", "13109", "forse", "9329239", i);
+                Soggetto cf = new Cliente("Soshito Nakakata", "6786796", "dfhskh", "jhjkhlJH", "hgkhgkjhG", i);
+                Soggetto cf2 = new Fornitore("Soshito Nakakata", "6786796", "dfhskh", "jhjkhlJH", i);
 
                 _soggetti.Add(fo1);
                 _soggetti.Add(c1);
