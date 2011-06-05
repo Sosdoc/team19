@@ -29,15 +29,17 @@
         private void InitializeComponent()
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this._detailsBox = new System.Windows.Forms.GroupBox();
             this._buttonPanel = new System.Windows.Forms.Panel();
             this._cancelButton = new System.Windows.Forms.Button();
             this._okButton = new System.Windows.Forms.Button();
             this._subtypeCombo = new System.Windows.Forms.ComboBox();
+            this._detailsPanel = new System.Windows.Forms.FlowLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            this._detailsBox.SuspendLayout();
             this._buttonPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -55,19 +57,20 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this._buttonPanel);
-            this.splitContainer1.Panel2.Controls.Add(this.groupBox1);
+            this.splitContainer1.Panel2.Controls.Add(this._detailsBox);
             this.splitContainer1.Size = new System.Drawing.Size(500, 407);
             this.splitContainer1.SplitterDistance = 25;
             this.splitContainer1.TabIndex = 0;
             // 
-            // groupBox1
+            // _detailsBox
             // 
-            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox1.Location = new System.Drawing.Point(0, 0);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(500, 378);
-            this.groupBox1.TabIndex = 0;
-            this.groupBox1.TabStop = false;
+            this._detailsBox.Controls.Add(this._detailsPanel);
+            this._detailsBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._detailsBox.Location = new System.Drawing.Point(0, 0);
+            this._detailsBox.Name = "_detailsBox";
+            this._detailsBox.Size = new System.Drawing.Size(500, 378);
+            this._detailsBox.TabIndex = 0;
+            this._detailsBox.TabStop = false;
             // 
             // _buttonPanel
             // 
@@ -108,6 +111,14 @@
             this._subtypeCombo.Size = new System.Drawing.Size(500, 21);
             this._subtypeCombo.TabIndex = 0;
             // 
+            // _detailsPanel
+            // 
+            this._detailsPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._detailsPanel.Location = new System.Drawing.Point(3, 16);
+            this._detailsPanel.Name = "_detailsPanel";
+            this._detailsPanel.Size = new System.Drawing.Size(494, 359);
+            this._detailsPanel.TabIndex = 0;
+            // 
             // InsertForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -120,6 +131,7 @@
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            this._detailsBox.ResumeLayout(false);
             this._buttonPanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -131,7 +143,8 @@
         private System.Windows.Forms.Panel _buttonPanel;
         private System.Windows.Forms.Button _okButton;
         private System.Windows.Forms.Button _cancelButton;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox _detailsBox;
         private System.Windows.Forms.ComboBox _subtypeCombo;
+        private System.Windows.Forms.FlowLayoutPanel _detailsPanel;
     }
 }

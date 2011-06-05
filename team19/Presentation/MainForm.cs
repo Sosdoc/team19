@@ -49,5 +49,16 @@ namespace Team19.Presentation
             }
         }
 
+        private void aggiungiToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (_documentListView.SelectedItem != null)
+            {
+                using (InsertForm form = new InsertForm(_dataGridView.DataType))
+                {
+                    form.ShowDialog();
+                }
+            }
+        }
+
     }
 }
