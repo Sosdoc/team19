@@ -119,21 +119,19 @@ namespace Team19.Model
         public void Autentica(string username, string password)
         {
 
-            try
-            {
-                IEnumerable<Dipendente> dipendenti = from dipendente in _instance._dipendenti
-                                                     where dipendente.Username.Equals(username) && dipendente.Password.Equals(password)
-                                                     select dipendente;
-                Dipendente d = null;
 
-                if (dipendenti.Count() != 0)
-                    d = dipendenti.First();
+            IEnumerable<Dipendente> dipendenti = from dipendente in _instance._dipendenti
+                                                 where dipendente.Username.Equals(username) && dipendente.Password.Equals(password)
+                                                 select dipendente;
+            Dipendente d = null;
 
-                if (d == null) throw new KeyNotFoundException("Username o password non corrispondenti");
-                _utenteConnesso = d;
-                OnChanged();
-            }
-            catch (InvalidOperationException ex) { }
+            if (dipendenti.Count() != 0)
+                d = dipendenti.First();
+
+            if (d == null) throw new KeyNotFoundException("Username o password non corrispondenti");
+            _utenteConnesso = d;
+            OnChanged();
+
         }
 
         private void Load()
@@ -169,14 +167,20 @@ namespace Team19.Model
             return this.Soggetti.OfType<Fornitore>().ToList();
         }
 
-        public IList<FatturaVendita> GetFattureVendita()
+        public IList<FatturaVendita> GetFattureVenditaDaPagare()
         {
-            return this.Fatture.OfType<FatturaVendita>().ToList();
+            IEnumerable<FatturaVendita> fatture= from fattura in Fatture.OfType<FatturaVendita>().ToList()
+                                           join movimento in GetIncassiVendite().ToList() on fattura equals (FatturaVendita)movimento.Sorgente
+                                           select fattura;
+            return Fatture.OfType<FatturaVendita>().Except(fatture).ToList();
         }
 
-        public IList<FatturaAcquisto> GetFattureAcquisto()
+        public IList<FatturaAcquisto> GetFattureAcquistoDaPagare()
         {
-            return this.Fatture.OfType<FatturaAcquisto>().ToList();
+            IEnumerable<FatturaAcquisto> fatture = from fattura in Fatture.OfType<FatturaAcquisto>().ToList()
+                                                   join movimento in GetPagamentiAcquisti().ToList() on fattura equals (FatturaAcquisto)movimento.Destinazione
+                                                  select fattura;
+            return Fatture.OfType<FatturaAcquisto>().Except(fatture).ToList();
         }
 
         public IList<DepositoDiDenaro> GetDepositi()
@@ -212,6 +216,14 @@ namespace Team19.Model
         {
             if (Changed != null)
                 Changed(this, EventArgs.Empty);
+        }
+
+        internal void Add(object p)
+        {
+            if (p is MovimentoDiDenaro)
+                Movimenti.Add((MovimentoDiDenaro)p);
+
+            OnChanged();
         }
     }
 }
