@@ -49,8 +49,10 @@
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this._largeImageList = new System.Windows.Forms.ImageList(this.components);
             this._smallImageList = new System.Windows.Forms.ImageList(this.components);
+            this._utenteConnessoMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._documentListView = new Team19.Presentation.DocumentListView();
             this._dataGridView = new Team19.Presentation.ElementDataView();
+            this.logoutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -64,7 +66,8 @@
             this.fileToolStripMenuItem,
             this.modificaToolStripMenuItem,
             this.riepilogoToolStripMenuItem,
-            this.toolStripMenuItem3});
+            this.toolStripMenuItem3,
+            this._utenteConnessoMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(927, 24);
@@ -208,6 +211,13 @@
             this._smallImageList.Images.SetKeyName(5, "Dipendenti");
             this._smallImageList.Images.SetKeyName(6, "Cassa");
             // 
+            // _utenteConnessoMenuItem
+            // 
+            this._utenteConnessoMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.logoutToolStripMenuItem});
+            this._utenteConnessoMenuItem.Name = "_utenteConnessoMenuItem";
+            this._utenteConnessoMenuItem.Size = new System.Drawing.Size(12, 20);
+            // 
             // _documentListView
             // 
             this._documentListView.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -228,6 +238,13 @@
             this._dataGridView.Name = "_dataGridView";
             this._dataGridView.Size = new System.Drawing.Size(800, 472);
             this._dataGridView.TabIndex = 0;
+            // 
+            // logoutToolStripMenuItem
+            // 
+            this.logoutToolStripMenuItem.Name = "logoutToolStripMenuItem";
+            this.logoutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.logoutToolStripMenuItem.Text = "Logout";
+            this.logoutToolStripMenuItem.Click += new System.EventHandler(this.logoutToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -273,6 +290,8 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
         private System.Windows.Forms.ToolStripMenuItem riepilogoToolStripMenuItem;
         private ElementDataView _dataGridView;
+        private System.Windows.Forms.ToolStripMenuItem _utenteConnessoMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem logoutToolStripMenuItem;
        
     }
 }

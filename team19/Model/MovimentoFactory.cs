@@ -8,25 +8,23 @@ namespace Team19.Model
 {
     public static class MovimentoFactory
     {
-        public static MovimentoDiDenaro CreateInteresseBancario(DepositoDiDenaro deposito, double interesse, DateTime data, Dipendente dipendente, string causale)
-        {
-            throw new NotImplementedException();
-        }
+        //I due metodi commentati possono essere implementati per rappresentare operazioni bancarie come interessi o spese, è possibile creare una sottoclasse di movimento 
+        //oppure una delle sottoclassi concrete già esistenti per rappresentare i nuovi movimenti. Eventuali calcoli relativi all'interesse possono essere effettuati nella factory
+        //e inseriti come importo del movimento creato.
 
-        public static MovimentoDiDenaro CreateSpesaBancaria(DepositoDiDenaro deposito, Currency importo, DateTime data, Dipendente dipendente, string causale)
-        {
-            throw new NotImplementedException();
-        }
+        //public static MovimentoDiDenaro CreateInteresseBancario(DepositoDiDenaro deposito, double interesse, DateTime data, Dipendente dipendente, string causale)
+        //{
+        //    throw new NotImplementedException();
+        //}
+
+        //public static MovimentoDiDenaro CreateSpesaBancaria(DepositoDiDenaro deposito, Currency importo, DateTime data, Dipendente dipendente, string causale)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
         public static MovimentoDiDenaro CreatePagamentoAcquisto(ISorgente sorgente, IDestinazione destinazione, DateTime data, Dipendente dipendente, string causale)
         {
             return new PagamentoAcquisto(sorgente, destinazione, data, dipendente, causale);
-        }
-
-        [MetodoCreazione("PagamentoAcquisto", new Type[] { typeof(ComboBox), typeof(ComboBox), typeof(DateTimePicker), typeof(TextBox) })]
-        public static MovimentoDiDenaro CreatePagamentoAcquisto(ContenitoreDiDenaro sorgente, FatturaAcquisto destinazione, DateTime data, string causale)
-        {
-            return new PagamentoAcquisto(sorgente, destinazione, data, Document.GetInstance().UtenteConnesso, causale);
         }
 
         public static MovimentoDiDenaro CreateIncassoVendita(FatturaVendita sorgente, IDestinazione destinazione, DateTime data, Dipendente dipendente, string causale)
@@ -34,21 +32,9 @@ namespace Team19.Model
             return new IncassoVendita(sorgente, destinazione, data, dipendente, causale);
         }
 
-        [MetodoCreazione("IncassoVendita", new Type[] { typeof(ComboBox), typeof(ComboBox), typeof(DateTimePicker), typeof(TextBox) })]
-        public static MovimentoDiDenaro CreateIncassoVendita(FatturaVendita sorgente, ContenitoreDiDenaro destinazione, DateTime data, string causale)
-        {
-            return new IncassoVendita(sorgente, destinazione, data, Document.GetInstance().UtenteConnesso, causale);
-        }
-
         public static MovimentoDiDenaro CreateMovimentoInterno(DepositoDiDenaro sorgente, Cassa destinazione, Currency importo, DateTime data, Dipendente dipendente, string causale)
         {
             return new Prelievo(sorgente, destinazione, importo, data, dipendente, causale);
-        }
-
-        [MetodoCreazione("Prelievo", new Type[] { typeof(ComboBox), typeof(Label), typeof(TextBox), typeof(DateTimePicker), typeof(TextBox) })]
-        public static MovimentoDiDenaro CreateMovimentoInterno(DepositoDiDenaro sorgente, Cassa destinazione, Currency importo, DateTime data, string causale)
-        {
-            return new Prelievo(sorgente, destinazione, importo, data, Document.GetInstance().UtenteConnesso, causale);
         }
 
         public static MovimentoDiDenaro CreateMovimentoInterno(Cassa sorgente, DepositoDiDenaro destinazione, Currency importo, DateTime data, Dipendente dipendente, string causale)
@@ -56,21 +42,9 @@ namespace Team19.Model
             return new Versamento(sorgente, destinazione, importo, data, dipendente, causale);
         }
 
-        [MetodoCreazione("Versamento", new Type[] { typeof(Label), typeof(ComboBox), typeof(TextBox), typeof(DateTimePicker), typeof(TextBox) })]
-        public static MovimentoDiDenaro CreateMovimentoInterno(Cassa sorgente, DepositoDiDenaro destinazione, Currency importo, DateTime data, string causale)
-        {
-            return new Versamento(sorgente, destinazione, importo, data, Document.GetInstance().UtenteConnesso, causale);
-        }
-
         public static MovimentoDiDenaro CreateMovimentoInterno(DepositoDiDenaro sorgente, DepositoDiDenaro destinazione, Currency importo, DateTime data, Dipendente dipendente, string causale)
         {
             return new Spostamento(sorgente, destinazione, importo, data, dipendente, causale);
-        }
-
-        [MetodoCreazione("Spostamento", new Type[] { typeof(ComboBox), typeof(ComboBox), typeof(TextBox), typeof(DateTimePicker), typeof(TextBox) })]
-        public static MovimentoDiDenaro CreateMovimentoInterno(DepositoDiDenaro sorgente, DepositoDiDenaro destinazione, Currency importo, DateTime data, string causale)
-        {
-            return new Spostamento(sorgente, destinazione, importo, data, Document.GetInstance().UtenteConnesso, causale);
         }
 
         private class PagamentoAcquisto : MovimentoDiDenaro
@@ -79,7 +53,8 @@ namespace Team19.Model
             public PagamentoAcquisto(ISorgente sorgente, IDestinazione destinazione, DateTime data, Dipendente dipendente, string causale)
                 : base(sorgente, destinazione, data, dipendente, causale)
             {
-
+                if (sorgente is Cassa && Importo.Value > ((Cassa)sorgente).Saldo.Value)
+                    throw new ArgumentException("Saldo disponibile minore del necessario");
             }
 
             public override Currency Importo
@@ -112,6 +87,8 @@ namespace Team19.Model
             public MovimentoInterno(ISorgente sorgente, IDestinazione destinazione, Currency importo, DateTime data, Dipendente dipendente, string causale)
                 : base(sorgente, destinazione, data, dipendente, causale)
             {
+                if (sorgente is Cassa && importo.Value > ((Cassa)sorgente).Saldo.Value)
+                    throw new ArgumentException("Saldo disponibile minore del necessario");
                 _importo = importo;
             }
 

@@ -48,11 +48,23 @@ namespace Team19.Model
         {
             return (FatturaVendita)base.Find(fattura => fattura is FatturaVendita && (fattura.Data.Year.Equals(anno) && fattura.NumeroFattura.Equals(numero)));
         }
-
+        public FatturaAcquisto FindFatturaAcquisto(int anno, int numero)
+        {
+            return (FatturaAcquisto)base.Find(fattura => fattura is FatturaAcquisto && (fattura.Data.Year.Equals(anno) && fattura.NumeroFattura.Equals(numero)));
+        }
+        public bool NumeroFatturaAcquistoValido(FatturaAcquisto fatturaDaInserire)
+        {
+            FatturaAcquisto fattura = FindFatturaAcquisto(fatturaDaInserire.Data.Year, fatturaDaInserire.NumeroFattura);
+            return fattura == null || !fattura.Fornitore.Equals(fatturaDaInserire.Fornitore);
+        }
         public void Add(object obj)
         {
             if (obj is Fattura)
+            {
+                if (obj is FatturaAcquisto && !NumeroFatturaAcquistoValido((FatturaAcquisto)obj)) 
+                    throw new InvalidOperationException("Numero di fattura non valido: fattura già presente");
                 base.Add((Fattura)obj);
+            }
             OnItemChanged();
         }
 
@@ -124,7 +136,11 @@ namespace Team19.Model
         public void Add(object obj)
         {
             if (obj is Dipendente)
+            {
+                if (this.FindByUsername(((Dipendente)obj).Username) != null)
+                    throw new InvalidOperationException("Dipendente già presente");
                 base.Add((Dipendente)obj);
+            }
             OnItemChanged();
         }
 

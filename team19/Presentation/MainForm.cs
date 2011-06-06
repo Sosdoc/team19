@@ -19,7 +19,7 @@ namespace Team19.Presentation
         public MainForm()
         {
             InitializeComponent();
-            _controller = new Controller(_documentListView, _dataGridView);
+            _controller = new Controller(_documentListView, _dataGridView,_utenteConnessoMenuItem);
             aggiungiToolStripMenuItem.Click += _controller.CreaElemento;
             rimuoviToolStripMenuItem.Click += _controller.EliminaElemento;
         }
@@ -31,15 +31,7 @@ namespace Team19.Presentation
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            try
-            {
-                _controller.Autentica();
-            }
-            catch (KeyNotFoundException kexc)
-            {
-                MessageBox.Show(kexc.Message);
-                _controller.Autentica();
-            }
+            _controller.Autentica();
         }
 
         private void riepilogoToolStripMenuItem_Click(object sender, EventArgs e)
@@ -50,6 +42,10 @@ namespace Team19.Presentation
             }
         }
 
+        private void logoutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _controller.Autentica();
+        }
         
 
     }

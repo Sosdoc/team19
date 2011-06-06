@@ -13,33 +13,44 @@ namespace Team19.Presentation
         private Document _document;
         private readonly DocumentListView _documentListView;
         private readonly ElementDataView _dataGridView;
-
-        public Controller(DocumentListView documentListView, ElementDataView dataGridView)
+        private readonly ToolStripMenuItem _userMenuItem;
+        public Controller(DocumentListView documentListView, ElementDataView dataGridView, ToolStripMenuItem userMenuItem)
         {
             _documentListView = documentListView;
             _dataGridView = dataGridView;
+            _userMenuItem = userMenuItem;
             _documentListView.SelectionChanged += AggiornaTabella;
+            Document.CreateInstance(new DefaultPersister());
+            _document = Document.GetInstance();
             //Document.Changed += AggiornaTabella;
         }
 
         public void Autentica()
         {
-            using (AuthenticationForm auth = new AuthenticationForm())
+            try
             {
-                if (auth.ShowDialog() == DialogResult.OK)
+                using (AuthenticationForm auth = new AuthenticationForm())
                 {
-                    #region initialize
+                    if (auth.ShowDialog() == DialogResult.OK)
+                    {
+                        #region initialize
 
-                    Document.CreateInstance(new DefaultPersister());
-                    _document = Document.GetInstance();
-                    _document.Autentica(auth.Username, auth.Password);
-                    _dataGridView.DataSource = _document.Movimenti;
 
-                    #endregion
+                        _document.Autentica(auth.Username, auth.Password);
+                        _dataGridView.DataSource = _document.Movimenti;
+                        _userMenuItem.Text = _document.UtenteConnesso.ToString();
 
-                    IEnumerable<MovimentoDiDenaro> m = _document.Movimenti;
+                        #endregion
+
+                        IEnumerable<MovimentoDiDenaro> m = _document.Movimenti;
+                    }
+                    else Application.Exit();
                 }
-                else Application.Exit();
+            }
+            catch (KeyNotFoundException kexc)
+            {
+                MessageBox.Show(kexc.Message);
+                Autentica();
             }
         }
 
@@ -92,7 +103,7 @@ namespace Team19.Presentation
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Errore nella creazione dell'oggetto, controllare i parametri", "Errore", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.InnerException.Message, "Errore", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -108,10 +119,10 @@ namespace Team19.Presentation
                 try
                 {
                     PropertyInfo property = _document.GetType().GetProperties().Where(prop => prop.PropertyType.GetGenericArguments().Contains(dataType)).First();
-                    //recupero il metodo Add(object) della property
-                    MethodInfo add = property.GetValue(_document, null).GetType().GetMethod("Delete", new Type[] { typeof(int) });
-                    //invoco il metodo Add
-                    add.Invoke(property.GetValue(_document, null), new object[1] { index });
+                    //recupero il metodo Delete(int) della property
+                    MethodInfo delete = property.GetValue(_document, null).GetType().GetMethod("Delete", new Type[] { typeof(int) });
+                    //invoco il metodo Delete
+                    delete.Invoke(property.GetValue(_document, null), new object[1] { index });
                     _dataGridView.DataSource = property.GetValue(_document, null);
                 }
                 catch (InvalidOperationException ex)
@@ -119,8 +130,6 @@ namespace Team19.Presentation
                     MessageBox.Show("Impossibile rimuovere l'elemento selezionato", "Errore");
                 }
             }
-
-
         }
     }
 }

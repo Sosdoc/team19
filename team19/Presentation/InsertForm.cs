@@ -75,7 +75,7 @@ namespace Team19.Presentation
             {
                 //Aggiunta label con nome della proprietà e controllo per inserimento del valore
                 Label parameterLabel = new Label();
-                parameterLabel.Text = metodoCreazione.GetParameters()[i].Name.ToUpper();
+                parameterLabel.Text = metodoCreazione.GetParameters()[i].Name;
                 _detailsPanel.Controls.Add(parameterLabel);
                 Control parameterControl = (System.Windows.Forms.Control)typeof(Form).Assembly.CreateInstance(controlli[i].FullName);
                 parameterControl.Tag = metodoCreazione.GetParameters()[i];
@@ -143,7 +143,7 @@ namespace Team19.Presentation
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Impossibile creare l'elemento", "Errore", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.InnerException.Message, "Errore", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

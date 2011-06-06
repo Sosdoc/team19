@@ -17,6 +17,9 @@ namespace Team19.Model
 
         protected MovimentoDiDenaro(ISorgente sorgente, IDestinazione destinazione, DateTime data, Dipendente dipendente, string causale)
         {
+            if(Object.ReferenceEquals(sorgente, destinazione))
+                throw new ArgumentException("sorgente e destinazione uguali!");
+
             _data = data.Date;
             _sorgente = sorgente;
             _destinazione = destinazione;
