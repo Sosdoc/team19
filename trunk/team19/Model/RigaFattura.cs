@@ -47,5 +47,13 @@ namespace Team19.Model
         {
             return "#"+Quantità.ToString()+" "+Prodotto.ToString();
         }
+
+        //Non implementato, restituisce sempre lo stesso elenco di prodotti
+        public static List<RigaFattura> ParseElencoProdotti(string elencoProdotti)
+        {
+            List<RigaFattura> righe = new List<RigaFattura>();
+            righe.Add(new RigaFattura(1, new Prodotto(new Currency(1), "Test", new CodiceProdotto("TES00000"))));
+            return righe;
+        }
     }
 }

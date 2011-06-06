@@ -59,6 +59,7 @@ namespace Team19.Presentation
                     return _listView.SelectedItems[0];
                 return null;
             }
+
         }
 
         protected virtual void OnSelectionChanged()
@@ -85,13 +86,14 @@ namespace Team19.Presentation
             AggiornaLista(sender, e);
         }
 
-        private void _listView_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            OnSelectionChanged();
-        }
+        //private void _listView_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    OnSelectionChanged();
+        //}
 
         private void AggiornaLista(object sender, EventArgs e)
         {
+            ListViewItem selected = SelectedItem;
             _listView.Clear();
 
             foreach (PropertyInfo info in Document.GetInstance().GetType().GetProperties())
@@ -111,12 +113,22 @@ namespace Team19.Presentation
                             list.Add(item.Tag);
                             item.Tag = list;
                         }
-                        
+
                         item.ImageKey = nomeVisualizzato;
+
+                        if (selected != null && selected.Tag.Equals(item.Tag))
+                            item.Selected = true;
+
                         Items.Add(item);
+
                     }
                 }
             }
+        }
+
+        private void _listView_SelectedIndexChanged(object sender, ListViewItemSelectionChangedEventArgs e)
+        {
+            OnSelectionChanged();
         }
 
     }

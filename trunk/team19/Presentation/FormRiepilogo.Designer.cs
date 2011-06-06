@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this._soggettiCombo = new System.Windows.Forms.ComboBox();
             this._riepilogoDataGrid = new System.Windows.Forms.DataGridView();
@@ -69,11 +71,23 @@
             // 
             this._riepilogoDataGrid.AllowUserToAddRows = false;
             this._riepilogoDataGrid.AllowUserToDeleteRows = false;
+            this._riepilogoDataGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this._riepilogoDataGrid.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this._riepilogoDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this._riepilogoDataGrid.DefaultCellStyle = dataGridViewCellStyle1;
             this._riepilogoDataGrid.Dock = System.Windows.Forms.DockStyle.Fill;
             this._riepilogoDataGrid.Location = new System.Drawing.Point(3, 26);
             this._riepilogoDataGrid.Name = "_riepilogoDataGrid";
             this._riepilogoDataGrid.ReadOnly = true;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this._riepilogoDataGrid.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this._riepilogoDataGrid.Size = new System.Drawing.Size(415, 300);
             this._riepilogoDataGrid.TabIndex = 1;
             // 

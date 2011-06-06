@@ -72,7 +72,9 @@ namespace Team19.Presentation
 
                     if (_subItemsCombo.Items.Count == 0)
                         _subItemsCombo.Enabled = false;
+                   
                 }
+                
             }
         }
         public Type DataType

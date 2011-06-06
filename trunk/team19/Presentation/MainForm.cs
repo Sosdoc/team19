@@ -21,6 +21,7 @@ namespace Team19.Presentation
             InitializeComponent();
             _controller = new Controller(_documentListView, _dataGridView);
             aggiungiToolStripMenuItem.Click += _controller.CreaElemento;
+            rimuoviToolStripMenuItem.Click += _controller.EliminaElemento;
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)

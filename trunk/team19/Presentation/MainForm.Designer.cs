@@ -47,9 +47,9 @@
             this.riepilogoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this._documentListView = new Team19.Presentation.DocumentListView();
             this._largeImageList = new System.Windows.Forms.ImageList(this.components);
             this._smallImageList = new System.Windows.Forms.ImageList(this.components);
+            this._documentListView = new Team19.Presentation.DocumentListView();
             this._dataGridView = new Team19.Presentation.ElementDataView();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -139,19 +139,19 @@
             // aggiungiToolStripMenuItem
             // 
             this.aggiungiToolStripMenuItem.Name = "aggiungiToolStripMenuItem";
-            this.aggiungiToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.aggiungiToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
             this.aggiungiToolStripMenuItem.Text = "Aggiungi";
             // 
             // modificaToolStripMenuItem1
             // 
             this.modificaToolStripMenuItem1.Name = "modificaToolStripMenuItem1";
-            this.modificaToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.modificaToolStripMenuItem1.Size = new System.Drawing.Size(123, 22);
             this.modificaToolStripMenuItem1.Text = "Modifica";
             // 
             // rimuoviToolStripMenuItem
             // 
             this.rimuoviToolStripMenuItem.Name = "rimuoviToolStripMenuItem";
-            this.rimuoviToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.rimuoviToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
             this.rimuoviToolStripMenuItem.Text = "Rimuovi";
             // 
             // riepilogoToolStripMenuItem
@@ -181,19 +181,8 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this._dataGridView);
             this.splitContainer1.Size = new System.Drawing.Size(927, 472);
-            this.splitContainer1.SplitterDistance = 266;
+            this.splitContainer1.SplitterDistance = 123;
             this.splitContainer1.TabIndex = 4;
-            // 
-            // _documentListView
-            // 
-            this._documentListView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._documentListView.LargeImageList = this._largeImageList;
-            this._documentListView.Location = new System.Drawing.Point(0, 0);
-            this._documentListView.Name = "_documentListView";
-            this._documentListView.Size = new System.Drawing.Size(266, 472);
-            this._documentListView.SmallImageList = this._smallImageList;
-            this._documentListView.TabIndex = 0;
-            this._documentListView.View = System.Windows.Forms.View.LargeIcon;
             // 
             // _largeImageList
             // 
@@ -205,6 +194,7 @@
             this._largeImageList.Images.SetKeyName(3, "Movimenti");
             this._largeImageList.Images.SetKeyName(4, "Soggetti");
             this._largeImageList.Images.SetKeyName(5, "Dipendenti");
+            this._largeImageList.Images.SetKeyName(6, "Cassa");
             // 
             // _smallImageList
             // 
@@ -216,6 +206,18 @@
             this._smallImageList.Images.SetKeyName(3, "Movimenti");
             this._smallImageList.Images.SetKeyName(4, "Soggetti");
             this._smallImageList.Images.SetKeyName(5, "Dipendenti");
+            this._smallImageList.Images.SetKeyName(6, "Cassa");
+            // 
+            // _documentListView
+            // 
+            this._documentListView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._documentListView.LargeImageList = this._largeImageList;
+            this._documentListView.Location = new System.Drawing.Point(0, 0);
+            this._documentListView.Name = "_documentListView";
+            this._documentListView.Size = new System.Drawing.Size(123, 472);
+            this._documentListView.SmallImageList = this._smallImageList;
+            this._documentListView.TabIndex = 0;
+            this._documentListView.View = System.Windows.Forms.View.List;
             // 
             // _dataGridView
             // 
@@ -224,7 +226,7 @@
             this._dataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this._dataGridView.Location = new System.Drawing.Point(0, 0);
             this._dataGridView.Name = "_dataGridView";
-            this._dataGridView.Size = new System.Drawing.Size(657, 472);
+            this._dataGridView.Size = new System.Drawing.Size(800, 472);
             this._dataGridView.TabIndex = 0;
             // 
             // MainForm

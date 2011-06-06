@@ -15,9 +15,9 @@ namespace Team19.Model
         #region Fatture
 
         [MetodoCreazione("FatturaVendita", new Type[] { typeof(ComboBox), typeof(DateTimePicker), typeof(TextBox) })]
-        public static FatturaVendita CreateFatturaVendita(Cliente cliente, string data, List<RigaFattura> elencoProdotti)
+        public static FatturaVendita CreateFatturaVendita(Cliente cliente, string data, string elencoProdotti)
         {
-            return FatturaVendita.CreateFatturaVendita(cliente, DateTime.Parse(data), elencoProdotti);
+            return FatturaVendita.CreateFatturaVendita(cliente, DateTime.Parse(data), RigaFattura.ParseElencoProdotti(elencoProdotti));
         }
 
         [MetodoCreazione("FatturaAcquisto", new Type[] { typeof(ComboBox), typeof(DateTimePicker), typeof(TextBox), typeof(TextBox) })]

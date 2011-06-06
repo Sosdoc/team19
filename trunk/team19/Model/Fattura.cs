@@ -11,6 +11,15 @@ namespace Team19.Model
         private DateTime _data;
         private int _numero;
 
+        protected Fattura(DateTime data, int numero)
+        {
+            if (numero <= 0)
+                throw new ArgumentException("numero <= 0");
+
+            this._data = data.Date;
+            this._numero = numero;
+        }
+
         public abstract Currency Importo
         {
             get;
@@ -32,14 +41,7 @@ namespace Team19.Model
             }
         }
 
-        protected Fattura(DateTime data, int numero)
-        {
-            if (numero <= 0)
-                throw new ArgumentException("numero <= 0");
 
-            this._data = data.Date;
-            this._numero = numero;
-        }
 
         public override string ToString()
         {

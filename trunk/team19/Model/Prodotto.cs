@@ -14,6 +14,9 @@ namespace Team19.Model
 
         public Prodotto(Currency prezzo, string descrizione, CodiceProdotto codProdotto)
         {
+            if (prezzo.Value <= 0)
+                throw new ArgumentException("prezzo minore o uguale a zero");
+
             this._descrizione = descrizione;
             this._prezzo = prezzo;
             this._codProdotto = codProdotto;
