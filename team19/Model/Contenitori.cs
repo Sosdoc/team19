@@ -7,6 +7,10 @@ namespace Team19.Model
 {
     class Movimenti : List<MovimentoDiDenaro>
     {
+        public Movimenti()
+            : base()
+        { }
+
         public void Add(object obj)
         {
             if (obj is MovimentoDiDenaro)
@@ -22,6 +26,14 @@ namespace Team19.Model
 
     class Fatture : List<Fattura>
     {
+        public Fatture()
+            : base()
+        { }
+
+        public FatturaVendita FindFatturaVendita(int anno, int numero)
+        {
+            return (FatturaVendita)base.Find(fattura => fattura is FatturaVendita && (fattura.Data.Year.Equals(anno) && fattura.NumeroFattura.Equals(numero)));
+        }
 
         public void Add(object obj)
         {
@@ -38,6 +50,25 @@ namespace Team19.Model
 
     class Soggetti : List<Soggetto>
     {
+        public Soggetti()
+            : base()
+        { }
+
+        public Soggetto FindByName(string denominazione)
+        {
+            return base.Find(soggetto => soggetto.Denominazione.Equals(denominazione));
+        }
+
+        public Fornitore FindFornitore(string denominazione)
+        {
+            return (Fornitore)base.Find(fornitore => fornitore is Fornitore && fornitore.Denominazione.Equals(denominazione));
+        }
+
+        public Cliente FindCliente(string denominazione)
+        {
+            return (Cliente)base.Find(cliente => cliente is Cliente && cliente.Denominazione.Equals(denominazione));
+        }
+
         public void Add(object obj)
         {
             if (obj is Soggetto)
@@ -53,6 +84,15 @@ namespace Team19.Model
 
     class Dipendenti : List<Dipendente>
     {
+        public Dipendenti()
+            : base()
+        { }
+
+        public Dipendente FindByUsername(string username)
+        {
+            return base.Find(dipendente => dipendente.Username.Equals(username));
+        }
+
         public void Add(object obj)
         {
             if (obj is Dipendente)
@@ -68,6 +108,15 @@ namespace Team19.Model
 
     class Prodotti : List<Prodotto>
     {
+        public Prodotti()
+            : base()
+        { }
+
+        public Prodotto FindByProductCode(string codiceProdotto)
+        {
+            return base.Find(prodotto => prodotto.CodProdotto.Codice.Equals(prodotto.CodProdotto.Codice));
+        }
+
         public void Add(Object obj)
         {
             if (obj is Prodotto)
@@ -83,6 +132,15 @@ namespace Team19.Model
 
     class ContenitoriDiDenaro : List<DepositoDiDenaro>
     {
+        public ContenitoriDiDenaro()
+            : base()
+        { }
+
+        public ContoCorrenteBancario FindCCBByIban(string iban)
+        {
+            return (ContoCorrenteBancario)base.Find(deposito => deposito is ContoCorrenteBancario && deposito.Codice.Equals(iban));
+        }
+
         public void Add(Object obj)
         {
             if (obj is DepositoDiDenaro)

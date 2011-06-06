@@ -69,27 +69,30 @@ namespace Team19.Persistence
             public Fatture LoadFatture()
             {
                 _fatture = new Fatture();
-                FatturaAcquisto f1 = FatturaAcquisto.CreateFatturaAcquisto(_soggetti.OfType<Fornitore>().First(), DateTime.Now, 1003, new Currency(10004.23m));
-                RigaFattura riga1 = new RigaFattura(10, _prodotti.First());
-                RigaFattura riga2 = new RigaFattura(320, _prodotti.First());
+                FatturaAcquisto f1 = FatturaAcquisto.CreateFatturaAcquisto(_soggetti.FindFornitore("Pallo Pinchino"), DateTime.Now, 1003, new Currency(5000m));
+                RigaFattura riga1 = new RigaFattura(10, _prodotti.FindByProductCode("PAL11400"));
+                RigaFattura riga2 = new RigaFattura(30, _prodotti.FindByProductCode("RAC00000"));
                 List<RigaFattura> righe = new List<RigaFattura>();
                 righe.Add(riga1);
                 righe.Add(riga2);
 
-                FatturaVendita f2 = FatturaVendita.CreateFatturaVendita(_soggetti.OfType<Cliente>().ElementAt(0), DateTime.Now, righe);
-                FatturaVendita f3 = FatturaVendita.CreateFatturaVendita(_soggetti.OfType<Cliente>().ElementAt(0), DateTime.Now, righe);
+                FatturaVendita f2 = FatturaVendita.CreateFatturaVendita(_soggetti.FindCliente("Pinco Pallino"), DateTime.Now, righe);
+                FatturaVendita f3 = FatturaVendita.CreateFatturaVendita(_soggetti.FindCliente("Soshito Nakakata"), DateTime.Now, righe);
 
                 _fatture.Add(f1);
                 _fatture.Add(f2);
                 _fatture.Add(f3);
+
                 return _fatture;
             }
 
             public ContenitoriDiDenaro LoadContenitori()
             {
                 _contenitoriDiDenaro = new ContenitoriDiDenaro();
-                ContoCorrenteBancario cc = new ContoCorrenteBancario("AOSIDJHOGIHAPI", new Currency(10000m));
+                ContoCorrenteBancario cc = new ContoCorrenteBancario("IT00123456789", new Currency(10000m));
+                ContoCorrenteBancario cc2 = new ContoCorrenteBancario("IT99678912345", new Currency(30000m));
                 _contenitoriDiDenaro.Add(cc);
+                _contenitoriDiDenaro.Add(cc2);
                 return _contenitoriDiDenaro;
             }
 
@@ -97,7 +100,9 @@ namespace Team19.Persistence
             {
                 _prodotti = new Prodotti();
                 Prodotto p1 = new Prodotto(new Currency(10m), "palla", new CodiceProdotto("PAL11400"));
+                Prodotto p2 = new Prodotto(new Currency(5m), "racchetta", new CodiceProdotto("RAC00000"));
                 _prodotti.Add(p1);
+                _prodotti.Add(p2);
                 return _prodotti;
             }
 

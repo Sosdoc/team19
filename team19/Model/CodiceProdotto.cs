@@ -10,6 +10,7 @@ namespace Team19.Model
         private static readonly char[] numbers={'1','2','3','4','5','6','7','8','9','0'};
         private readonly string _letters;
         private readonly string _numbers;
+
         public string Codice
         {
             get
@@ -44,6 +45,7 @@ namespace Team19.Model
             if (code.Length != 8)
                 throw new ArgumentException("Codice non corretto:lunghezza non consentita");
         }
+
         public override string ToString()
         {
             return this.Codice;
