@@ -43,7 +43,7 @@ namespace Team19.Presentation
 
         private void riepilogoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (_dataGridView.DataSource.GetType().GetGenericArguments().First().Equals(typeof(Soggetto)))
+            if (_dataGridView.DataSource.GetType().BaseType.GetGenericArguments().First().Equals(typeof(Soggetto)))
             {
                 _controller.MostraRiepilogo();
             }
