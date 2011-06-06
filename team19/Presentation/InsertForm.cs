@@ -60,11 +60,13 @@ namespace Team19.Presentation
                 }
             }
             return null;
-
         }
+
         public void InizializzaForm(object sender, EventArgs e)
         {
+            
             _detailsPanel.Controls.Clear();
+            _detailsPanel.FlowDirection = FlowDirection.TopDown;
             _tipoElemento = (Type)_subtypeCombo.SelectedItem;
             MethodInfo metodoCreazione = trovaMetodoCreazione(_tipoElemento);
             if (metodoCreazione == null) throw new InvalidOperationException("Impossibile aggiungere un nuovo oggetto");
@@ -82,24 +84,26 @@ namespace Team19.Presentation
                 //Riempimento combobox
                 if (parameterControl is ComboBox)
                 {
-                    foreach (MethodInfo docMethod in Document.GetInstance().GetType().GetMethods())
-                    {
-                        if (docMethod.ReturnType.GetGenericArguments().Count() != 0)
-                        {
-                            Type genericType = docMethod.ReturnType.GetGenericArguments()[0];
-                            Type type = metodoCreazione.GetParameters()[i].ParameterType;
-                            if (genericType.Equals(type) || (genericType.GetInterfaces().Count() != 0 && type.Equals(genericType.GetInterfaces().First())))
-                            {
-                                ((ComboBox)parameterControl).DataSource = docMethod.Invoke(Document.GetInstance(), null);
-
-                            }
-                        }
-                    }
+                    RiempiControllo((ComboBox)parameterControl);
                 }
-                if (parameterControl is Label)
-                {
-                    ((Label)parameterControl).Text = metodoCreazione.GetParameters()[i].ParameterType.Name;
+            }
+            
+           
+        }
 
+        private void RiempiControllo(ComboBox controllo)
+        {
+            foreach (MethodInfo docMethod in Document.GetInstance().GetType().GetMethods())
+            {
+                if (docMethod.ReturnType.GetGenericArguments().Count() != 0)
+                {
+                    Type genericType = docMethod.ReturnType.GetGenericArguments()[0];
+                    Type tipoParametro = ((ParameterInfo)controllo.Tag).ParameterType;
+                    if (genericType.Equals(tipoParametro) || (genericType.GetInterfaces().Count() != 0 && tipoParametro.Equals(genericType.GetInterfaces().First())))
+                    {
+                        controllo.DataSource = docMethod.Invoke(Document.GetInstance(), null);
+
+                    }
                 }
             }
         }
@@ -111,28 +115,39 @@ namespace Team19.Presentation
 
         private void CreaElemento(object sender, EventArgs e)
         {
-            MethodInfo metodoCreazione = trovaMetodoCreazione(_tipoElemento);
-            if (metodoCreazione != null)
+            try
             {
-                List<object> parameters = new List<object>();
-                foreach (Control c in _detailsPanel.Controls)
+                MethodInfo metodoCreazione = trovaMetodoCreazione(_tipoElemento);
+                if (metodoCreazione != null)
                 {
-
-                    if (c.Tag != null)
+                    List<object> parameters = new List<object>();
+                    foreach (Control c in _detailsPanel.Controls)
                     {
-                        if (c is ComboBox)
-                            parameters.Add(((ComboBox)c).SelectedItem);
-                        else
-                            parameters.Add(c.Text);
 
+                        if (c.Tag != null)
+                        {
+                            if (c is ComboBox)
+                                parameters.Add(((ComboBox)c).SelectedItem);
+                            else
+                                parameters.Add(c.Text);
+
+                        }
                     }
+
+                    _elementoCreato = metodoCreazione.Invoke(null, parameters.ToArray());
+
+
                 }
 
-                _elementoCreato = metodoCreazione.Invoke(null, parameters.ToArray());
+                this.Close();
             }
-
-            this.Close();
+            catch (Exception ex)
+            {
+                MessageBox.Show("Impossibile creare l'elemento", "Errore", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
+
+       
 
     }
 }

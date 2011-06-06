@@ -12,6 +12,7 @@ namespace Team19.Model
 
     class Movimenti : List<MovimentoDiDenaro>
     {
+        public static event EventHandler ItemChanged;
         public Movimenti()
             : base()
         { }
@@ -20,17 +21,25 @@ namespace Team19.Model
         {
             if (obj is MovimentoDiDenaro)
                 base.Add((MovimentoDiDenaro)obj);
+            OnItemChanged();
         }
 
-        public void Remove(object obj)
+        public void Delete(int index)
         {
-            if (obj is MovimentoDiDenaro)
-                base.Remove((MovimentoDiDenaro)obj);
+            base.RemoveAt(index);
+            OnItemChanged();
         }
+        protected virtual void OnItemChanged()
+        {
+            if (ItemChanged != null)
+                ItemChanged(this, EventArgs.Empty);
+        }
+
     }
 
     class Fatture : List<Fattura>
     {
+        public static event EventHandler ItemChanged;
         public Fatture()
             : base()
         { }
@@ -44,17 +53,24 @@ namespace Team19.Model
         {
             if (obj is Fattura)
                 base.Add((Fattura)obj);
+            OnItemChanged();
         }
 
-        public void Remove(object obj)
+        public void Delete(int index)
         {
-            if (obj is Fattura)
-                base.Remove((Fattura)obj);
+            base.RemoveAt(index);
+            OnItemChanged();
+        }
+        protected virtual void OnItemChanged()
+        {
+            if (ItemChanged != null)
+                ItemChanged(this, EventArgs.Empty);
         }
     }
 
     class Soggetti : List<Soggetto>
     {
+        public static event EventHandler ItemChanged;
         public Soggetti()
             : base()
         { }
@@ -78,17 +94,24 @@ namespace Team19.Model
         {
             if (obj is Soggetto)
                 base.Add((Soggetto)obj);
+            OnItemChanged();
         }
 
-        public void Remove(object obj)
+        public void Delete(int index)
         {
-            if (obj is Soggetto)
-                base.Remove((Soggetto)obj);
+            base.RemoveAt(index);
+            OnItemChanged();
+        }
+        protected virtual void OnItemChanged()
+        {
+            if (ItemChanged != null)
+                ItemChanged(this, EventArgs.Empty);
         }
     }
 
     class Dipendenti : List<Dipendente>
     {
+        public static event EventHandler ItemChanged;
         public Dipendenti()
             : base()
         { }
@@ -102,17 +125,24 @@ namespace Team19.Model
         {
             if (obj is Dipendente)
                 base.Add((Dipendente)obj);
+            OnItemChanged();
         }
 
-        public void Remove(object obj)
+        public void Delete(int index)
         {
-            if (obj is Dipendente)
-                base.Remove((Dipendente)obj);
+            base.RemoveAt(index);
+            OnItemChanged();
+        }
+        protected virtual void OnItemChanged()
+        {
+            if (ItemChanged != null)
+                ItemChanged(this, EventArgs.Empty);
         }
     }
 
     class Prodotti : List<Prodotto>
     {
+        public static event EventHandler ItemChanged;
         public Prodotti()
             : base()
         { }
@@ -126,17 +156,24 @@ namespace Team19.Model
         {
             if (obj is Prodotto)
                 base.Add((Prodotto)obj);
+            OnItemChanged();
         }
 
-        public void Remove(Object obj)
+        public void Delete(int index)
         {
-            if (obj is Prodotto)
-                base.Remove((Prodotto)obj);
+            base.RemoveAt(index);
+            OnItemChanged();
+        }
+        protected virtual void OnItemChanged()
+        {
+            if (ItemChanged != null)
+                ItemChanged(this, EventArgs.Empty);
         }
     }
 
     class ContenitoriDiDenaro : List<DepositoDiDenaro>
     {
+        public static event EventHandler ItemChanged;
         public ContenitoriDiDenaro()
             : base()
         { }
@@ -150,12 +187,18 @@ namespace Team19.Model
         {
             if (obj is DepositoDiDenaro)
                 base.Add((DepositoDiDenaro)obj);
+            OnItemChanged();
         }
 
-        public void Remove(Object obj)
+        public void Delete(int index)
         {
-            if (obj is DepositoDiDenaro)
-                base.Add((DepositoDiDenaro)obj);
+            base.RemoveAt(index);
+            OnItemChanged();
+        }
+        protected virtual void OnItemChanged()
+        {
+            if (ItemChanged != null)
+                ItemChanged(this, EventArgs.Empty);
         }
     }
 }

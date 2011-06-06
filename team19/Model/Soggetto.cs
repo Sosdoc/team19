@@ -70,7 +70,7 @@ namespace Team19.Model
         public Cliente(string denominazione, string telefono, string email, string partitaIva, string codiceFiscale, Indirizzo indirizzo)
             : base(denominazione, telefono, email, partitaIva, indirizzo)
         {
-            if (partitaIva == null && codiceFiscale == null)
+            if (String.IsNullOrEmpty(partitaIva) && String.IsNullOrEmpty(codiceFiscale))
                 throw new ArgumentNullException("Partita Iva e Codice Fiscale entrambi nulli");
             _codiceFiscale = codiceFiscale;
         }
@@ -79,6 +79,10 @@ namespace Team19.Model
         {
             get { return _codiceFiscale; }
         }
+        public override string ToString()
+        {
+            return base.ToString() + " - Cliente";
+        }
     }
 
     public class Fornitore : Soggetto
@@ -86,7 +90,7 @@ namespace Team19.Model
         public Fornitore(string denominazione, string telefono, string email, string partitaIva, Indirizzo indirizzo)
             : base(denominazione, telefono, email, partitaIva, indirizzo)
         {
-            if (partitaIva == null)
+            if (String.IsNullOrEmpty(partitaIva))
                 throw new ArgumentNullException("Partita Iva nulla");
         }
 
@@ -95,5 +99,9 @@ namespace Team19.Model
             get { return "Nessun Codice Fiscale"; }
         }
 
+        public override string ToString()
+        {
+            return base.ToString() + " - Fornitore";
+        }
     }
 }

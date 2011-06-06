@@ -19,6 +19,7 @@ namespace Team19.Presentation
             _documentListView = documentListView;
             _dataGridView = dataGridView;
             _documentListView.SelectionChanged += AggiornaTabella;
+            //Document.Changed += AggiornaTabella;
         }
 
         public void Autentica()
@@ -45,7 +46,10 @@ namespace Team19.Presentation
         private void AggiornaTabella(object sender, EventArgs e)
         {
             if (_documentListView.SelectedItem != null)
+            {
                 _dataGridView.DataSource = _documentListView.SelectedItem.Tag;
+                _dataGridView.Refresh();
+            }
         }
 
         public void MostraRiepilogo()
@@ -76,13 +80,47 @@ namespace Team19.Presentation
                         MethodInfo add = property.GetValue(_document, null).GetType().GetMethod("Add", new Type[] { typeof(object) });
                         //invoco il metodo Add
                         add.Invoke(property.GetValue(_document, null), new object[1] { form.ElementoCreato });
+                        _dataGridView.DataSource = property.GetValue(_document, null);
                     }
+
                 }
+
             }
             catch (InvalidOperationException ex)
             {
                 MessageBox.Show(ex.Message, "Errore", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Errore nella creazione dell'oggetto, controllare i parametri", "Errore", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        public void EliminaElemento(object sender, EventArgs e)
+        {
+
+            if ((MessageBox.Show("Sei sicuro?", "Eliminazione", MessageBoxButtons.OKCancel, MessageBoxIcon.Question)).Equals(DialogResult.OK) && _dataGridView.SelectedRows.Count == 1)
+            {
+                int index = _dataGridView.SelectedRows[0].Index;
+                Type dataType = _dataGridView.DataType;
+                _dataGridView.DataSource = null;
+                
+                try
+                {
+                    PropertyInfo property = _document.GetType().GetProperties().Where(prop => prop.PropertyType.GetGenericArguments().Contains(dataType)).First();
+                    //recupero il metodo Add(object) della property
+                    MethodInfo add = property.GetValue(_document, null).GetType().GetMethod("Delete", new Type[] { typeof(int) });
+                    //invoco il metodo Add
+                    add.Invoke(property.GetValue(_document, null), new object[1] { index });
+                    _dataGridView.DataSource = property.GetValue(_document, null);
+                }
+                catch (InvalidOperationException ex)
+                {
+                    MessageBox.Show("Impossibile rimuovere l'elemento selezionato", "Errore");
+                }
+            }
+
+
         }
     }
 }

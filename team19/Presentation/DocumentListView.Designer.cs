@@ -30,12 +30,12 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DocumentListView));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this._listView = new System.Windows.Forms.ListView();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
             this.iconeGrandiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.iconePiccoleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.listaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._listView = new System.Windows.Forms.ListView();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -58,20 +58,9 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this._listView);
-            this.splitContainer1.Size = new System.Drawing.Size(153, 446);
+            this.splitContainer1.Size = new System.Drawing.Size(108, 446);
             this.splitContainer1.SplitterDistance = 25;
             this.splitContainer1.TabIndex = 0;
-            // 
-            // _listView
-            // 
-            this._listView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._listView.Location = new System.Drawing.Point(0, 0);
-            this._listView.MultiSelect = false;
-            this._listView.Name = "_listView";
-            this._listView.Size = new System.Drawing.Size(153, 417);
-            this._listView.TabIndex = 2;
-            this._listView.UseCompatibleStateImageBehavior = false;
-            this._listView.SelectedIndexChanged += new System.EventHandler(this._listView_SelectedIndexChanged);
             // 
             // toolStrip1
             // 
@@ -80,13 +69,11 @@
             this.toolStripDropDownButton1});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(153, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(108, 25);
             this.toolStrip1.TabIndex = 4;
-            this.toolStrip1.Text = "toolStrip1";
             // 
             // toolStripDropDownButton1
             // 
-            this.toolStripDropDownButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.toolStripDropDownButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.iconeGrandiToolStripMenuItem,
             this.iconePiccoleToolStripMenuItem,
@@ -94,29 +81,42 @@
             this.toolStripDropDownButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton1.Image")));
             this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
-            this.toolStripDropDownButton1.Size = new System.Drawing.Size(29, 22);
-            this.toolStripDropDownButton1.Text = "toolStripDropDownButton1";
+            this.toolStripDropDownButton1.Size = new System.Drawing.Size(104, 20);
+            this.toolStripDropDownButton1.Text = "Cambia vista";
+            this.toolStripDropDownButton1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.toolStripDropDownButton1.ToolTipText = "Cambia vista";
             // 
             // iconeGrandiToolStripMenuItem
             // 
             this.iconeGrandiToolStripMenuItem.Name = "iconeGrandiToolStripMenuItem";
-            this.iconeGrandiToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.iconeGrandiToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
             this.iconeGrandiToolStripMenuItem.Text = "Icone Grandi";
             this.iconeGrandiToolStripMenuItem.Click += new System.EventHandler(this.iconeGrandiToolStripMenuItem_Click);
             // 
             // iconePiccoleToolStripMenuItem
             // 
             this.iconePiccoleToolStripMenuItem.Name = "iconePiccoleToolStripMenuItem";
-            this.iconePiccoleToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.iconePiccoleToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
             this.iconePiccoleToolStripMenuItem.Text = "Icone Piccole";
             this.iconePiccoleToolStripMenuItem.Click += new System.EventHandler(this.iconePiccoleToolStripMenuItem_Click);
             // 
             // listaToolStripMenuItem
             // 
             this.listaToolStripMenuItem.Name = "listaToolStripMenuItem";
-            this.listaToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.listaToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
             this.listaToolStripMenuItem.Text = "Lista";
             this.listaToolStripMenuItem.Click += new System.EventHandler(this.listaToolStripMenuItem_Click);
+            // 
+            // _listView
+            // 
+            this._listView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._listView.Location = new System.Drawing.Point(0, 0);
+            this._listView.MultiSelect = false;
+            this._listView.Name = "_listView";
+            this._listView.Size = new System.Drawing.Size(108, 417);
+            this._listView.TabIndex = 2;
+            this._listView.UseCompatibleStateImageBehavior = false;
+            this._listView.ItemSelectionChanged += new System.Windows.Forms.ListViewItemSelectionChangedEventHandler(this._listView_SelectedIndexChanged);
             // 
             // DocumentListView
             // 
@@ -124,7 +124,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.splitContainer1);
             this.Name = "DocumentListView";
-            this.Size = new System.Drawing.Size(153, 446);
+            this.Size = new System.Drawing.Size(108, 446);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);

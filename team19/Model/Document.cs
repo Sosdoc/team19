@@ -25,12 +25,17 @@ namespace Team19.Model
         {
             this._persister = persister;
             _prodotti = new Prodotti();
+            Team19.Model.Prodotti.ItemChanged += OnContainerItemChanged;
             _dipendenti = new Dipendenti();
-
+            Team19.Model.Dipendenti.ItemChanged += OnContainerItemChanged;
             _contenitoriDiDenaro = new ContenitoriDiDenaro();
+            Team19.Model.ContenitoriDiDenaro.ItemChanged += OnContainerItemChanged;
             _soggetti = new Soggetti();
+            Team19.Model.Soggetti.ItemChanged += OnContainerItemChanged;
             _fatture = new Fatture();
+            Team19.Model.Fatture.ItemChanged += OnContainerItemChanged;
             _movimenti = new Movimenti();
+            Team19.Model.Movimenti.ItemChanged += OnContainerItemChanged;
 
         }
 
@@ -145,60 +150,63 @@ namespace Team19.Model
             _soggetti = loader.LoadSoggetti();
             _fatture = loader.LoadFatture();
             _movimenti = loader.LoadMovimenti();
-
             OnChanged();
         }
 
         public void Save()
         {
             //questo metodo non fa nulla -- defaultPersister lancia NotImplementedException
-            //_persister.Save();
+            _persister.Save(this);
         }
         #endregion
 
         #region Document utility
-        //public IList<Cliente> GetClienti()
-        //{
-        //    return this.Soggetti.OfType<Cliente>().ToList();
-        //}
+        public IList<Cliente> GetClienti()
+        {
+            return this.Soggetti.OfType<Cliente>().ToList();
+        }
 
-        //public IList<Fornitore> GetFornitori()
-        //{
-        //    return this.Soggetti.OfType<Fornitore>().ToList();
-        //}
+        public IList<Fornitore> GetFornitori()
+        {
+            return this.Soggetti.OfType<Fornitore>().ToList();
+        }
 
-        //public IList<FatturaVendita> GetFattureVenditaDaPagare()
-        //{
-        //    IEnumerable<FatturaVendita> fatture= from fattura in Fatture.OfType<FatturaVendita>().ToList()
-        //                                   join movimento in GetIncassiVendite().ToList() on fattura equals (FatturaVendita)movimento.Sorgente
-        //                                   select fattura;
-        //    return Fatture.OfType<FatturaVendita>().Except(fatture).ToList();
-        //}
+        public IList<FatturaVendita> GetFattureVenditaDaPagare()
+        {
+            IEnumerable<FatturaVendita> fatture = from fattura in Fatture.OfType<FatturaVendita>().ToList()
+                                                  join movimento in GetIncassiVendite().ToList() on fattura equals (FatturaVendita)movimento.Sorgente
+                                                  select fattura;
+            return Fatture.OfType<FatturaVendita>().Except(fatture).ToList();
+        }
 
-        //public IList<FatturaAcquisto> GetFattureAcquistoDaPagare()
-        //{
-        //    IEnumerable<FatturaAcquisto> fatture = from fattura in Fatture.OfType<FatturaAcquisto>().ToList()
-        //                                           join movimento in GetPagamentiAcquisti().ToList() on fattura equals (FatturaAcquisto)movimento.Destinazione
-        //                                          select fattura;
-        //    return Fatture.OfType<FatturaAcquisto>().Except(fatture).ToList();
-        //}
+        public IList<FatturaAcquisto> GetFattureAcquistoDaPagare()
+        {
+            IEnumerable<FatturaAcquisto> fatture = from fattura in Fatture.OfType<FatturaAcquisto>().ToList()
+                                                   join movimento in GetPagamentiAcquisti().ToList() on fattura equals (FatturaAcquisto)movimento.Destinazione
+                                                   select fattura;
+            return Fatture.OfType<FatturaAcquisto>().Except(fatture).ToList();
+        }
 
-        //public IList<DepositoDiDenaro> GetDepositi()
-        //{
-        //    return this.ContenitoriDiDenaro.OfType<DepositoDiDenaro>().ToList();
-        //}
+        public IList<DepositoDiDenaro> GetDepositi()
+        {
+            return this.ContenitoriDiDenaro.OfType<DepositoDiDenaro>().ToList();
+        }
 
-        //public IList<DepositoDiDenaro> GetContenitori()
-        //{
-        //    return this.ContenitoriDiDenaro.ToList();
-        //}
+        public IList<ContenitoreDiDenaro> GetContenitori()
+        {
+            IList<ContenitoreDiDenaro> contenitori = new List<ContenitoreDiDenaro>();
+            foreach (DepositoDiDenaro deposito in GetDepositi())
+                contenitori.Add(deposito);
+            contenitori.Add(Cassa);
+            return contenitori;
+        }
 
-        //public IList<Cassa> GetCassa()
-        //{
-        //    IList<Cassa> result = new List<Cassa>();
-        //    result.Add(Cassa);
-        //    return result;
-        //}
+        public IList<Cassa> GetCassa()
+        {
+            IList<Cassa> result = new List<Cassa>();
+            result.Add(Cassa);
+            return result;
+        }
 
         public IEnumerable<MovimentoDiDenaro> GetPagamentiAcquisti()
         {
@@ -216,6 +224,11 @@ namespace Team19.Model
         {
             if (Changed != null)
                 Changed(this, EventArgs.Empty);
+        }
+
+        private void OnContainerItemChanged(object sender, EventArgs e)
+        {
+            OnChanged();
         }
     }
 }

@@ -29,7 +29,6 @@ namespace Team19.Model
         // Usa il dizionario per recuperare l'ultimo numero di fattura in base all'anno
         private static int NumeroProssimaFatturaDiVendita(DateTime dataNuovaFattura)
         {
-
             if (!_dizionarioFatture.ContainsKey(dataNuovaFattura.Year))
             {
                 _dizionarioFatture.Add(dataNuovaFattura.Year, 1);
