@@ -9,9 +9,7 @@ namespace Team19.Model
     {
         public Cassa(Currency saldoIniziale)
             : base(saldoIniziale)
-        {
-
-        }
+        { }
 
         public override bool Equals(object obj)
         {

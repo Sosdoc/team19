@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-
 namespace Team19.Model
 {
     public static class MovimentoFactory
@@ -13,6 +12,7 @@ namespace Team19.Model
         {
             throw new NotImplementedException();
         }
+
         public static MovimentoDiDenaro CreateSpesaBancaria(DepositoDiDenaro deposito, Currency importo, DateTime data, Dipendente dipendente, string causale)
         {
             throw new NotImplementedException();
@@ -87,21 +87,6 @@ namespace Team19.Model
                 get { return ((FatturaAcquisto)Destinazione).Importo; }
             }
 
-            public override IDestinazione Destinazione
-            {
-                get
-                {
-                    return base.Destinazione;
-                }
-            }
-
-            public override ISorgente Sorgente
-            {
-                get
-                {
-                    return base.Sorgente;
-                }
-            }
         }
 
         private class IncassoVendita : MovimentoDiDenaro
@@ -118,21 +103,6 @@ namespace Team19.Model
                 get { return ((FatturaVendita)Sorgente).Importo; }
             }
 
-            public override ISorgente Sorgente
-            {
-                get
-                {
-                    return base.Sorgente;
-                }
-            }
-
-            public override IDestinazione Destinazione
-            {
-                get
-                {
-                    return base.Destinazione;
-                }
-            }
         }
 
         private abstract class MovimentoInterno : MovimentoDiDenaro
@@ -149,8 +119,6 @@ namespace Team19.Model
             {
                 get { return _importo; }
             }
-
-
         }
 
         private class Prelievo : MovimentoInterno
@@ -158,22 +126,6 @@ namespace Team19.Model
             public Prelievo(ISorgente sorgente, IDestinazione destinazione, Currency importo, DateTime data, Dipendente dipendente, string causale)
                 : base(sorgente, destinazione, importo, data, dipendente, causale)
             { }
-
-            public override ISorgente Sorgente
-            {
-                get
-                {
-                    return base.Sorgente;
-                }
-            }
-
-            public override IDestinazione Destinazione
-            {
-                get
-                {
-                    return base.Destinazione;
-                }
-            }
         }
 
         private class Spostamento : MovimentoInterno
@@ -181,22 +133,6 @@ namespace Team19.Model
             public Spostamento(ISorgente sorgente, IDestinazione destinazione, Currency importo, DateTime data, Dipendente dipendente, string causale)
                 : base(sorgente, destinazione, importo, data, dipendente, causale)
             { }
-
-            public override ISorgente Sorgente
-            {
-                get
-                {
-                    return base.Sorgente;
-                }
-            }
-
-            public override IDestinazione Destinazione
-            {
-                get
-                {
-                    return base.Destinazione;
-                }
-            }
         }
 
         private class Versamento : MovimentoInterno
@@ -204,22 +140,6 @@ namespace Team19.Model
             public Versamento(ISorgente sorgente, IDestinazione destinazione, Currency importo, DateTime data, Dipendente dipendente, string causale)
                 : base(sorgente, destinazione, importo, data, dipendente, causale)
             { }
-
-            public override ISorgente Sorgente
-            {
-                get
-                {
-                    return base.Sorgente;
-                }
-            }
-
-            public override IDestinazione Destinazione
-            {
-                get
-                {
-                    return base.Destinazione;
-                }
-            }
         }
     }
 }

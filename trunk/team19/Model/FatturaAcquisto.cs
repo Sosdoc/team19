@@ -23,10 +23,13 @@ namespace Team19.Model
             this._fornitore = fornitore;
         }
 
+        //Metodo factory superfluo, presente per "uniformare" la creazione rispetto a FatturaVendita
         public static FatturaAcquisto CreateFatturaAcquisto(Fornitore fornitore, DateTime data, int numero, Currency importo)
         {
             return new FatturaAcquisto(fornitore, data, numero, importo);
         }
+
+        #region FatturaAcquisto properties
 
         public Fornitore Fornitore
         {
@@ -37,6 +40,7 @@ namespace Team19.Model
         {
             get { return _importo; }
         }
+        #endregion
 
         public override string ToString()
         {

@@ -14,6 +14,7 @@ namespace Team19.Model
         private string _provincia;
         private string _nazione;
 
+        //Costruttore da singola stringa, orribile, non fa alcun tipo di controllo e se sbagli ti esplode in faccia
         public Indirizzo(string indirizzo)
         {
             string[] splitIndirizzo = indirizzo.Split(',');
@@ -70,6 +71,7 @@ namespace Team19.Model
             get { return _nazione; }
             set { _nazione = value; }
         }
+
         public override string ToString()
         {
             return Via + ", " + NumeroCivico + ", " + Località + " (" + Provincia + ")," + Cap + ", " + Nazione;

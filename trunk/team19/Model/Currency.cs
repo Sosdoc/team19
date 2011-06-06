@@ -19,18 +19,12 @@ namespace Team19.Model
             this._value = value;
         }
 
-        public static Currency ParseCurrency(string toParse)
-        {
-            decimal value;
-            if(Decimal.TryParse(toParse, out value))
-                return new Currency(value);
-            throw new ArgumentException("Parsing non riuscito");
-        }
-
         public override String ToString()
         {
             return String.Format("{0:C}", this.Value);
         }
+
+        #region Currency operators
 
         public static Currency operator +(Currency c1, Currency c2)
         {
@@ -64,21 +58,21 @@ namespace Team19.Model
             return (c1 * (new Currency(1 / c2.Value)));
         }
 
-        //public static bool operator ==(Currency c1, Currency c2)
-        //{
-        //    return (c1.Value == c2.Value);
-        //}
-
-        //public static bool operator !=(Currency c1, Currency c2)
-        //{
-        //    return !(c1 == c2);
-        //}
+        #endregion
 
         public override bool Equals(Object c)
         {
             if (!(c is Currency))
                 return false;
             return ((c is Currency && this == (Currency)c) || object.ReferenceEquals(this, c));
+        }
+
+        public static Currency ParseCurrency(string toParse)
+        {
+            decimal value;
+            if (Decimal.TryParse(toParse, out value))
+                return new Currency(value);
+            throw new ArgumentException("Parsing non riuscito");
         }
 
         public override int GetHashCode()

@@ -18,7 +18,6 @@ namespace Team19.Presentation
         {
             _documentListView = documentListView;
             _dataGridView = dataGridView;
-
             _documentListView.SelectionChanged += AggiornaTabella;
         }
 
@@ -33,10 +32,10 @@ namespace Team19.Presentation
                     Document.CreateInstance(new DefaultPersister());
                     _document = Document.GetInstance();
                     _document.Autentica(auth.Username, auth.Password);
-
-                    //if (Document.GetInstance().UtenteConnesso == null)
                     _dataGridView.DataSource = _document.Movimenti;
+
                     #endregion
+
                     IEnumerable<MovimentoDiDenaro> m = _document.Movimenti;
                 }
                 else Application.Exit();
@@ -51,12 +50,12 @@ namespace Team19.Presentation
 
         public void MostraRiepilogo()
         {
-            Soggetto s = null;
+            Soggetto soggetto = null;
             if (_dataGridView.SelectedRows.Count == 1)
             {
-                s = _document.Soggetti.ElementAt(_dataGridView.SelectedRows[0].Index);
+                soggetto = _document.Soggetti.ElementAt(_dataGridView.SelectedRows[0].Index);
             }
-            using (FormRiepilogo formRiepilogo = new FormRiepilogo(s))
+            using (FormRiepilogo formRiepilogo = new FormRiepilogo(soggetto))
             {
                 formRiepilogo.ShowDialog();
             }
@@ -68,17 +67,21 @@ namespace Team19.Presentation
             {
                 using (InsertForm form = new InsertForm(_dataGridView.DataType))
                 {
-					if( form.ShowDialog() == DialogResult.OK)
-					{
-                    PropertyInfo property = _document.GetType().GetProperties().Where(prop => prop.PropertyType.GetGenericArguments().Contains(_dataGridView.DataType)).First();
-                    MethodInfo add = property.GetValue(_document, null).GetType().GetMethod("Add", new Type[] { typeof(object) });
-                    add.Invoke(property.GetValue(_document, null), new object[1] { form.ElementoCreato} );
-					}
+                    if (form.ShowDialog() == DialogResult.OK)
+                    {   //Aggiunta di un oggetto ai contentitori
+
+                        //recupero la property del document relativa al tipo creato
+                        PropertyInfo property = _document.GetType().GetProperties().Where(prop => prop.PropertyType.GetGenericArguments().Contains(_dataGridView.DataType)).First();
+                        //recupero il metodo Add(object) della property
+                        MethodInfo add = property.GetValue(_document, null).GetType().GetMethod("Add", new Type[] { typeof(object) });
+                        //invoco il metodo Add
+                        add.Invoke(property.GetValue(_document, null), new object[1] { form.ElementoCreato });
+                    }
                 }
             }
             catch (InvalidOperationException ex)
             {
-                MessageBox.Show(ex.Message,"Errore",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Errore", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

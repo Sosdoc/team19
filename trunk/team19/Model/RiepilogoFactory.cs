@@ -14,30 +14,27 @@ namespace Team19.Model
             _riepiloghi.Add(typeof(Cliente), new RiepilogoCliente(null));
             _riepiloghi.Add(typeof(Fornitore), new RiepilogoFornitore(null));
         }
+
         public static IRiepilogo CreateRiepilogo(Soggetto soggetto)
         {
             Riepilogo result = _riepiloghi[soggetto.GetType()];
             result.Soggetto = soggetto;
             return result;
         }
-        //public static IRiepilogo CreateRiepilogo(Cliente cliente)
-        //{
-        //    return new RiepilogoCliente(cliente);
-        //}
-
-        //public static IRiepilogo CreateRiepilogo(Fornitore fornitore)
-        //{
-        //    return new RiepilogoFornitore(fornitore);
-        //}
 
         public abstract class Riepilogo : IRiepilogo
         {
             private Soggetto _soggetto;
 
-
             protected Riepilogo(Soggetto soggetto)
             {
                 _soggetto = soggetto;
+            }
+
+            public Soggetto Soggetto
+            {
+                get { return _soggetto; }
+                set { _soggetto = value; }
             }
 
             public IEnumerable<Fattura> GetImportiPagati()
@@ -55,15 +52,12 @@ namespace Team19.Model
                     result.Add(fattura);
                 return result;
             }
-            public Soggetto Soggetto
-            {
-                get { return _soggetto; }
-                set { _soggetto = value; }
-            }
+
             protected abstract IEnumerable<Fattura> FatturePagate
             {
                 get;
             }
+
             protected abstract IEnumerable<Fattura> FattureDaPagare
             {
                 get;
@@ -75,13 +69,7 @@ namespace Team19.Model
 
             public RiepilogoCliente(Soggetto cliente)
                 : base(cliente)
-            {
-            }
-
-            //public Cliente Cliente
-            //{
-            //    get { return _cliente; }
-            //}
+            { }
 
             #region Riepilogo Members
             protected override IEnumerable<Fattura> FatturePagate
@@ -100,7 +88,7 @@ namespace Team19.Model
             {
                 get
                 {
-                    IEnumerable<FatturaVendita> fatture= Document.GetInstance().Fatture.OfType<FatturaVendita>().Where(fattura=>fattura.Cliente.Equals(Soggetto));
+                    IEnumerable<FatturaVendita> fatture = Document.GetInstance().Fatture.OfType<FatturaVendita>().Where(fattura => fattura.Cliente.Equals(Soggetto));
                     return fatture.Except(FatturePagate);
                 }
             }
@@ -112,13 +100,7 @@ namespace Team19.Model
 
             public RiepilogoFornitore(Soggetto fornitore)
                 : base(fornitore)
-            {
-            }
-
-            //public Fornitore Fornitore
-            //{
-            //    get { return _fornitore; }
-            //}
+            { }
 
             #region Riepilogo Members
 
@@ -138,7 +120,7 @@ namespace Team19.Model
             {
                 get
                 {
-                    IEnumerable<FatturaAcquisto> fatture = Document.GetInstance().Fatture.OfType<FatturaAcquisto>().Where(fattura=>fattura.Fornitore.Equals(Soggetto));
+                    IEnumerable<FatturaAcquisto> fatture = Document.GetInstance().Fatture.OfType<FatturaAcquisto>().Where(fattura => fattura.Fornitore.Equals(Soggetto));
                     return fatture.Except(FatturePagate);
                 }
             }

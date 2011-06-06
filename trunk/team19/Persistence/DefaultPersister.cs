@@ -70,11 +70,10 @@ namespace Team19.Persistence
             {
                 _fatture = new Fatture();
                 FatturaAcquisto f1 = FatturaAcquisto.CreateFatturaAcquisto(_soggetti.FindFornitore("Pallo Pinchino"), DateTime.Now, 1003, new Currency(5000m));
-                RigaFattura riga1 = new RigaFattura(10, _prodotti.FindByProductCode("PAL11400"));
-                RigaFattura riga2 = new RigaFattura(30, _prodotti.FindByProductCode("RAC00000"));
+
                 List<RigaFattura> righe = new List<RigaFattura>();
-                righe.Add(riga1);
-                righe.Add(riga2);
+                righe.Add(new RigaFattura(10, _prodotti.FindByProductCode("PAL11400")));
+                righe.Add(new RigaFattura(30, _prodotti.FindByProductCode("RAC00000")));
 
                 FatturaVendita f2 = FatturaVendita.CreateFatturaVendita(_soggetti.FindCliente("Pinco Pallino"), DateTime.Now, righe);
                 FatturaVendita f3 = FatturaVendita.CreateFatturaVendita(_soggetti.FindCliente("Soshito Nakakata"), DateTime.Now, righe);
@@ -89,20 +88,16 @@ namespace Team19.Persistence
             public ContenitoriDiDenaro LoadContenitori()
             {
                 _contenitoriDiDenaro = new ContenitoriDiDenaro();
-                ContoCorrenteBancario cc = new ContoCorrenteBancario("IT00123456789", new Currency(10000m));
-                ContoCorrenteBancario cc2 = new ContoCorrenteBancario("IT99678912345", new Currency(30000m));
-                _contenitoriDiDenaro.Add(cc);
-                _contenitoriDiDenaro.Add(cc2);
+                _contenitoriDiDenaro.Add(new ContoCorrenteBancario("IT00123456789", new Currency(10000m)));
+                _contenitoriDiDenaro.Add(new ContoCorrenteBancario("IT99678912345", new Currency(30000m)));
                 return _contenitoriDiDenaro;
             }
 
             public Prodotti LoadProdotti()
             {
                 _prodotti = new Prodotti();
-                Prodotto p1 = new Prodotto(new Currency(10m), "palla", new CodiceProdotto("PAL11400"));
-                Prodotto p2 = new Prodotto(new Currency(5m), "racchetta", new CodiceProdotto("RAC00000"));
-                _prodotti.Add(p1);
-                _prodotti.Add(p2);
+                _prodotti.Add(new Prodotto(new Currency(10m), "palla", new CodiceProdotto("PAL11400")));
+                _prodotti.Add(new Prodotto(new Currency(5m), "racchetta", new CodiceProdotto("RAC00000")));
                 return _prodotti;
             }
 
@@ -115,6 +110,9 @@ namespace Team19.Persistence
                 _dipendenti.Add(new Dipendente("valerio2011", "12345", "valerio", "pipolo", TipoDipendente.Amministratore));
                 _dipendenti.Add(new Dipendente("maria2011", "12345", "maria", "rosso", TipoDipendente.Utente));
                 _dipendenti.Add(new Dipendente("elena2011", "12345", "elena", "vasilescu", TipoDipendente.Utente));
+
+                _dipendenti.Add(new Dipendente("admin", "admin", "amministratore", "amministratore", TipoDipendente.Amministratore));
+                _dipendenti.Add(new Dipendente("utente", "utente", "utente", "utente", TipoDipendente.Utente));
 
                 return _dipendenti;
             }

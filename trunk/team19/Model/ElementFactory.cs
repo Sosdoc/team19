@@ -5,6 +5,11 @@ using System.Text;
 using System.Windows.Forms;
 namespace Team19.Model
 {
+    /// <summary>
+    /// ElementFactory viene utilizzata per raggiungere facilmente tutti i metodi di creazione di oggetti. Ognuno dei metodi è contrassegnato con un attributo custom
+    /// che indica il tipo di oggetto creato ed i tipi di controllo necessari per ottenere i parametri del metodo(TextBox per una stringa, ComboBox per riferimenti ad
+    /// altri oggetti, DateTimePicker per DateTime, ecc.)
+    /// </summary>
     static class ElementFactory
     {
         #region Fatture

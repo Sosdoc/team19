@@ -9,13 +9,11 @@ namespace Team19.Model
     public abstract class MovimentoDiDenaro
     {
         private DateTime _data;
-
         private ISorgente _sorgente;
         private IDestinazione _destinazione;
         private Dipendente _dipendente;
         private DateTime _dataRegistrazione;
         private string _causale;
-
 
         protected MovimentoDiDenaro(ISorgente sorgente, IDestinazione destinazione, DateTime data, Dipendente dipendente, string causale)
         {
@@ -75,7 +73,6 @@ namespace Team19.Model
         {
             get { return _causale; }
         }
-
 
     }
 }

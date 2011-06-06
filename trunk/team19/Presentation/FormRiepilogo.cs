@@ -21,12 +21,11 @@ namespace Team19.Presentation
             _checkNonPagate.Checked = true;
             _checkNonPagate.CheckedChanged += MostraRiepilogo;
             _checkPagate.CheckedChanged += MostraRiepilogo;
-
         }
+
         public FormRiepilogo(Soggetto soggetto)
             : this()
         {
-            
             _soggettiCombo.SelectedItem = soggetto;
             if (soggetto != null) MostraRiepilogo(this, EventArgs.Empty);
         }
@@ -38,7 +37,7 @@ namespace Team19.Presentation
 
             if (_checkPagate.Checked)
             {
-                foreach(Fattura f in riepilogo.GetImportiPagati().ToList())
+                foreach (Fattura f in riepilogo.GetImportiPagati().ToList())
                     listaFatture.Add(f);
             }
             if (_checkNonPagate.Checked)

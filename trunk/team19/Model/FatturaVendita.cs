@@ -12,9 +12,7 @@ namespace Team19.Model
         private List<RigaFattura> _elencoProdotti;
         private Cliente _cliente;
 
-        // private static FatturaVendita _ultimaFattura = new FatturaVendita(SoggettoFactory.CreateCliente(".", ".", ".", ".", ".", new Indirizzo("", "", "", "", "", "")), DateTime.MinValue, 1, new List<RigaFattura>());
-
-        private static Dictionary<int, int> _dizionarioFatture = new Dictionary<int, int>(); //chiave: anno - valore: numero fattura
+        private static Dictionary<int, int> _dizionarioFatture = new Dictionary<int, int>(); //chiave: anno -- valore: numero fattura
 
         private FatturaVendita(Cliente cliente, DateTime data, int numero, List<RigaFattura> elencoProdotti)
             : base(data, numero)
@@ -28,9 +26,10 @@ namespace Team19.Model
             this._cliente = cliente;
         }
 
+        // Usa il dizionario per recuperare l'ultimo numero di fattura in base all'anno
         private static int NumeroProssimaFatturaDiVendita(DateTime dataNuovaFattura)
         {
-            //usa il dizionario per recuperare l'ultimo numero di fattura in base all'anno
+
             if (!_dizionarioFatture.ContainsKey(dataNuovaFattura.Year))
             {
                 _dizionarioFatture.Add(dataNuovaFattura.Year, 1);
@@ -45,11 +44,10 @@ namespace Team19.Model
 
         public static FatturaVendita CreateFatturaVendita(Cliente cliente, DateTime data, List<RigaFattura> elencoProdotti)
         {
-
-            FatturaVendita nuovaFattura = new FatturaVendita(cliente, data, NumeroProssimaFatturaDiVendita(data), elencoProdotti);
-            return nuovaFattura;
-
+            return new FatturaVendita(cliente, data, NumeroProssimaFatturaDiVendita(data), elencoProdotti);
         }
+
+        #region FatturaVendita properties
 
         [Browsable(false)]
         public IEnumerable<RigaFattura> ElencoProdotti
@@ -69,13 +67,11 @@ namespace Team19.Model
             }
         }
 
-        
         public Cliente Cliente
         {
             get { return _cliente; }
         }
 
-        
         public override Currency Importo
         {
             get
@@ -88,5 +84,7 @@ namespace Team19.Model
                 return sum;
             }
         }
+
+        #endregion
     }
 }

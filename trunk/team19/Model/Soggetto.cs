@@ -28,31 +28,26 @@ namespace Team19.Model
         public string Denominazione
         {
             get { return _denominazione; }
-            //set { _denominazione = value; }
         }
 
         public Indirizzo Indirizzo
         {
             get { return _indirizzo; }
-            //set { _indirizzo = value; }
         }
         
         public string Telefono
         {
             get { return _telefono; }
-            //set { _telefono = value; }
         }
 
         public string EMail
         {
             get { return _eMail; }
-            //set { _eMail = value; }
         }
 
         public string PartitaIva
         {
             get { return _partitaIva ?? "Nessuna partita IVA"; }
-            //set { _partitaIva = value; }
         }
 
         public abstract string CodiceFiscale
@@ -94,7 +89,6 @@ namespace Team19.Model
             if (partitaIva == null)
                 throw new ArgumentNullException("Partita Iva nulla");
         }
-
 
         public override string CodiceFiscale
         {

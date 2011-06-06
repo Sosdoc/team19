@@ -12,19 +12,19 @@ namespace Team19.Presentation
     public partial class AuthenticationForm : Form
     {
         private string _username;
+        private string _password;
 
         public string Username
         {
             get { return _username; }
-           
+
         }
-        private string _password;
 
         public string Password
         {
             get { return _password; }
-          
         }
+
         public AuthenticationForm()
         {
             InitializeComponent();
@@ -45,9 +45,9 @@ namespace Team19.Presentation
 
         private void textBox2_KeyDown(object sender, KeyEventArgs e)
         {
-           if (e.KeyCode == Keys.Return)
+            if (e.KeyCode == Keys.Return)
                 button1_Click(sender, e);
         }
-        
+
     }
 }
