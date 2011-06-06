@@ -29,15 +29,15 @@
         private void InitializeComponent()
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this._subtypeCombo = new System.Windows.Forms.ComboBox();
-            this._detailsBox = new System.Windows.Forms.GroupBox();
-            this._detailsPanel = new System.Windows.Forms.FlowLayoutPanel();
             this._buttonPanel = new System.Windows.Forms.Panel();
             this._okButton = new System.Windows.Forms.Button();
             this._cancelButton = new System.Windows.Forms.Button();
+            this._detailsBox = new System.Windows.Forms.GroupBox();
+            this._detailsPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this._subtypeCombo = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanel1.SuspendLayout();
-            this._detailsBox.SuspendLayout();
             this._buttonPanel.SuspendLayout();
+            this._detailsBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -57,34 +57,6 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 37F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(400, 356);
             this.tableLayoutPanel1.TabIndex = 0;
-            // 
-            // _subtypeCombo
-            // 
-            this._subtypeCombo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._subtypeCombo.FormattingEnabled = true;
-            this._subtypeCombo.Location = new System.Drawing.Point(3, 3);
-            this._subtypeCombo.Name = "_subtypeCombo";
-            this._subtypeCombo.Size = new System.Drawing.Size(394, 21);
-            this._subtypeCombo.TabIndex = 13;
-            // 
-            // _detailsBox
-            // 
-            this._detailsBox.AutoSize = true;
-            this._detailsBox.Controls.Add(this._detailsPanel);
-            this._detailsBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._detailsBox.Location = new System.Drawing.Point(3, 29);
-            this._detailsBox.Name = "_detailsBox";
-            this._detailsBox.Size = new System.Drawing.Size(394, 286);
-            this._detailsBox.TabIndex = 17;
-            this._detailsBox.TabStop = false;
-            // 
-            // _detailsPanel
-            // 
-            this._detailsPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._detailsPanel.Location = new System.Drawing.Point(3, 16);
-            this._detailsPanel.Name = "_detailsPanel";
-            this._detailsPanel.Size = new System.Drawing.Size(388, 267);
-            this._detailsPanel.TabIndex = 0;
             // 
             // _buttonPanel
             // 
@@ -118,6 +90,34 @@
             this._cancelButton.Text = "Annulla";
             this._cancelButton.UseVisualStyleBackColor = true;
             // 
+            // _detailsBox
+            // 
+            this._detailsBox.AutoSize = true;
+            this._detailsBox.Controls.Add(this._detailsPanel);
+            this._detailsBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._detailsBox.Location = new System.Drawing.Point(3, 29);
+            this._detailsBox.Name = "_detailsBox";
+            this._detailsBox.Size = new System.Drawing.Size(394, 286);
+            this._detailsBox.TabIndex = 17;
+            this._detailsBox.TabStop = false;
+            // 
+            // _detailsPanel
+            // 
+            this._detailsPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._detailsPanel.Location = new System.Drawing.Point(3, 16);
+            this._detailsPanel.Name = "_detailsPanel";
+            this._detailsPanel.Size = new System.Drawing.Size(388, 267);
+            this._detailsPanel.TabIndex = 0;
+            // 
+            // _subtypeCombo
+            // 
+            this._subtypeCombo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._subtypeCombo.FormattingEnabled = true;
+            this._subtypeCombo.Location = new System.Drawing.Point(3, 3);
+            this._subtypeCombo.Name = "_subtypeCombo";
+            this._subtypeCombo.Size = new System.Drawing.Size(394, 21);
+            this._subtypeCombo.TabIndex = 13;
+            // 
             // InsertForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -131,8 +131,8 @@
             this.Text = "InsertForm";
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
-            this._detailsBox.ResumeLayout(false);
             this._buttonPanel.ResumeLayout(false);
+            this._detailsBox.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

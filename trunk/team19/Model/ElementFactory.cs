@@ -42,42 +42,34 @@ namespace Team19.Model
         #endregion
 
         #region Movimenti
-        public static MovimentoDiDenaro CreateInteresseBancario(DepositoDiDenaro deposito, double interesse, DateTime data, Dipendente dipendente, string causale)
-        {
-            throw new NotImplementedException();
-        }
 
-        public static MovimentoDiDenaro CreateSpesaBancaria(DepositoDiDenaro deposito, Currency importo, DateTime data, Dipendente dipendente, string causale)
-        {
-            throw new NotImplementedException();
-        }
         [MetodoCreazione("PagamentoAcquisto", new Type[] { typeof(ComboBox), typeof(ComboBox), typeof(DateTimePicker), typeof(TextBox) })]
         public static MovimentoDiDenaro CreatePagamentoAcquisto(ContenitoreDiDenaro sorgente, FatturaAcquisto destinazione, string data, string causale)
         {
-            return MovimentoFactory.CreatePagamentoAcquisto(sorgente, destinazione, DateTime.Parse(data), causale);
+            return MovimentoFactory.CreatePagamentoAcquisto(sorgente, destinazione, DateTime.Parse(data), Document.GetInstance().UtenteConnesso, causale);
         }
 
         [MetodoCreazione("IncassoVendita", new Type[] { typeof(ComboBox), typeof(ComboBox), typeof(DateTimePicker), typeof(TextBox) })]
         public static MovimentoDiDenaro CreateIncassoVendita(FatturaVendita sorgente, ContenitoreDiDenaro destinazione, string data, string causale)
         {
-            return MovimentoFactory.CreateIncassoVendita(sorgente, destinazione, DateTime.Parse(data), causale);
+            return MovimentoFactory.CreateIncassoVendita(sorgente, destinazione, DateTime.Parse(data), Document.GetInstance().UtenteConnesso, causale);
         }
         [MetodoCreazione("Prelievo", new Type[] { typeof(ComboBox), typeof(ComboBox), typeof(TextBox), typeof(DateTimePicker), typeof(TextBox) })]
         public static MovimentoDiDenaro CreateMovimentoInterno(DepositoDiDenaro sorgente, Cassa destinazione, string importo, string data, string causale)
         {
-            return MovimentoFactory.CreateMovimentoInterno(sorgente, destinazione, Currency.ParseCurrency(importo), DateTime.Parse(data), causale);
+            return MovimentoFactory.CreateMovimentoInterno(sorgente, destinazione, Currency.ParseCurrency(importo), DateTime.Parse(data), Document.GetInstance().UtenteConnesso, causale);
         }
 
         [MetodoCreazione("Versamento", new Type[] { typeof(ComboBox), typeof(ComboBox), typeof(TextBox), typeof(DateTimePicker), typeof(TextBox) })]
         public static MovimentoDiDenaro CreateMovimentoInterno(Cassa sorgente, DepositoDiDenaro destinazione, string importo, string data, string causale)
         {
-            return MovimentoFactory.CreateMovimentoInterno(sorgente, destinazione, Currency.ParseCurrency(importo), DateTime.Parse(data), causale);
+            return MovimentoFactory.CreateMovimentoInterno(sorgente, destinazione, Currency.ParseCurrency(importo), DateTime.Parse(data), Document.GetInstance().UtenteConnesso, causale);
         }
 
         [MetodoCreazione("Spostamento", new Type[] { typeof(ComboBox), typeof(ComboBox), typeof(TextBox), typeof(DateTimePicker), typeof(TextBox) })]
         public static MovimentoDiDenaro CreateMovimentoInterno(DepositoDiDenaro sorgente, DepositoDiDenaro destinazione, string importo, string data, string causale)
         {
-            return MovimentoFactory.CreateMovimentoInterno(sorgente, destinazione, Currency.ParseCurrency(importo), DateTime.Parse(data), causale);
+            return MovimentoFactory.CreateMovimentoInterno(sorgente, destinazione, Currency.ParseCurrency(importo), DateTime.Parse(data), Document.GetInstance().UtenteConnesso, causale);
         }
         #endregion
 
@@ -86,7 +78,7 @@ namespace Team19.Model
         [MetodoCreazione("Prodotto", new Type[] { typeof(TextBox), typeof(TextBox), typeof(TextBox) })]
         public static Prodotto CreateProdotto(string prezzo, string descrizione, string codice)
         {
-            return new Prodotto(Currency.ParseCurrency(prezzo) , descrizione, new CodiceProdotto(codice));
+            return new Prodotto(Currency.ParseCurrency(prezzo) , descrizione, CodiceProdotto.ParseCodiceProdotto(codice));
         }
 
         #endregion
