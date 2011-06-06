@@ -5,6 +5,11 @@ using System.Text;
 
 namespace Team19.Model
 {
+    /// <summary>
+    /// Questo file definisce i contenitori utilizzati in Document, i contenitori definiscono dei metodi Add con parametro object poichè necessario per aggiungere un oggetto
+    /// tramite reflection, evitando il problema di dover effettuare in modo dinamico un cast. Vengono anche definiti alcuni metodi di utilità per trovare degli oggetti.
+    /// </summary>
+
     class Movimenti : List<MovimentoDiDenaro>
     {
         public Movimenti()

@@ -9,10 +9,10 @@ namespace Team19.Model
     public abstract class ContenitoreDiDenaro : ISorgente, IDestinazione, IDisposable
     {
         private readonly Currency _saldoIniziale;
-        //Cache
-        private Currency _cacheSaldo;
-        //Evento per refresh cache
-        public event EventHandler Changed;
+   
+        private Currency _cacheSaldo;   //Cache
+        
+        public event EventHandler Changed;  //Evento per refresh cache
 
         public ContenitoreDiDenaro(Currency saldoIniziale)
         {
@@ -32,15 +32,19 @@ namespace Team19.Model
             get { return _saldoIniziale; }
         }
 
+        /// <summary>
+        /// Template method, ogni classe concreta che deriva da questa deve implementare Equals perchè il saldo funzioni correttamente
+        /// </summary>
         public Currency Saldo
         {
-            get //template method, ogni classe concreta deve implementare Equals
+            get 
             {
                 if (_cacheSaldo != null)
                     return _cacheSaldo;
 
                 Currency sum = SaldoIniziale;
 
+                //Recupero gli importi dai movimenti in cui questo contenitore è la destinazione
                 IEnumerable<Currency> queryImportiMovimentiConQuestoContenitore =
                     from movimento in Document.GetInstance().Movimenti
                     where this.Equals(movimento.Destinazione)
@@ -49,6 +53,7 @@ namespace Team19.Model
                 foreach (Currency c in queryImportiMovimentiConQuestoContenitore)
                     sum += c;
 
+                //Recupero gli importi dai movimenti in cui questo contenitore è la sorgente
                 queryImportiMovimentiConQuestoContenitore =
                       from movimento in Document.GetInstance().Movimenti
                       where this.Equals(movimento.Sorgente)
@@ -58,7 +63,7 @@ namespace Team19.Model
                     sum -= c;
 
                 _cacheSaldo = sum;
-                return sum;
+                return sum; 
             }
         }
 

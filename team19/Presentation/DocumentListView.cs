@@ -13,30 +13,13 @@ namespace Team19.Presentation
     public partial class DocumentListView : UserControl
     {
         public event EventHandler SelectionChanged;
+
         public DocumentListView()
         {
             InitializeComponent();
             Document.Changed += AggiornaLista;
         }
 
-        private void iconeGrandiToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            _listView.View = View.LargeIcon;
-            AggiornaLista(sender, e);
-        }
-
-        private void iconePiccoleToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-            _listView.View = View.SmallIcon;
-            AggiornaLista(sender, e);
-        }
-
-        private void listaToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            _listView.View = View.List;
-            AggiornaLista(sender, e);
-        }
         public ImageList LargeImageList
         {
             get
@@ -44,6 +27,7 @@ namespace Team19.Presentation
             set
             { _listView.LargeImageList = value; }
         }
+
         public ImageList SmallImageList
         {
             get
@@ -58,6 +42,7 @@ namespace Team19.Presentation
             { return _listView.Items; }
 
         }
+
         public View View
         {
             get
@@ -65,11 +50,7 @@ namespace Team19.Presentation
             set
             { _listView.View = value; }
         }
-        protected virtual void OnSelectionChanged()
-        {
-            if (SelectionChanged != null)
-                SelectionChanged(this, EventArgs.Empty);
-        }
+
         public ListViewItem SelectedItem
         {
             get
@@ -78,6 +59,30 @@ namespace Team19.Presentation
                     return _listView.SelectedItems[0];
                 return null;
             }
+        }
+
+        protected virtual void OnSelectionChanged()
+        {
+            if (SelectionChanged != null)
+                SelectionChanged(this, EventArgs.Empty);
+        }
+
+        private void iconeGrandiToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _listView.View = View.LargeIcon;
+            AggiornaLista(sender, e);
+        }
+
+        private void iconePiccoleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _listView.View = View.SmallIcon;
+            AggiornaLista(sender, e);
+        }
+
+        private void listaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _listView.View = View.List;
+            AggiornaLista(sender, e);
         }
 
         private void _listView_SelectedIndexChanged(object sender, EventArgs e)
@@ -110,10 +115,9 @@ namespace Team19.Presentation
                         item.ImageKey = nomeVisualizzato;
                         Items.Add(item);
                     }
-
                 }
             }
-
         }
+
     }
 }
