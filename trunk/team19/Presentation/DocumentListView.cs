@@ -86,16 +86,13 @@ namespace Team19.Presentation
             AggiornaLista(sender, e);
         }
 
-        //private void _listView_SelectedIndexChanged(object sender, EventArgs e)
-        //{
-        //    OnSelectionChanged();
-        //}
-
         private void AggiornaLista(object sender, EventArgs e)
         {
+            //Tiene traccia dell'elemento selezionato e lo memorizza prima di svuotare la ListView
             ListViewItem selected = SelectedItem;
             _listView.Clear();
-
+            //Prende tutte le property del document decorate con l'attributo displayname
+            //inserendo l'istanza ottenuta con la GetValue() nel Tag del ListViewItem associato
             foreach (PropertyInfo info in Document.GetInstance().GetType().GetProperties())
             {
                 object[] attributes = info.GetCustomAttributes(typeof(DisplayNameAttribute), true);
@@ -107,6 +104,7 @@ namespace Team19.Presentation
 
                     if (item.Tag != null)
                     {
+                        //Per visualizzare la cassa nella DataGridView occorre inserirla in una lista
                         if (item.Tag.GetType().BaseType.GetGenericArguments().Count() == 0)
                         {
                             IList<object> list = new List<object>();
@@ -115,7 +113,7 @@ namespace Team19.Presentation
                         }
 
                         item.ImageKey = nomeVisualizzato;
-
+                        //Se l'elemento era selezionato in precedenza torna selezionato
                         if (selected != null && selected.Tag.Equals(item.Tag))
                             item.Selected = true;
 

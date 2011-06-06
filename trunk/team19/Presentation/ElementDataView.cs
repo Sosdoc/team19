@@ -12,6 +12,8 @@ namespace Team19.Presentation
 {
     public partial class ElementDataView : UserControl
     {
+        //Istanza privata contenente il DataSource della DataGridView
+        //usata per filtrarne il contenuto
         private object _dataSource;
         public ElementDataView()
         {
@@ -55,8 +57,8 @@ namespace Team19.Presentation
                     {
                         mainclass = _dataSource.GetType().BaseType.GetGenericArguments()[0];
 
-
-                        //trova le sottoclassi
+                        //Trova le sottoclassi del tipo da visualizzare
+                        //e le inserisce nella combobox
                         if (mainclass.IsAbstract)
                         {
                             foreach (Type type in Assembly.GetAssembly(mainclass).GetTypes())
@@ -69,12 +71,9 @@ namespace Team19.Presentation
                             _subItemsCombo.DisplayMember = "Name";
                         }
                     }
-
                     if (_subItemsCombo.Items.Count == 0)
-                        _subItemsCombo.Enabled = false;
-                   
+                        _subItemsCombo.Enabled = false;             
                 }
-                
             }
         }
         public Type DataType

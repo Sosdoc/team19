@@ -10,6 +10,7 @@ namespace Team19.Model
         private static Dictionary<Type, Riepilogo> _riepiloghi;
         static RiepilogoFactory()
         {
+            //Dictionary usato per recuperare un'istanza della classe corretta a seconda del tipo del soggetto passato
             _riepiloghi = new Dictionary<Type, Riepilogo>();
             _riepiloghi.Add(typeof(Cliente), new RiepilogoCliente(null));
             _riepiloghi.Add(typeof(Fornitore), new RiepilogoFornitore(null));
@@ -37,6 +38,7 @@ namespace Team19.Model
                 set { _soggetto = value; }
             }
 
+            //I due metodi usano le property template FatturePagate e FattureDaPagare, ridefiniti nelle sottoclassi RiepilogoCliente e RiepilogoFornitore
             public IEnumerable<Fattura> GetImportiPagati()
             {
                 IList<Fattura> result = new List<Fattura>();

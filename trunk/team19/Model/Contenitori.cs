@@ -133,6 +133,14 @@ namespace Team19.Model
             return base.Find(dipendente => dipendente.Username.Equals(username));
         }
 
+        public Dipendente Autentica(string username, string password)
+        {
+            Dipendente d = FindByUsername(username);
+            if (d != null && d.Password.Equals(password))
+                return d;
+            return null;
+        }
+
         public void Add(object obj)
         {
             if (obj is Dipendente)

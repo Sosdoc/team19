@@ -28,26 +28,21 @@ namespace Team19.Presentation
         public AuthenticationForm()
         {
             InitializeComponent();
-            textBox2.UseSystemPasswordChar = true;
+            _passwordTextBox.UseSystemPasswordChar = true;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void _okButton_Click(object sender, EventArgs e)
         {
-            _username = textBox1.Text;
-            _password = textBox2.Text;
+            _username = _userNameTextBox.Text;
+            _password = _passwordTextBox.Text;
             Close();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void _cancelButton_Click(object sender, EventArgs e)
         {
             Close();
         }
 
-        private void textBox2_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Return)
-                button1_Click(sender, e);
-        }
-
+       
     }
 }

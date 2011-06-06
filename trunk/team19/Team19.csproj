@@ -113,6 +113,12 @@
     <Compile Include="Presentation\FormRiepilogo.Designer.cs">
       <DependentUpon>FormRiepilogo.cs</DependentUpon>
     </Compile>
+    <Compile Include="Presentation\InfoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\InfoForm.Designer.cs">
+      <DependentUpon>InfoForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Presentation\InsertForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -138,6 +144,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\FormRiepilogo.resx">
       <DependentUpon>FormRiepilogo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\InfoForm.resx">
+      <DependentUpon>InfoForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\InsertForm.resx">
       <DependentUpon>InsertForm.cs</DependentUpon>
