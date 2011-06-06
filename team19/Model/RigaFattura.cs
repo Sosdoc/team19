@@ -48,7 +48,7 @@ namespace Team19.Model
             return "#"+Quantità.ToString()+" "+Prodotto.ToString();
         }
 
-        //Non implementato, restituisce sempre lo stesso elenco di prodotti
+        //Parser statico implementato in sostituzione di uno user control più specifico da usare nel form di inserimento
         public static List<RigaFattura> ParseElencoProdotti(string elencoProdotti)
         {
             List<RigaFattura> righe = new List<RigaFattura>();

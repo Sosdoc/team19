@@ -57,7 +57,6 @@ namespace Team19.Model
                 throw new DivideByZeroException("Divisione per zero");
             return (c1 * (new Currency(1 / c2.Value)));
         }
-
         #endregion
 
         public override bool Equals(Object c)

@@ -46,6 +46,14 @@ namespace Team19.Presentation
         {
             _controller.Autentica();
         }
+
+        private void toolStripMenuItem3_Click(object sender, EventArgs e)
+        {
+            using (InfoForm info = new InfoForm())
+            {
+                info.ShowDialog();
+            }
+        }
         
 
     }

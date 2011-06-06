@@ -11,7 +11,7 @@ namespace Team19.Model
         private Movimenti _movimenti;
         private ContenitoriDiDenaro _contenitoriDiDenaro;
         private Fatture _fatture;
-        private Prodotti _prodotti; 
+        private Prodotti _prodotti;
         private Soggetti _soggetti;
         private Dipendenti _dipendenti;
         private Cassa _cassa;
@@ -108,31 +108,18 @@ namespace Team19.Model
         {
             if (_instance == null)
                 CreateInstance(new DefaultPersister());
-            //if (_instance.UtenteConnesso == null) 
-            //    throw new ApplicationException("Nessun utente connesso");
             return _instance;
         }
         #endregion
 
         #region Document Autenticazione/Persistenza
 
-        private void IsAmministratore()
-        {
-            if (!UtenteConnesso.Ruolo.Equals(TipoDipendente.Amministratore))
-                throw new InvalidOperationException("Non hai privilegi di amministratore");
-        }
-
         public void Autentica(string username, string password)
         {
-            IEnumerable<Dipendente> dipendenti = from dipendente in _instance._dipendenti
-                                                 where dipendente.Username.Equals(username) && dipendente.Password.Equals(password)
-                                                 select dipendente;
-            Dipendente d = null;
 
-            if (dipendenti.Count() != 0)
-                d = dipendenti.First();
+            Dipendente d = _dipendenti.Autentica(username, password);
 
-            if (d == null) 
+            if (d == null)
                 throw new KeyNotFoundException("Username o password non corrispondenti");
 
             _utenteConnesso = d;
@@ -161,6 +148,7 @@ namespace Team19.Model
         #endregion
 
         #region Document utility
+        //Metodi usati per popolare tramite reflection le combobox nel form di aggiunta
         public IList<Cliente> GetClienti()
         {
             return this.Soggetti.OfType<Cliente>().ToList();
@@ -218,8 +206,17 @@ namespace Team19.Model
             return this.Movimenti.Where(movimento => movimento.Sorgente is FatturaVendita);
         }
 
+        public IEnumerable<TipoDipendente> GetTipiDipendente()
+        {
+            List<TipoDipendente> lista = new List<TipoDipendente>();
+            lista.Add(TipoDipendente.Amministratore);
+            lista.Add(TipoDipendente.Utente);
+            return lista;
+        }
+
         #endregion
 
+        #region Eventi
         protected virtual void OnChanged()
         {
             if (Changed != null)
@@ -230,5 +227,6 @@ namespace Team19.Model
         {
             OnChanged();
         }
+        #endregion
     }
 }

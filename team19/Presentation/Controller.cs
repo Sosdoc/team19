@@ -22,7 +22,6 @@ namespace Team19.Presentation
             _documentListView.SelectionChanged += AggiornaTabella;
             Document.CreateInstance(new DefaultPersister());
             _document = Document.GetInstance();
-            //Document.Changed += AggiornaTabella;
         }
 
         public void Autentica()
@@ -33,22 +32,16 @@ namespace Team19.Presentation
                 {
                     if (auth.ShowDialog() == DialogResult.OK)
                     {
-                        #region initialize
-
-
                         _document.Autentica(auth.Username, auth.Password);
                         _dataGridView.DataSource = _document.Movimenti;
                         _userMenuItem.Text = _document.UtenteConnesso.ToString();
-
-                        #endregion
-
-                        IEnumerable<MovimentoDiDenaro> m = _document.Movimenti;
                     }
                     else Application.Exit();
                 }
             }
             catch (KeyNotFoundException kexc)
             {
+                //Riesegue l'autenticazione finchè l'utente non effettua il login correttamente o annulla l'operazione (chiudendo l'applicazione)
                 MessageBox.Show(kexc.Message);
                 Autentica();
             }
@@ -84,7 +77,6 @@ namespace Team19.Presentation
                 {
                     if (form.ShowDialog() == DialogResult.OK)
                     {   //Aggiunta di un oggetto ai contentitori
-
                         //recupero la property del document relativa al tipo creato
                         PropertyInfo property = _document.GetType().GetProperties().Where(prop => prop.PropertyType.GetGenericArguments().Contains(_dataGridView.DataType)).First();
                         //recupero il metodo Add(object) della property
@@ -96,10 +88,6 @@ namespace Team19.Presentation
 
                 }
 
-            }
-            catch (InvalidOperationException ex)
-            {
-                MessageBox.Show(ex.Message, "Errore", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             catch (Exception ex)
             {
@@ -118,6 +106,8 @@ namespace Team19.Presentation
                 
                 try
                 {
+                    //Rimozione di un oggetto ai contentitori
+                    //recupero la property del document relativa al tipo creato
                     PropertyInfo property = _document.GetType().GetProperties().Where(prop => prop.PropertyType.GetGenericArguments().Contains(dataType)).First();
                     //recupero il metodo Delete(int) della property
                     MethodInfo delete = property.GetValue(_document, null).GetType().GetMethod("Delete", new Type[] { typeof(int) });
@@ -125,7 +115,7 @@ namespace Team19.Presentation
                     delete.Invoke(property.GetValue(_document, null), new object[1] { index });
                     _dataGridView.DataSource = property.GetValue(_document, null);
                 }
-                catch (InvalidOperationException ex)
+                catch (Exception ex)
                 {
                     MessageBox.Show("Impossibile rimuovere l'elemento selezionato", "Errore");
                 }

@@ -14,10 +14,11 @@ namespace Team19.Model
         private string _provincia;
         private string _nazione;
 
-        //Costruttore da singola stringa, orribile, non fa alcun tipo di controllo e se sbagli ti esplode in faccia
+        //Costruttore da singola stringa, usato in mancanza di un controllo più specifico da usare nel form per l'inserimento
         public Indirizzo(string indirizzo)
         {
             string[] splitIndirizzo = indirizzo.Split(',');
+            if (splitIndirizzo.Count() != 6) throw new ArgumentException("Indirizzo non nel formato corretto (Via, numero civico, cap, località, provincia, nazione)");
             _via = splitIndirizzo[0];
             _numeroCivico = splitIndirizzo[1];
             _cap = splitIndirizzo[2];

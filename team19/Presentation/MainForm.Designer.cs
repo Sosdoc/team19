@@ -50,9 +50,9 @@
             this._largeImageList = new System.Windows.Forms.ImageList(this.components);
             this._smallImageList = new System.Windows.Forms.ImageList(this.components);
             this._utenteConnessoMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.logoutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._documentListView = new Team19.Presentation.DocumentListView();
             this._dataGridView = new Team19.Presentation.ElementDataView();
-            this.logoutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -66,8 +66,8 @@
             this.fileToolStripMenuItem,
             this.modificaToolStripMenuItem,
             this.riepilogoToolStripMenuItem,
-            this.toolStripMenuItem3,
-            this._utenteConnessoMenuItem});
+            this._utenteConnessoMenuItem,
+            this.toolStripMenuItem3});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(927, 24);
@@ -169,6 +169,7 @@
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
             this.toolStripMenuItem3.Size = new System.Drawing.Size(24, 20);
             this.toolStripMenuItem3.Text = "&?";
+            this.toolStripMenuItem3.Click += new System.EventHandler(this.toolStripMenuItem3_Click);
             // 
             // splitContainer1
             // 
@@ -218,6 +219,13 @@
             this._utenteConnessoMenuItem.Name = "_utenteConnessoMenuItem";
             this._utenteConnessoMenuItem.Size = new System.Drawing.Size(12, 20);
             // 
+            // logoutToolStripMenuItem
+            // 
+            this.logoutToolStripMenuItem.Name = "logoutToolStripMenuItem";
+            this.logoutToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
+            this.logoutToolStripMenuItem.Text = "Logout";
+            this.logoutToolStripMenuItem.Click += new System.EventHandler(this.logoutToolStripMenuItem_Click);
+            // 
             // _documentListView
             // 
             this._documentListView.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -239,13 +247,6 @@
             this._dataGridView.Size = new System.Drawing.Size(800, 472);
             this._dataGridView.TabIndex = 0;
             // 
-            // logoutToolStripMenuItem
-            // 
-            this.logoutToolStripMenuItem.Name = "logoutToolStripMenuItem";
-            this.logoutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.logoutToolStripMenuItem.Text = "Logout";
-            this.logoutToolStripMenuItem.Click += new System.EventHandler(this.logoutToolStripMenuItem_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -253,9 +254,10 @@
             this.ClientSize = new System.Drawing.Size(927, 496);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.menuStrip1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainForm";
-            this.Text = "MainForm";
+            this.Text = "Sams";
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();

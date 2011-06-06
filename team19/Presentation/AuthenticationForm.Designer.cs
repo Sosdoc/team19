@@ -28,53 +28,52 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this._userNameTextBox = new System.Windows.Forms.TextBox();
+            this._passwordTextBox = new System.Windows.Forms.TextBox();
+            this._okButton = new System.Windows.Forms.Button();
+            this._cancelButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // textBox1
+            // _userNameTextBox
             // 
-            this.textBox1.Location = new System.Drawing.Point(101, 19);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(140, 20);
-            this.textBox1.TabIndex = 0;
-            this.textBox1.Text = "admin";
-            this.textBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox2_KeyDown);
+            this._userNameTextBox.Location = new System.Drawing.Point(101, 19);
+            this._userNameTextBox.Name = "_userNameTextBox";
+            this._userNameTextBox.Size = new System.Drawing.Size(140, 20);
+            this._userNameTextBox.TabIndex = 0;
+            this._userNameTextBox.Text = "admin";
             // 
-            // textBox2
+            // _passwordTextBox
             // 
-            this.textBox2.Location = new System.Drawing.Point(101, 59);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(140, 20);
-            this.textBox2.TabIndex = 1;
-            this.textBox2.Text = "admin";
-            this.textBox2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox2_KeyDown);
+            this._passwordTextBox.Location = new System.Drawing.Point(101, 59);
+            this._passwordTextBox.Name = "_passwordTextBox";
+            this._passwordTextBox.Size = new System.Drawing.Size(140, 20);
+            this._passwordTextBox.TabIndex = 1;
+            this._passwordTextBox.Text = "admin";
             // 
-            // button1
+            // _okButton
             // 
-            this.button1.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.button1.Location = new System.Drawing.Point(84, 100);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "OK";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this._okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this._okButton.Location = new System.Drawing.Point(85, 124);
+            this._okButton.Name = "_okButton";
+            this._okButton.Size = new System.Drawing.Size(75, 23);
+            this._okButton.TabIndex = 2;
+            this._okButton.Text = "OK";
+            this._okButton.UseVisualStyleBackColor = true;
+            this._okButton.Click += new System.EventHandler(this._okButton_Click);
             // 
-            // button2
+            // _cancelButton
             // 
-            this.button2.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.button2.Location = new System.Drawing.Point(166, 100);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 3;
-            this.button2.Text = "Annulla";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this._cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this._cancelButton.Location = new System.Drawing.Point(166, 124);
+            this._cancelButton.Name = "_cancelButton";
+            this._cancelButton.Size = new System.Drawing.Size(75, 23);
+            this._cancelButton.TabIndex = 3;
+            this._cancelButton.Text = "Annulla";
+            this._cancelButton.UseVisualStyleBackColor = true;
+            this._cancelButton.Click += new System.EventHandler(this._cancelButton_Click);
             // 
             // label1
             // 
@@ -94,17 +93,27 @@
             this.label2.TabIndex = 5;
             this.label2.Text = "Password";
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(26, 95);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(192, 26);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "Login: admin admin per amministratore, \r\nutente utente per utente";
+            // 
             // AuthenticationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(253, 141);
+            this.ClientSize = new System.Drawing.Size(253, 159);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this._cancelButton);
+            this.Controls.Add(this._okButton);
+            this.Controls.Add(this._passwordTextBox);
+            this.Controls.Add(this._userNameTextBox);
             this.Name = "AuthenticationForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Autenticazione";
@@ -115,11 +124,12 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.TextBox _userNameTextBox;
+        private System.Windows.Forms.TextBox _passwordTextBox;
+        private System.Windows.Forms.Button _okButton;
+        private System.Windows.Forms.Button _cancelButton;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
     }
 }
